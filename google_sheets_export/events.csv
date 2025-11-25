@@ -1,0 +1,7 @@
+﻿ID	Родитель	Уровень	Название	Значение	Подпись	Иконка	Обложка	Краткое описание	Полное описание	Расписание	Цена
+events		0	Наши события	events	актуальные мероприятия	icons/ourevents.png					
+events_1	events	1	Дискотека 90	disco90	3 октября 2025	covers/disco90.jpg	covers/disco90.jpg	Подробное описание			
+events_2	events	1	Рисуем вином	wine_painting	22 октября 2025	covers/vine.jpg	covers/vine.jpg	Подробное описание			
+events_3	events	1	Мафия	mafia	12 октября 2025	covers/mafia.jpg	covers/mafia.jpg	Подробное описание			
+events_4	events	1	Готовим бургер	burger	21 октября 2025	covers/burger.jpg	covers/burger.jpg	Подробное описание			
+events_5	events	1	Бункер	bunker	14 октября 2025	covers/bunker.jpg	covers/bunker.jpg	Подробное описание			

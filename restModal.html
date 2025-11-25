@@ -1,0 +1,75 @@
+<!-- 1) Диагональная панель -->
+<div class="rest-panel diagonal"></div>
+<!-- Page transition эффект -->
+<div class="rest-transition">
+	<div class="rest-transition__panel"></div>
+	<div class="rest-transition__panel"></div>
+	<div class="rest-transition__panel"></div>
+</div>
+<!-- 2) Видео фон -->
+<video class="rest-bg" autoplay muted loop playsinline>
+	<source src="video/relax-new.mp4" type="video/mp4">
+</video>
+<!-- 3) Контент -->
+<div class="rest-content" id="restContent">
+	<button class="rest-close" id="closeRest" aria-label="Закрыть"></button>
+	<!-- ЦИФРЫ -->
+	<div class="rest-stats">
+		<div><span>2000м²</span><p>территория</p></div>
+		<div><span>5★</span><p>сервис</p></div>
+		<div><span>24/7</span><p>доступ</p></div>
+	</div>
+	<p class="rest-intro">
+		В «ПРАЙД» отдых для всей семьи — от расслабления в бане до активного времяпрепровождения.
+	</p>
+	<!-- СЛАЙДЕР КАРТОЧЕК -->
+	<div class="rest-slider-wrap">
+		<button class="slides-nav__button slides-nav__button--prev" data-rest-prev aria-label="Пред">←</button>
+		<div class="rest-slider" id="restSlider">
+			<!-- 1 -->
+			<div class="rest-card" data-slide-id="sauna">
+				<img src="icons/sauna.png" alt="">
+				<h3>Баня и сауна</h3>
+				<p>Финская сауна, русская баня с вениками, хаммам. Идеально для восстановления после тренировок.</p>
+				<a href="#" class="rest-btn">Забронировать</a>
+			</div>
+			<!-- 2 -->
+			<div class="rest-card" data-slide-id="pool">
+				<img src="icons/pool.png" alt="">
+				<h3>Бассейн</h3>
+				<p>25-метровый бассейн с дорожками для плавания. Детская зона, аквааэробика.</p>
+				<a href="#" class="rest-btn">Расписание занятий</a>
+			</div>
+			<!-- 3 -->
+			<div class="rest-card" data-slide-id="spa">
+				<img src="icons/massage.png" alt="">
+				<h3>SPA и массаж</h3>
+				<p>Профессиональный массаж, SPA-процедуры, косметология. Опытные мастера.</p>
+				<a href="#" class="rest-btn">Записаться</a>
+			</div>
+			<!-- 4 -->
+			<div class="rest-card" data-slide-id="lounge">
+				<img src="icons/rest.png" alt="">
+				<h3>Зона отдыха</h3>
+				<p>Комфортные лаунж-зоны, кафе, детская игровая комната.</p>
+				<a href="#" class="rest-btn">Подробнее</a>
+			</div>
+			<!-- 5 -->
+			<div class="rest-card" data-slide-id="restaurant">
+				<img src="icons/restaurant.png" alt="">
+				<h3>Ресторан</h3>
+				<p>Европейская и восточная кухня, банкетный зал, детское меню.</p>
+				<a href="#" class="rest-btn">Меню и бронирование</a>
+			</div>
+			<!-- 6 -->
+			<div class="rest-card" data-slide-id="rest-quick-links">
+				<img src="icons/empty.png" alt="">
+				<h3>📌 Быстрые ссылки</h3>
+				<a href="https://pride34.ru/relax/" class="rest-btn">Все услуги отдыха</a>
+				<a href="https://pride34.ru/pricing/" class="rest-btn">Цены</a>
+				<a href="https://pride34.ru/contacts/" class="rest-btn">Контакты</a>
+			</div>
+		</div>
+		<button class="slides-nav__button slides-nav__button--next" data-rest-next aria-label="След">→</button>
+	</div>
+</div>

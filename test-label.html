@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Label</title>
+</head>
+<body>
+    <h1>Test</h1>
+    <button onclick="test()">Test opt.label</button>
+    <script>
+        function test() {
+            const opt = {
+                label: "Сергей Моисеев",
+                desc: "Тестовое описание"
+            };
+
+            const html = `${opt?.label ? `<h2 class="final-fields-title">${opt.label}</h2>` : ""}`;
+            console.log('Generated HTML:', html);
+            console.log('opt.label:', opt.label);
+            console.log('opt?.label:', opt?.label);
+
+            alert('Check console');
+        }
+    </script>
+</body>
+</html>

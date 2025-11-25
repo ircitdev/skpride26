@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StyleGuide - Pride34</title>
+    <link rel="stylesheet" href="styleguide.css">
+    <link rel="stylesheet" href="theme-styles.css">
+</head>
+<body>
+    <!-- Шапка с переключателем темы -->
+    <header class="sg-header">
+        <div class="sg-container">
+            <h1 class="sg-logo">Pride34 StyleGuide</h1>
+            <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                <span class="theme-icon theme-icon--light">☀️</span>
+                <span class="theme-icon theme-icon--dark">🌙</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Навигация -->
+    <nav class="sg-nav">
+        <div class="sg-container">
+            <a href="#colors">Цвета</a>
+            <a href="#typography">Типографика</a>
+            <a href="#buttons">Кнопки</a>
+            <a href="#forms">Формы</a>
+            <a href="#cards">Карточки</a>
+            <a href="#animations">Анимации</a>
+            <a href="styleguide-v2.html" target="_blank">V2</a>
+            <a href="font-pairing.html" target="_blank">Fonts</a>
+            <a href="components-collection.html" target="_blank">Collection</a>
+        </div>
+    </nav>
+
+    <!-- Основной контент -->
+    <main class="sg-main">
+        <div class="sg-container">
+
+            <!-- Секция: Цветовая палитра -->
+            <section id="colors" class="sg-section">
+                <h2 class="sg-section-title">Цветовая палитра</h2>
+
+                <div class="sg-subsection">
+                    <h3>Основные цвета</h3>
+                    <div class="color-grid">
+                        <div class="color-card">
+                            <div class="color-swatch color-primary"></div>
+                            <div class="color-info">
+                                <h4>Primary</h4>
+                                <p class="color-value">#bd9d5d</p>
+                                <p class="color-usage">Основной акцентный цвет</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch color-primary-dark"></div>
+                            <div class="color-info">
+                                <h4>Primary Dark</h4>
+                                <p class="color-value">#957a45</p>
+                                <p class="color-usage">Hover состояние</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch color-text"></div>
+                            <div class="color-info">
+                                <h4>Text</h4>
+                                <p class="color-value">Динамический</p>
+                                <p class="color-usage">Основной текст</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch color-bg"></div>
+                            <div class="color-info">
+                                <h4>Background</h4>
+                                <p class="color-value">Динамический</p>
+                                <p class="color-usage">Фон страницы</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Состояния и сообщения</h3>
+                    <div class="color-grid">
+                        <div class="color-card">
+                            <div class="color-swatch color-success"></div>
+                            <div class="color-info">
+                                <h4>Success</h4>
+                                <p class="color-value">#4caf50</p>
+                                <p class="color-usage">Успешные действия</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch color-error"></div>
+                            <div class="color-info">
+                                <h4>Error</h4>
+                                <p class="color-value">#f44336</p>
+                                <p class="color-usage">Ошибки</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch color-warning"></div>
+                            <div class="color-info">
+                                <h4>Warning</h4>
+                                <p class="color-value">#ff9800</p>
+                                <p class="color-usage">Предупреждения</p>
+                            </div>
+                        </div>
+                        <div class="color-card">
+                            <div class="color-swatch color-info"></div>
+                            <div class="color-info">
+                                <h4>Info</h4>
+                                <p class="color-value">#2196f3</p>
+                                <p class="color-usage">Информация</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция: Типографика -->
+            <section id="typography" class="sg-section">
+                <h2 class="sg-section-title">Типографика</h2>
+
+                <div class="sg-subsection">
+                    <h3>Шрифты проекта</h3>
+                    <div class="fonts-info">
+                        <div class="font-card">
+                            <h4 style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Montserrat Bold</h4>
+                            <p>Используется для H1, H2 и основных заголовков</p>
+                            <code>font-family: 'Montserrat', sans-serif; font-weight: 700;</code>
+                        </div>
+                        <div class="font-card">
+                            <h4 style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Montserrat Medium</h4>
+                            <p>Используется для H3-H6 и подзаголовков</p>
+                            <code>font-family: 'Montserrat', sans-serif; font-weight: 500;</code>
+                        </div>
+                        <div class="font-card">
+                            <h4 style="font-family: 'Roboto', sans-serif; font-weight: 400;">Roboto Regular</h4>
+                            <p>Используется для основного текста и контента</p>
+                            <code>font-family: 'Roboto', sans-serif; font-weight: 400;</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Заголовки</h3>
+                    <div class="typography-showcase">
+                        <h1>Заголовок H1 - Главный заголовок страницы (Montserrat Bold)</h1>
+                        <h2>Заголовок H2 - Заголовок секции (Montserrat Bold)</h2>
+                        <h3>Заголовок H3 - Подзаголовок (Montserrat Medium)</h3>
+                        <h4>Заголовок H4 - Мелкий заголовок (Montserrat Medium)</h4>
+                        <h5>Заголовок H5 - Дополнительный заголовок (Montserrat Medium)</h5>
+                        <h6>Заголовок H6 - Самый мелкий заголовок (Montserrat Medium)</h6>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Текстовые блоки (Roboto)</h3>
+                    <p class="text-large">Большой текст - используется для вводных абзацев и акцентов. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Шрифт: Roboto Regular 1.25rem.</p>
+                    <p>Обычный текст - основной размер текста для контента. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Шрифт: Roboto Regular 1rem.</p>
+                    <p class="text-small">Мелкий текст - используется для подписей и вспомогательной информации. Lorem ipsum dolor sit amet. Шрифт: Roboto Regular 0.875rem.</p>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Форматирование текста</h3>
+                    <p><strong>Жирный текст</strong> используется для важных моментов</p>
+                    <p><em>Курсивный текст</em> используется для выделения</p>
+                    <p><u>Подчеркнутый текст</u> используется редко</p>
+                    <p><del>Зачеркнутый текст</del> показывает удаленное содержимое</p>
+                    <p><mark>Выделенный текст</mark> привлекает внимание</p>
+                    <p><code>Код или техническая информация</code> выглядит так</p>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Списки</h3>
+                    <div class="lists-grid">
+                        <div>
+                            <h4>Маркированный список</h4>
+                            <ul>
+                                <li>Первый пункт списка</li>
+                                <li>Второй пункт списка</li>
+                                <li>Третий пункт списка
+                                    <ul>
+                                        <li>Вложенный пункт</li>
+                                        <li>Еще один вложенный</li>
+                                    </ul>
+                                </li>
+                                <li>Четвертый пункт списка</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Нумерованный список</h4>
+                            <ol>
+                                <li>Первый пункт списка</li>
+                                <li>Второй пункт списка</li>
+                                <li>Третий пункт списка
+                                    <ol>
+                                        <li>Вложенный пункт</li>
+                                        <li>Еще один вложенный</li>
+                                    </ol>
+                                </li>
+                                <li>Четвертый пункт списка</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Ссылки</h3>
+                    <p>Это <a href="#">обычная ссылка</a> в тексте</p>
+                    <p>Это <a href="#" class="link-primary">акцентная ссылка</a> в тексте</p>
+                    <p>Это <a href="#" class="link-external">внешняя ссылка</a> на другой сайт</p>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Цитаты</h3>
+                    <blockquote class="sg-quote">
+                        <p>Успех — это умение двигаться от неудачи к неудаче, не теряя энтузиазма.</p>
+                        <footer>— Уинстон Черчилль</footer>
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- Секция: Кнопки -->
+            <section id="buttons" class="sg-section">
+                <h2 class="sg-section-title">Кнопки</h2>
+
+                <div class="sg-subsection">
+                    <h3>Основные кнопки</h3>
+                    <div class="button-grid">
+                        <button class="btn btn-primary">Primary Button</button>
+                        <button class="btn btn-secondary">Secondary Button</button>
+                        <button class="btn btn-outline">Outline Button</button>
+                        <button class="btn btn-ghost">Ghost Button</button>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Размеры кнопок</h3>
+                    <div class="button-grid">
+                        <button class="btn btn-primary btn-large">Large Button</button>
+                        <button class="btn btn-primary btn-medium">Medium Button</button>
+                        <button class="btn btn-primary btn-small">Small Button</button>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Состояния кнопок</h3>
+                    <div class="button-grid">
+                        <button class="btn btn-primary">Normal</button>
+                        <button class="btn btn-primary" disabled>Disabled</button>
+                        <button class="btn btn-primary btn-loading">
+                            <span class="btn-spinner"></span>
+                            Loading...
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Кнопки с иконками</h3>
+                    <div class="button-grid">
+                        <button class="btn btn-primary">
+                            <span class="btn-icon">+</span>
+                            Добавить
+                        </button>
+                        <button class="btn btn-secondary">
+                            <span class="btn-icon">✓</span>
+                            Сохранить
+                        </button>
+                        <button class="btn btn-outline">
+                            <span class="btn-icon">×</span>
+                            Удалить
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Кнопки успеха/ошибки</h3>
+                    <div class="button-grid">
+                        <button class="btn btn-success">Success</button>
+                        <button class="btn btn-error">Error</button>
+                        <button class="btn btn-warning">Warning</button>
+                        <button class="btn btn-info">Info</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция: Формы -->
+            <section id="forms" class="sg-section">
+                <h2 class="sg-section-title">Формы</h2>
+
+                <div class="sg-subsection">
+                    <h3>Текстовые поля</h3>
+                    <form class="form-demo">
+                        <div class="form-group">
+                            <label for="input-text">Обычное текстовое поле</label>
+                            <input type="text" id="input-text" class="form-control" placeholder="Введите текст">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-email">Email</label>
+                            <input type="email" id="input-email" class="form-control" placeholder="example@mail.com">
+                            <small class="form-help">Введите корректный email адрес</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-password">Пароль</label>
+                            <input type="password" id="input-password" class="form-control" placeholder="••••••••">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-disabled">Отключенное поле</label>
+                            <input type="text" id="input-disabled" class="form-control" value="Disabled" disabled>
+                        </div>
+
+                        <div class="form-group form-group-error">
+                            <label for="input-error">Поле с ошибкой</label>
+                            <input type="text" id="input-error" class="form-control" value="Неверное значение">
+                            <small class="form-error">Это поле заполнено неправильно</small>
+                        </div>
+
+                        <div class="form-group form-group-success">
+                            <label for="input-success">Поле с успехом</label>
+                            <input type="text" id="input-success" class="form-control" value="Правильное значение">
+                            <small class="form-success">Отлично!</small>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Textarea</h3>
+                    <form class="form-demo">
+                        <div class="form-group">
+                            <label for="textarea">Многострочное поле</label>
+                            <textarea id="textarea" class="form-control" rows="4" placeholder="Введите ваше сообщение..."></textarea>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Select</h3>
+                    <form class="form-demo">
+                        <div class="form-group">
+                            <label for="select">Выпадающий список</label>
+                            <select id="select" class="form-control">
+                                <option>Выберите опцию</option>
+                                <option>Опция 1</option>
+                                <option>Опция 2</option>
+                                <option>Опция 3</option>
+                                <option>Опция 4</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Checkbox и Radio</h3>
+                    <form class="form-demo">
+                        <div class="form-group">
+                            <label>Checkbox группа</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="checkbox-custom"></span>
+                                    Опция 1
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkbox-custom"></span>
+                                    Опция 2
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox">
+                                    <span class="checkbox-custom"></span>
+                                    Опция 3
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Radio группа</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="radio-demo" checked>
+                                    <span class="radio-custom"></span>
+                                    Вариант 1
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="radio-demo">
+                                    <span class="radio-custom"></span>
+                                    Вариант 2
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="radio-demo">
+                                    <span class="radio-custom"></span>
+                                    Вариант 3
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Полная форма</h3>
+                    <form class="form-demo form-demo-full">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">Имя</label>
+                                <input type="text" id="first-name" class="form-control" placeholder="Иван">
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Фамилия</label>
+                                <input type="text" id="last-name" class="form-control" placeholder="Иванов">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="full-email">Email</label>
+                            <input type="email" id="full-email" class="form-control" placeholder="example@mail.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="full-phone">Телефон</label>
+                            <input type="tel" id="full-phone" class="form-control" placeholder="+7 (999) 123-45-67">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="full-message">Сообщение</label>
+                            <textarea id="full-message" class="form-control" rows="4" placeholder="Ваше сообщение..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox">
+                                <span class="checkbox-custom"></span>
+                                Я согласен с условиями и политикой конфиденциальности
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">Отправить</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Секция: Карточки -->
+            <section id="cards" class="sg-section">
+                <h2 class="sg-section-title">Карточки</h2>
+
+                <div class="sg-subsection">
+                    <h3>Базовые карточки</h3>
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>Простая карточка</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Это базовая карточка с заголовком и контентом. Можно использовать для отображения различной информации.</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-hover">
+                            <div class="card-header">
+                                <h3>Карточка с hover</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Эта карточка имеет эффект при наведении. Попробуйте навести курсор!</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-accent">
+                            <div class="card-header">
+                                <h3>Акцентная карточка</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>Карточка с акцентной границей для привлечения внимания к важному контенту.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Карточки с изображениями</h3>
+                    <div class="cards-grid">
+                        <div class="card">
+                            <div class="card-image">
+                                <div class="card-image-placeholder">400x250</div>
+                            </div>
+                            <div class="card-body">
+                                <h3>Заголовок карточки</h3>
+                                <p>Описание карточки с изображением. Lorem ipsum dolor sit amet.</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-primary btn-small">Подробнее</button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-image">
+                                <div class="card-image-placeholder">400x250</div>
+                            </div>
+                            <div class="card-body">
+                                <h3>Другая карточка</h3>
+                                <p>Еще одна карточка с изображением для демонстрации.</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-outline btn-small">Узнать больше</button>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-image">
+                                <div class="card-image-placeholder">400x250</div>
+                            </div>
+                            <div class="card-body">
+                                <h3>Третья карточка</h3>
+                                <p>И еще одна карточка для полноты картины.</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="btn btn-secondary btn-small">Действие</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Статистические карточки</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value">1000+</div>
+                            <div class="stat-label">Клиентов</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Лет опыта</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">50+</div>
+                            <div class="stat-label">Тренеров</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">24/7</div>
+                            <div class="stat-label">Доступность</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Карточки с 3D Tilt эффектом</h3>
+                    <p class="subsection-desc">Наведите курсор на карточки, чтобы увидеть 3D эффект наклона</p>
+                    <div class="cards-grid">
+                        <div class="card card-tilt" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.3">
+                            <div class="card-body">
+                                <h3>3D Tilt Card 1</h3>
+                                <p>Эта карточка реагирует на движение мыши с 3D эффектом наклона и бликом.</p>
+                                <div class="card-stats">
+                                    <span class="badge badge-primary">3D</span>
+                                    <span class="badge badge-info">Interactive</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-tilt card-tilt-gradient" data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
+                            <div class="card-body">
+                                <h3>Gradient Tilt</h3>
+                                <p>Карточка с градиентным фоном и усиленным 3D эффектом.</p>
+                                <div class="card-stats">
+                                    <span class="badge badge-warning">Premium</span>
+                                    <span class="badge badge-success">Enhanced</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-tilt card-tilt-dark" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+                            <div class="card-body">
+                                <h3>Deep Perspective</h3>
+                                <p>Карточка с глубокой перспективой и плавной анимацией.</p>
+                                <div class="card-stats">
+                                    <span class="badge badge-error">Hot</span>
+                                    <span class="badge badge-info">New</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Карточки с Glass эффектом (Glassmorphism)</h3>
+                    <p class="subsection-desc">Современный стеклянный эффект с размытием фона</p>
+                    <div class="glass-demo-bg">
+                        <div class="cards-grid">
+                            <div class="card card-glass">
+                                <div class="card-body">
+                                    <h3>Glass Card 1</h3>
+                                    <p>Прозрачная карточка с эффектом матового стекла и размытием фона.</p>
+                                    <button class="btn btn-glass">Подробнее</button>
+                                </div>
+                            </div>
+
+                            <div class="card card-glass card-glass-colored">
+                                <div class="card-body">
+                                    <h3>Colored Glass</h3>
+                                    <p>Стеклянная карточка с легким цветным оттенком золота.</p>
+                                    <button class="btn btn-glass">Узнать больше</button>
+                                </div>
+                            </div>
+
+                            <div class="card card-glass card-glass-border">
+                                <div class="card-body">
+                                    <h3>Glass Border</h3>
+                                    <p>Стеклянный эффект с акцентной светящейся границей.</p>
+                                    <button class="btn btn-glass">Действие</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Комбинированный эффект: 3D Tilt + Glass</h3>
+                    <p class="subsection-desc">Лучшее из двух миров - 3D наклон и стеклянный эффект вместе</p>
+                    <div class="glass-demo-bg">
+                        <div class="cards-grid">
+                            <div class="card card-glass-tilt" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                                <div class="card-body">
+                                    <div class="glass-icon">⚡</div>
+                                    <h3>Power</h3>
+                                    <p>Максимальная интерактивность с премиум визуалом.</p>
+                                    <div class="stat-value" style="font-size: 2rem; margin-top: 1rem;">100%</div>
+                                </div>
+                            </div>
+
+                            <div class="card card-glass-tilt card-glass-colored" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                                <div class="card-body">
+                                    <div class="glass-icon">🎯</div>
+                                    <h3>Precision</h3>
+                                    <p>Точность и элегантность в каждой детали.</p>
+                                    <div class="stat-value" style="font-size: 2rem; margin-top: 1rem;">A+</div>
+                                </div>
+                            </div>
+
+                            <div class="card card-glass-tilt card-glass-border" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                                <div class="card-body">
+                                    <div class="glass-icon">✨</div>
+                                    <h3>Magic</h3>
+                                    <p>Волшебство современного дизайна.</p>
+                                    <div class="stat-value" style="font-size: 2rem; margin-top: 1rem;">★★★</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция: Анимации -->
+            <section id="animations" class="sg-section">
+                <h2 class="sg-section-title">Анимации</h2>
+
+                <div class="sg-subsection">
+                    <h3>Fade анимации</h3>
+                    <div class="animation-grid">
+                        <div class="animation-demo">
+                            <div class="animation-box fade-in">Fade In</div>
+                        </div>
+                        <div class="animation-demo">
+                            <div class="animation-box fade-in-up">Fade In Up</div>
+                        </div>
+                        <div class="animation-demo">
+                            <div class="animation-box fade-in-down">Fade In Down</div>
+                        </div>
+                        <div class="animation-demo">
+                            <div class="animation-box fade-in-left">Fade In Left</div>
+                        </div>
+                        <div class="animation-demo">
+                            <div class="animation-box fade-in-right">Fade In Right</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Scale анимации</h3>
+                    <div class="animation-grid">
+                        <div class="animation-demo">
+                            <div class="animation-box scale-in">Scale In</div>
+                        </div>
+                        <div class="animation-demo">
+                            <div class="animation-box scale-up">Scale Up</div>
+                        </div>
+                        <div class="animation-demo">
+                            <div class="animation-box pulse">Pulse</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Rotate анимации</h3>
+                    <div class="animation-grid">
+                        <div class="animation-demo">
+                            <div class="animation-box rotate-in">Rotate In</div>
+                        </div>
+                        <div class="animation-demo">
+                            <div class="animation-box swing">Swing</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Специальные анимации</h3>
+                    <div class="animation-grid">
+                        <div class="animation-demo">
+                            <div class="animation-box bounce">Bounce</div>
+                        </div>
+                        <div class="animation-demo">
+                            <div class="animation-box shake">Shake</div>
+                        </div>
+                        <div class="animation-demo">
+                            <div class="animation-box slide-in">Slide In</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Loading индикаторы</h3>
+                    <div class="loaders-grid">
+                        <div class="loader-demo">
+                            <div class="spinner spinner-1"></div>
+                            <p>Spinner 1</p>
+                        </div>
+                        <div class="loader-demo">
+                            <div class="spinner spinner-2"></div>
+                            <p>Spinner 2</p>
+                        </div>
+                        <div class="loader-demo">
+                            <div class="spinner spinner-3"></div>
+                            <p>Spinner 3</p>
+                        </div>
+                        <div class="loader-demo">
+                            <div class="dots-loader">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <p>Dots</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция: Spacing & Layout -->
+            <section id="spacing" class="sg-section">
+                <h2 class="sg-section-title">Spacing & Layout</h2>
+
+                <div class="sg-subsection">
+                    <h3>Отступы</h3>
+                    <div class="spacing-demo">
+                        <div class="spacing-item spacing-xs">XS - 4px</div>
+                        <div class="spacing-item spacing-sm">SM - 8px</div>
+                        <div class="spacing-item spacing-md">MD - 16px</div>
+                        <div class="spacing-item spacing-lg">LG - 24px</div>
+                        <div class="spacing-item spacing-xl">XL - 32px</div>
+                        <div class="spacing-item spacing-xxl">XXL - 48px</div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Grid System</h3>
+                    <div class="grid-demo">
+                        <div class="grid grid-2">
+                            <div class="grid-item">1/2</div>
+                            <div class="grid-item">1/2</div>
+                        </div>
+                        <div class="grid grid-3">
+                            <div class="grid-item">1/3</div>
+                            <div class="grid-item">1/3</div>
+                            <div class="grid-item">1/3</div>
+                        </div>
+                        <div class="grid grid-4">
+                            <div class="grid-item">1/4</div>
+                            <div class="grid-item">1/4</div>
+                            <div class="grid-item">1/4</div>
+                            <div class="grid-item">1/4</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Секция: Компоненты UI -->
+            <section id="ui-components" class="sg-section">
+                <h2 class="sg-section-title">UI Компоненты</h2>
+
+                <div class="sg-subsection">
+                    <h3>Badges (Значки)</h3>
+                    <div class="badges-demo">
+                        <span class="badge">Default</span>
+                        <span class="badge badge-primary">Primary</span>
+                        <span class="badge badge-success">Success</span>
+                        <span class="badge badge-error">Error</span>
+                        <span class="badge badge-warning">Warning</span>
+                        <span class="badge badge-info">Info</span>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Alerts (Уведомления)</h3>
+                    <div class="alerts-demo">
+                        <div class="alert alert-success">
+                            <strong>Успех!</strong> Операция выполнена успешно.
+                        </div>
+                        <div class="alert alert-error">
+                            <strong>Ошибка!</strong> Что-то пошло не так.
+                        </div>
+                        <div class="alert alert-warning">
+                            <strong>Внимание!</strong> Требуется ваше внимание.
+                        </div>
+                        <div class="alert alert-info">
+                            <strong>Информация:</strong> Полезная информация для вас.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Progress Bar</h3>
+                    <div class="progress-demo">
+                        <div class="progress">
+                            <div class="progress-bar" style="width: 25%">25%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" style="width: 50%">50%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-warning" style="width: 75%">75%</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-error" style="width: 100%">100%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Tabs</h3>
+                    <div class="tabs-demo">
+                        <div class="tabs">
+                            <button class="tab tab-active">Вкладка 1</button>
+                            <button class="tab">Вкладка 2</button>
+                            <button class="tab">Вкладка 3</button>
+                            <button class="tab">Вкладка 4</button>
+                        </div>
+                        <div class="tab-content">
+                            <p>Содержимое первой вкладки. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3>Tooltips</h3>
+                    <div class="tooltips-demo">
+                        <button class="btn btn-primary tooltip-trigger" data-tooltip="Это подсказка сверху">
+                            Наведите на меня
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="sg-footer">
+        <div class="sg-container">
+            <p>&copy; 2024 Pride34. StyleGuide для унификации дизайна.</p>
+        </div>
+    </footer>
+
+    <script src="vanilla-tilt.min.js"></script>
+    <script src="styleguide.js"></script>
+</body>
+</html>

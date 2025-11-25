@@ -1,0 +1,84 @@
+{
+  "slides": [
+    {
+      "number": "1",
+      "idname": "home",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide slide--current\" id=\"slide_home\" data-slide-id=\"home\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/1.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/1.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span><strong><span class=\"slideTextAccent\">Спорт</span></strong> <em>и отдых</em></span></span>\n<span class=\"text-row\"><span><strong>для</strong> <em><span class=\"slideTextAccent\">всей</span></em> <strong><em>семьи</strong></em></span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    },
+    {
+      "number": "2",
+      "idname": "gym",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide\" id=\"slide_gym\" data-slide-id=\"gym\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/2.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/2.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span><strong>Сила</strong> и движение</span></span>\n<span class=\"text-row\"><span><em><span class=\"slideTextAccent\">каждый</span></em> <em>день</em></span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    },
+    {
+      "number": "3",
+      "idname": "spa",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide\" id=\"slide_spa\" data-slide-id=\"spa\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/3-2.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/3-2.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span><strong>Отдых,</strong> который</span></span>\n<span class=\"text-row\"><span><em><span class=\"slideTextAccent\">возвращает</span></em> <em>силы</em></span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    },
+    {
+      "number": "4",
+      "idname": "restaurant",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide\" id=\"slide_restaurant\" data-slide-id=\"restaurant\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/6.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/6.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span><strong>Ресторан</strong></span></span>\n<span class=\"text-row\"><span><span class=\"slideTextAccent\">Европейская</span></span></span>\n<span class=\"text-row\"><span><em>кухня</em></span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    },
+    {
+      "number": "5",
+      "idname": "kids",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide\" id=\"slide_kids\" data-slide-id=\"kids\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/3.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/3.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span><strong><span class=\"slideTextAccent\">Здоровое</span></strong> будущее</span></span>\n<span class=\"text-row\"><span><em>начинается</em> здесь</span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    },
+    {
+      "number": "6",
+      "idname": "ice",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide\" id=\"slide_ice\" data-slide-id=\"ice\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/4.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/4.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span><strong>Ледовая</strong> арена</span></span>\n<span class=\"text-row\"><span><em>лед</em> <strong><span class=\"slideTextAccent\">круглый год</span></strong></span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    },
+    {
+      "number": "7",
+      "idname": "fight",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide\" id=\"slide_fight\" data-slide-id=\"fight\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/5.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/5.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span>Характер рождается</span></span>\n<span class=\"text-row\"><span><strong><span class=\"slideTextAccent\">на ковре</span></strong></span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    },
+    {
+      "number": "8",
+      "idname": "hotel",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide\" id=\"slide_hotel\" data-slide-id=\"hotel\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/7.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/7.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span><strong>Маленький</strong> <span class=\"slideTextAccent\">отпуск</span></span></span>\n<span class=\"text-row\"><span><em>в</em> городе</span></span>\n<span class=\"text-row\"><span>СПА-<strong>отель</strong></span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    },
+    {
+      "number": "9",
+      "idname": "burger",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide\" id=\"slide_burger\" data-slide-id=\"burger\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/50.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/50.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span><strong>Готовим</strong> <em><span class=\"slideTextAccent\">бургер</span></em></span></span>\n<span class=\"text-row\"><span>мастер-класс <em>4+</em></span></span>\n<span class=\"text-row\"><span>10 октября, <em><span class=\"slideTextAccent\">800р</span></em></span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    },
+    {
+      "number": "10",
+      "idname": "wine",
+      "title": "",
+      "image": "",
+      "buttons": "",
+      "html": "<figure class=\"slide\" id=\"slide_wine\" data-slide-id=\"wine\">\n<div class=\"slide__img-wrap light-slide\" data-img=\"./img/51.jpg\">\n<div class=\"slide__img\" style=\"background-image: url(./img/51.jpg)\"></div>\n</div>\n<figcaption class=\"slide__caption\">\n<h2 class=\"slides__caption-headline\">\n<span class=\"text-row\"><span><span class=\"slideTextAccent\">Рисуем</span></span></span>\n<span class=\"text-row\"><span><strong>Вином</strong></span></span>\n<span class=\"text-row\"><span>20 октября, <em><span class=\"slideTextAccent\">2000р</span></em></span></span>\n</h2>\n\n</figcaption>\n</figure>"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+<!-- 1) Диагональная панель -->
+<div class="sport-panel diagonal"></div>
+<!-- Page transition эффект -->
+<div class="sport-transition">
+	<div class="sport-transition__panel"></div>
+	<div class="sport-transition__panel"></div>
+	<div class="sport-transition__panel"></div>
+</div>
+<!-- 2) Видео фон -->
+<video class="sport-bg" autoplay muted loop playsinline>
+	<source src="video/gym.mp4" type="video/mp4">
+</video>
+<div class="sport-overlay"></div>
+<!-- 3) Контент -->
+<div class="sport-content" id="sportContent">
+	<button class="sport-close" id="closeSport" aria-label="Закрыть"></button>
+	<!-- ЦИФРЫ -->
+	<div class="sport-stats">
+		<div><span>560м²</span><p>зал</p></div>
+		<div><span>40+</span><p>тренеров</p></div>
+		<div><span>7 лет</span><p>клубу</p></div>
+	</div>
+	<p class="sport-intro" style="margin:20px 20px 0px 20px">
+		В «ПРАЙД» спорт доступен каждому — от первых шагов ребёнка до профессиональных тренировок.
+	</p>
+
+	<!-- СЛАЙДЕР КАРТОЧЕК -->
+	<div class="sport-slider-wrap">
+		<button class="slides-nav__button slides-nav__button--prev" data-sport-prev aria-label="Пред">←</button>
+		<div class="sport-slider" id="sportSlider">
+			<!-- 1 -->
+			<div class="sport-card" data-slide-id="gym">
+				<img src="icons/gym.png" alt="">
+				<h3>Тренажёрный зал</h3>
+				<p>Современные тренажёры, свободные веса и кардио-зона. Персональные тренировки с сертифицированными тренерами.</p>
+				<a href="#" class="sport-btn booking-trigger">Записаться на пробную тренировку</a>
+				<a href="#" class="sport-btn trainer-selector-trigger">Выбрать тренера</a>
+				<a href="#about" class="sport-btn about-trigger" data-modal="aboutModal">Подробнее о клубе</a>
+			</div>
+			<!-- 2 -->
+			<div class="sport-card" data-slide-id="fight">
+				<img src="icons/fight.png" alt="">
+				<h3>Боевые искусства</h3>
+				<p>Самбо, дзюдо, рукопашный бой, панкратион, ММА, БЖЖ, тхэквондо, греко-римская борьба, кикбоксинг и бокс.</p>
+				<a href="#" class="sport-btn fight-selector-trigger">Выбрать секцию боевых искусств</a>
+				<a href="https://pride34.ru/trainers/" class="sport-btn">Тренеры</a>
+				<a href="#" class="sport-btn schedule-trigger">Расписание</a>
+			</div>
+			<!-- 3 (Игровые виды: три кнопки внутри) -->
+			<div class="sport-card" data-slide-id="games">
+				<img src="icons/game.png" alt="">
+				<h3>Игровые виды спорта</h3>
+				<p>Фигурное катание, хоккей, футбол — для детей и взрослых.</p>
+				<a href="https://pride34.ru/classes/figurnoe-katanie/" class="sport-btn">Фигурное катание</a>
+				<a href="https://pride34.ru/classes/hokkey/" class="sport-btn">Хоккей</a>
+				<a href="https://pride34.ru/classes/football/" class="sport-btn">Футбол</a>
+			</div>
+			<!-- 4 -->
+			<div class="sport-card" data-slide-id="kids-sections">
+				<img src="icons/kids.png" alt="">
+				<h3>Детские секции</h3>
+				<p>«Первые шаги», «Юные игроки», продлёнка и развивающие программы.</p>
+				<a href="https://pride34.ru/classes/" class="sport-btn">Записать ребёнка</a>
+			</div>
+			<!-- 5 -->
+			<div class="sport-card" data-slide-id="fitness">
+				<img src="icons/yoga.png" alt="">
+				<h3>Фитнес-программы</h3>
+				<p>Пилатес, йога, кроссфит, женские тренировки, танцы (бачата, восточные, бальные).</p>
+				<a href="https://pride34.ru/classes/" class="sport-btn">Выбрать фитнес-программу</a>
+			</div>
+			<!-- 6 -->
+			<div class="sport-card" data-slide-id="dance">
+				<img src="icons/dance.png" alt="">
+				<h3>Танцы</h3>
+				<p>Бачата, восточные, бальные — выберите направление.</p>
+				<a href="https://pride34.ru/classes/" class="sport-btn">Выбрать направление</a>
+			</div>
+			<!-- 7 -->
+			<div class="sport-card" data-slide-id="tennis">
+				<img src="icons/tennis.png" alt="">
+				<h3>Теннис</h3>
+				<p>Занятия на большом корте. Подходит для начинающих и продолжающих.</p>
+				<a href="https://pride34.ru/classes/tennis/" class="sport-btn">Расписание</a>
+			</div>
+			<!-- 8 -->
+			<div class="sport-card" data-slide-id="quick-links">
+				<img src="icons/empty.png" alt="">
+				<h3>📌 Быстрые ссылки</h3>
+				<a href="https://pride34.ru/schedule/" class="sport-btn">Расписание</a>
+				<a href="https://pride34.ru/trainers/" class="sport-btn">Тренеры</a>
+				<a href="https://pride34.ru/pricing/" class="sport-btn">Цены</a>
+				<a href="https://pride34.ru/cameras/" class="sport-btn">Онлайн-камеры</a>
+			</div>
+		</div>
+		<button class="slides-nav__button slides-nav__button--next" data-sport-next aria-label="След">→</button>
+	</div>
+</div>

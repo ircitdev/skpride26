@@ -1,0 +1,50 @@
+{
+    "permissions": {
+        "allow": [
+            "Bash(dir:*)",
+            "Bash(cat:*)",
+            "Bash(python:*)",
+            "Bash(/dev/null)", В модальном окне Ледовая Арена data - modal = "iceModal"
+            заменить изображения на втором экране на
+            1 - > img / В модальном окне которое открывается при клике на id = "restBtn"
+            убрать наложение на видео фон в hero - sectionice / ice1.png
+            2 - > img / ice / ice2.png
+            3 - > img / ice / ice3.png
+            4 - > img / ice / ice4.png
+            5 - > img / ice / ice5.png "Bash(powershell.exe:*)",
+            "Bash(powershell:*)",
+            "Bash(del fix-final-fields-title.js)",
+            "Bash(node:*)",
+            "Bash(awk:*)",
+            "Bash(pip install:*)",
+            "Bash(nul)",
+            "Bash(findstr:*)",
+            "WebFetch(domain:www.framer.com)",
+            "Bash(tree:*)",
+            "WebFetch(domain:pride34.ru)",
+            "Bash(netstat:*)",
+            "Bash(taskkill:*)",
+            "Bash(taskkill /F /PID 1308)",
+            "Bash(npx --yes http-server:*)",
+            "Bash(del trainers-slider.js trainers-slider.css)",
+            "WebFetch(domain:pride.rest)",
+            "Bash(\"K:\\scripts\\pride\\slide7\\iceModal.css\")",
+            "Bash(del \"K:\\scripts\\pride\\slide7\\temp_ice_script.txt\")",
+            "WebFetch(domain:docs.google.com)",
+            "Bash(start styleguide.html)",
+            "WebFetch(domain:primer.style)",
+            "Bash(start styleguide-v2.html)",
+            "Bash(start font-pairing.html)",
+            "WebFetch(domain:codepen.io)",
+            "Bash(start components-collection.html)",
+            "Bash(\"K:\\scripts\\pride\\slide7\\components-collection.css\")",
+            "Bash(del \"K:\\scripts\\pride\\slide7\\temp_new_styles.css\")",
+            "Bash(start http://localhost:8080/index.html)",
+            "Bash(start:*)",
+            "Bash(copy \"K:\\scripts\\pride\\slide7\\form.json\" \"K:\\scripts\\pride\\slide7\\form.json.backup.20251124\")",
+            "WebFetch(domain:doc-10-60-sheets.googleusercontent.com)"
+        ],
+        "deny": [],
+        "ask": []
+    }
+}

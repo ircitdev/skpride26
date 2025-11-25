@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Flip Cards</title>
+    <link rel="stylesheet" href="advanced-cards.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .test-container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Flip Card</h1>
+    <div class="test-container">
+        <div class="flip-card-interactive events-flip-card" data-slide-id="test">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <div class="flip-shine"></div>
+                    <div class="flip-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 200px;">
+                        <div class="flip-floating-tag">TEST</div>
+                        <div class="flip-card-image-gradient"></div>
+                    </div>
+                    <div class="flip-card-content">
+                        <h3 class="flip-card-title">Тестовая Карточка</h3>
+                        <p class="flip-card-description">
+                            Наведите мышь для 3D эффекта. Нажмите "Подробнее" для переворота.
+                        </p>
+                        <div class="flip-card-meta">
+                            <div class="flip-meta-item">
+                                <span class="flip-meta-icon">✓</span>
+                                <span>Работает</span>
+                            </div>
+                        </div>
+                        <button class="flip-card-button">Подробнее</button>
+                    </div>
+                </div>
+                <div class="flip-card-back">
+                    <div class="flip-back-content">
+                        <div class="flip-back-header">
+                            <h3>Обратная сторона</h3>
+                            <button class="flip-close-button">×</button>
+                        </div>
+                        <div class="flip-details-section">
+                            <h4>Это работает!</h4>
+                            <ul class="flip-highlights-list">
+                                <li>
+                                    <span class="flip-highlight-icon">✓</span>
+                                    <div class="flip-highlight-text">
+                                        <strong>3D Tilt</strong>
+                                        <p>Наведите мышь</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="flip-highlight-icon">✓</span>
+                                    <div class="flip-highlight-text">
+                                        <strong>Flip Animation</strong>
+                                        <p>Плавный переворот</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script>
+        console.log('Test page loaded');
+
+        const card = document.querySelector('.flip-card-interactive');
+        const flipButton = card.querySelector('.flip-card-button');
+        const closeButton = card.querySelector('.flip-close-button');
+        let isAnimating = false;
+
+        console.log('Elements found:', { card, flipButton, closeButton });
+
+        function flipCard() {
+            if (!isAnimating) {
+                isAnimating = true;
+                card.classList.toggle('flipped');
+                console.log('Card flipped, class:', card.classList.contains('flipped'));
+
+                if (card.classList.contains('flipped')) {
+                    card.style.transform = '';
+                }
+
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 700);
+            }
+        }
+
+        // 3D Tilt эффект
+        card.addEventListener('mousemove', (e) => {
+            if (card.classList.contains('flipped')) return;
+
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / 30).toFixed(2);
+            const rotateY = ((centerX - x) / 30).toFixed(2);
+
+            card.style.transform = `perspective(1500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            card.style.transition = 'transform 0.1s ease-out';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            if (!card.classList.contains('flipped')) {
+                card.style.transform = 'perspective(1500px) rotateX(0deg) rotateY(0deg)';
+                card.style.transition = 'transform 0.5s ease';
+            }
+        });
+
+        flipButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Flip button clicked');
+            flipCard();
+        });
+
+        closeButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Close button clicked');
+            flipCard();
+        });
+
+        console.log('Event listeners attached');
+    </script>
+</body>
+</html>

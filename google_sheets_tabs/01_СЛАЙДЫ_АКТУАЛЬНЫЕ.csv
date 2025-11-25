@@ -1,0 +1,11 @@
+Номер	idname	Заголовок строка 1	Заголовок строка 2	Заголовок строка 3	Картинка Desktop	Картинка Mobile	Тема	Кнопка 1	ID кнопки 1	Кнопка 2	ID кнопки 2	Кнопка 3	ID кнопки 3	Кнопка 4	ID кнопки 4	Активен
+1	home	**[Спорт]** *и отдых*	**для** *[всей]* ***семьи***		./img/1.jpg	./img/1.jpg	light	Я хочу спорт	wantSportBtn	Я хочу отдых	wantrestBtn	Ищу для ребёнка	wantKidsBtn	Планирую мероприятие	planEventBtn	TRUE
+2	gym	**Сила** и движение	*[каждый]* *день*		./img/2.jpg	./img/2.jpg	light	Абонемент за 9000р		Тренеры	trainersBtn	Запись	trialBtn		TRUE
+3	spa	**Отдых,** который	*[возвращает]* *силы*		./img/3-2.jpg	./img/3-2.jpg	light	Релакс-зона	relaxZoneBtn	СПА-отель	spaHotelBtn	Ресторан →	restaurantSlideBtn		TRUE
+4	restaurant	**Ресторан**	[Европейская]	*кухня*	./img/6.jpg	./img/6.jpg	dark	Меню		Доставка		Бронировать стол	bookTableBtn		TRUE
+5	kids	**[Здоровое]** будущее	*начинается* здесь		./img/3.jpg	./img/3.jpg	light	Спорт для детей с 4 лет	kidssSportBtn					TRUE
+6	ice	**Ледовая** арена	*лед* **[круглый год]**		./img/4.jpg	./img/4.jpg	light	Катание		Хоккей		Фигурное катание		Онлайн-камеры		TRUE
+7	fight	Характер рождается	**[на ковре]**		./img/5.jpg	./img/5.jpg	light	10+ единоборств		Тренеры	fightTrainersBtn				TRUE
+8	hotel	**Маленький** [отпуск]	*в* городе	СПА-**отель**	./img/7.jpg	./img/7.jpg	light	Что включено?		Цена номер		Забронировать			TRUE
+9	burger	**Готовим** *[бургер]*	мастер-класс *4+*	10 октября, *[800р]*	./img/50.jpg	./img/50.jpg	light	Записаться						FALSE
+10	wine	[Рисуем]	**Вином**	20 октября, *[2000р]*	./img/51.jpg	./img/51.jpg	light	Записаться						FALSE

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TEST - Version Check</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 40px;
+            background: #000;
+            color: #0f0;
+        }
+        h1 { color: #0ff; }
+        .success { color: #0f0; font-size: 24px; }
+        .error { color: #f00; font-size: 24px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Version Check Test</h1>
+    <p class="success">✅ Если вы видите эту страницу - файлы обновляются!</p>
+    <p>Timestamp: <?php echo date('Y-m-d H:i:s'); ?></p>
+    <p>Current time: <span id="time"></span></p>
+    <hr>
+    <h2>Проверка файлов:</h2>
+    <ul>
+        <li>index.html - должен содержать "liquid-slider-wrapper"</li>
+        <li>liquid-slider.js - должен быть загружен</li>
+        <li>liquid-slider.css - должен быть загружен</li>
+    </ul>
+    <hr>
+    <a href="index.html" style="color: #0ff; font-size: 20px;">← Вернуться на главную</a>
+
+    <script>
+        document.getElementById('time').textContent = new Date().toLocaleString('ru-RU');
+    </script>
+</body>
+</html>

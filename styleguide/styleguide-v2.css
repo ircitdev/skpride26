@@ -1,0 +1,1118 @@
+/* ===== Pride34 Design System v2 (Primer Style) ===== */
+
+/* Импорт шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* CSS переменные */
+:root {
+    /* Brand Colors */
+    --color-gold: #bd9d5d;
+    --color-gold-dark: #957a45;
+    --color-gold-light: #e8d4b8;
+
+    /* Functional Colors */
+    --color-success: #4caf50;
+    --color-error: #f44336;
+    --color-warning: #ff9800;
+    --color-info: #2196f3;
+
+    /* Neutral Colors - Light Theme */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f5f5f5;
+    --color-bg-tertiary: #fafafa;
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #666666;
+    --color-text-muted: #999999;
+    --color-border: #e0e0e0;
+    --color-border-muted: #f0f0f0;
+
+    /* Typography */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+    --font-mono: 'Monaco', 'Courier New', monospace;
+
+    /* Spacing Scale */
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 16px;
+    --spacing-4: 24px;
+    --spacing-5: 32px;
+    --spacing-6: 48px;
+    --spacing-7: 64px;
+    --spacing-8: 96px;
+
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+
+    /* Elevation (Shadows) */
+    --shadow-0: none;
+    --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-3: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --shadow-4: 0 16px 48px rgba(0, 0, 0, 0.3);
+
+    /* Layout */
+    --sidebar-width: 260px;
+    --header-height: 64px;
+    --content-max-width: 1200px;
+}
+
+/* Dark Theme */
+body.light-theme {
+    --color-bg-primary: #0d0d0d;
+    --color-bg-secondary: #1a1a1a;
+    --color-bg-tertiary: #141414;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #cccccc;
+    --color-text-muted: #999999;
+    --color-border: #333333;
+    --color-border-muted: #262626;
+    --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-3: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-4: 0 16px 48px rgba(0, 0, 0, 0.6);
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    line-height: 1.3;
+    margin-bottom: var(--spacing-3);
+    color: var(--color-text-primary);
+}
+
+h1 { font-size: 3rem; font-weight: 700; line-height: 1.2; }
+h2 { font-size: 2.5rem; font-weight: 700; line-height: 1.3; }
+h3 { font-size: 2rem; font-weight: 500; line-height: 1.4; }
+h4 { font-size: 1.5rem; font-weight: 500; }
+h5 { font-size: 1.25rem; font-weight: 500; }
+h6 { font-size: 1rem; font-weight: 500; }
+
+p {
+    margin-bottom: var(--spacing-3);
+}
+
+code {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    background: var(--color-bg-secondary);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+}
+
+/* ===== Header ===== */
+.primer-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 100;
+}
+
+.primer-header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 var(--spacing-4);
+    max-width: 100%;
+}
+
+.primer-logo {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-gold);
+}
+
+.primer-header-nav {
+    display: flex;
+    gap: var(--spacing-4);
+}
+
+.primer-header-nav a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.primer-header-nav a:hover {
+    color: var(--color-gold);
+    background: var(--color-bg-secondary);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--color-bg-secondary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.theme-toggle:hover {
+    background: var(--color-border);
+}
+
+.theme-icon {
+    position: absolute;
+    font-size: 1.25rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-icon--light {
+    opacity: 1;
+}
+
+.theme-icon--dark {
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+body.light-theme .theme-icon--light {
+    opacity: 0;
+    transform: rotate(-180deg);
+}
+
+body.light-theme .theme-icon--dark {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+/* ===== Layout ===== */
+.primer-layout {
+    display: flex;
+    margin-top: var(--header-height);
+}
+
+/* Sidebar */
+.primer-sidebar {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--header-height));
+    background: var(--color-bg-primary);
+    border-right: 1px solid var(--color-border);
+    overflow-y: auto;
+    padding: var(--spacing-4);
+}
+
+.primer-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.primer-sidebar::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 3px;
+}
+
+/* Navigation */
+.primer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+}
+
+.primer-nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+}
+
+.primer-nav-heading {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-2);
+}
+
+.primer-nav-link {
+    display: block;
+    padding: var(--spacing-2) var(--spacing-3);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+}
+
+.primer-nav-link:hover {
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
+}
+
+.primer-nav-link.active {
+    color: var(--color-gold);
+    background: rgba(189, 157, 93, 0.1);
+    font-weight: 500;
+}
+
+/* Content */
+.primer-content {
+    margin-left: var(--sidebar-width);
+    padding: var(--spacing-6);
+    max-width: calc(var(--content-max-width) + var(--sidebar-width));
+    width: 100%;
+}
+
+/* Section */
+.primer-section {
+    margin-bottom: var(--spacing-8);
+    scroll-margin-top: calc(var(--header-height) + var(--spacing-4));
+}
+
+.primer-section-header {
+    margin-bottom: var(--spacing-6);
+    padding-bottom: var(--spacing-4);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.primer-section-title {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-2);
+}
+
+.primer-section-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+}
+
+.primer-heading-2 {
+    font-size: 1.5rem;
+    margin-top: var(--spacing-6);
+    margin-bottom: var(--spacing-4);
+}
+
+/* ===== Layout Components ===== */
+
+/* Box */
+.primer-box {
+    padding: var(--spacing-4);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-4);
+}
+
+.primer-box-accent {
+    border-left: 4px solid var(--color-gold);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-gold);
+    border-left-width: 4px;
+}
+
+/* Улучшенный контраст для светлой темы */
+body:not(.light-theme) .primer-box-accent {
+    background: rgba(189, 157, 93, 0.05);
+    border-color: var(--color-gold);
+}
+
+/* Улучшенный контраст для темной темы */
+body.light-theme .primer-box-accent {
+    background: #ffffff;
+    border-color: var(--color-gold);
+}
+
+/* Grid */
+.primer-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+}
+
+.primer-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+}
+
+.primer-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+}
+
+/* Stack */
+.primer-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+}
+
+/* ===== Cards ===== */
+.primer-card {
+    padding: var(--spacing-4);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: all 0.2s ease;
+}
+
+.primer-card h3 {
+    margin-bottom: var(--spacing-2);
+    color: var(--color-text-primary);
+}
+
+.primer-card p {
+    margin-bottom: 0;
+    color: var(--color-text-secondary);
+}
+
+/* Светлая тема - белые карточки */
+body:not(.light-theme) .primer-card {
+    background: var(--color-bg-primary);
+}
+
+/* Темная тема - темные карточки с лучшей видимостью */
+body.light-theme .primer-card {
+    background: var(--color-bg-secondary);
+    border-color: var(--color-border);
+}
+
+.primer-card-hover:hover {
+    border-color: var(--color-gold);
+    box-shadow: var(--shadow-1);
+    transform: translateY(-2px);
+}
+
+.primer-card-accent {
+    border-color: var(--color-gold);
+    border-width: 2px;
+}
+
+.primer-card-feature {
+    text-align: center;
+    padding: var(--spacing-5);
+}
+
+.primer-card-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-3);
+}
+
+/* ===== Colors ===== */
+.primer-color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
+}
+
+.primer-color-card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.primer-color-card:hover {
+    box-shadow: var(--shadow-2);
+    transform: translateY(-4px);
+}
+
+.primer-color-swatch {
+    height: 120px;
+    width: 100%;
+}
+
+.primer-color-info {
+    padding: var(--spacing-3);
+    background: var(--color-bg-primary);
+}
+
+.primer-color-info h4 {
+    font-size: 1rem;
+    margin-bottom: var(--spacing-1);
+}
+
+.primer-color-info code {
+    display: block;
+    margin: var(--spacing-1) 0;
+}
+
+.primer-color-info p {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+/* ===== Typography ===== */
+.primer-display {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.primer-text-large {
+    font-size: 1.25rem;
+    line-height: 1.6;
+}
+
+.primer-text-small {
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.primer-text-muted {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+}
+
+.primer-typography-scale {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
+}
+
+.primer-type-example {
+    padding: var(--spacing-4);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.primer-type-example code {
+    display: block;
+    margin-top: var(--spacing-2);
+}
+
+/* Светлая тема - белый фон для примеров типографики */
+body:not(.light-theme) .primer-type-example {
+    background: var(--color-bg-primary);
+}
+
+/* ===== Spacing ===== */
+.primer-spacing-scale {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+}
+
+.primer-spacing-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+    padding: var(--spacing-3);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+/* Светлая тема - белый фон для spacing */
+body:not(.light-theme) .primer-spacing-item {
+    background: var(--color-bg-primary);
+}
+
+.primer-spacing-box {
+    background: var(--color-gold);
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+}
+
+.primer-spacing-info {
+    display: flex;
+    gap: var(--spacing-3);
+    align-items: center;
+}
+
+.primer-spacing-info strong {
+    min-width: 60px;
+}
+
+.primer-spacing-info code {
+    min-width: 120px;
+}
+
+.primer-spacing-info span {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+}
+
+/* ===== Elevation ===== */
+.primer-elevation-0 {
+    box-shadow: var(--shadow-0);
+}
+
+.primer-elevation-1 {
+    box-shadow: var(--shadow-1);
+}
+
+.primer-elevation-2 {
+    box-shadow: var(--shadow-2);
+}
+
+.primer-elevation-3 {
+    box-shadow: var(--shadow-3);
+}
+
+.primer-elevation-4 {
+    box-shadow: var(--shadow-4);
+}
+
+/* ===== Buttons ===== */
+.primer-component-demo {
+    display: flex;
+    gap: var(--spacing-3);
+    flex-wrap: wrap;
+    align-items: center;
+    padding: var(--spacing-4);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-4);
+}
+
+/* Светлая тема - белый фон для демо */
+body:not(.light-theme) .primer-component-demo {
+    background: var(--color-bg-primary);
+}
+
+.primer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.primer-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Button Variants */
+.primer-btn-primary {
+    background: var(--color-gold);
+    color: #fff;
+}
+
+.primer-btn-primary:hover:not(:disabled) {
+    background: var(--color-gold-dark);
+}
+
+.primer-btn-secondary {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border-color: var(--color-border);
+}
+
+.primer-btn-secondary:hover:not(:disabled) {
+    background: var(--color-bg-tertiary);
+    border-color: var(--color-gold);
+}
+
+.primer-btn-outline {
+    background: transparent;
+    color: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+.primer-btn-outline:hover:not(:disabled) {
+    background: rgba(189, 157, 93, 0.1);
+}
+
+.primer-btn-ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+}
+
+.primer-btn-ghost:hover:not(:disabled) {
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+}
+
+.primer-btn-danger {
+    background: var(--color-error);
+    color: #fff;
+}
+
+.primer-btn-danger:hover:not(:disabled) {
+    background: #d32f2f;
+}
+
+/* Button Sizes */
+.primer-btn-sm {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+}
+
+.primer-btn-lg {
+    padding: 14px 28px;
+    font-size: 1rem;
+}
+
+/* Button States */
+.primer-btn-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.primer-spinner {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.primer-btn-icon {
+    font-size: 1.1em;
+}
+
+/* ===== Forms ===== */
+.primer-form-example {
+    max-width: 600px;
+    padding: var(--spacing-4);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-4);
+}
+
+/* Светлая тема - белый фон для форм */
+body:not(.light-theme) .primer-form-example {
+    background: var(--color-bg-primary);
+}
+
+.primer-form-group {
+    margin-bottom: var(--spacing-4);
+}
+
+.primer-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.primer-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: var(--spacing-2);
+    color: var(--color-text-primary);
+}
+
+.primer-input,
+.primer-select {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    background: var(--color-bg-primary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.primer-input:focus,
+.primer-select:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(189, 157, 93, 0.1);
+}
+
+.primer-input::placeholder {
+    color: var(--color-text-muted);
+}
+
+textarea.primer-input {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.primer-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+.primer-form-caption {
+    display: block;
+    margin-top: var(--spacing-1);
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.primer-form-error {
+    display: block;
+    margin-top: var(--spacing-1);
+    font-size: 0.75rem;
+    color: var(--color-error);
+}
+
+.primer-form-success {
+    display: block;
+    margin-top: var(--spacing-1);
+    font-size: 0.75rem;
+    color: var(--color-success);
+}
+
+.primer-form-group-error .primer-input {
+    border-color: var(--color-error);
+}
+
+.primer-form-group-error .primer-input:focus {
+    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+.primer-form-group-success .primer-input {
+    border-color: var(--color-success);
+}
+
+.primer-form-group-success .primer-input:focus {
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Checkbox */
+.primer-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: var(--spacing-2);
+}
+
+.primer-checkbox input {
+    width: 18px;
+    height: 18px;
+    margin-right: var(--spacing-2);
+    cursor: pointer;
+}
+
+.primer-checkbox-label {
+    font-size: 0.875rem;
+    user-select: none;
+}
+
+/* Radio */
+.primer-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: var(--spacing-2);
+}
+
+.primer-radio input {
+    width: 18px;
+    height: 18px;
+    margin-right: var(--spacing-2);
+    cursor: pointer;
+}
+
+.primer-radio-label {
+    font-size: 0.875rem;
+    user-select: none;
+}
+
+/* ===== Labels (Badges) ===== */
+.primer-label-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 12px;
+    background: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+.primer-label-primary {
+    background: var(--color-gold);
+    color: #fff;
+    border-color: var(--color-gold);
+}
+
+.primer-label-success {
+    background: var(--color-success);
+    color: #fff;
+    border-color: var(--color-success);
+}
+
+.primer-label-error {
+    background: var(--color-error);
+    color: #fff;
+    border-color: var(--color-error);
+}
+
+.primer-label-warning {
+    background: var(--color-warning);
+    color: #fff;
+    border-color: var(--color-warning);
+}
+
+.primer-label-info {
+    background: var(--color-info);
+    color: #fff;
+    border-color: var(--color-info);
+}
+
+/* ===== Banners (Alerts) ===== */
+.primer-banner {
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--radius-md);
+    border-left: 4px solid;
+}
+
+.primer-banner strong {
+    font-weight: 600;
+}
+
+.primer-banner-success {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: var(--color-success);
+    color: var(--color-success);
+}
+
+body.light-theme .primer-banner-success {
+    background: rgba(76, 175, 80, 0.15);
+    color: #2e7d32;
+}
+
+.primer-banner-error {
+    background: rgba(244, 67, 54, 0.1);
+    border-color: var(--color-error);
+    color: var(--color-error);
+}
+
+body.light-theme .primer-banner-error {
+    background: rgba(244, 67, 54, 0.15);
+    color: #c62828;
+}
+
+.primer-banner-warning {
+    background: rgba(255, 152, 0, 0.1);
+    border-color: var(--color-warning);
+    color: var(--color-warning);
+}
+
+body.light-theme .primer-banner-warning {
+    background: rgba(255, 152, 0, 0.15);
+    color: #e65100;
+}
+
+.primer-banner-info {
+    background: rgba(33, 150, 243, 0.1);
+    border-color: var(--color-info);
+    color: var(--color-info);
+}
+
+body.light-theme .primer-banner-info {
+    background: rgba(33, 150, 243, 0.15);
+    color: #1565c0;
+}
+
+/* ===== Hero ===== */
+.primer-hero {
+    text-align: center;
+    padding: var(--spacing-7) var(--spacing-4);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-6);
+}
+
+.primer-hero-title {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-3);
+}
+
+.primer-hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-5);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.primer-hero-actions {
+    display: flex;
+    gap: var(--spacing-3);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Светлая тема - белый фон для Hero */
+body:not(.light-theme) .primer-hero {
+    background: var(--color-bg-primary);
+}
+
+/* ===== Features ===== */
+.primer-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-5);
+    margin-bottom: var(--spacing-6);
+}
+
+.primer-feature {
+    text-align: center;
+    padding: var(--spacing-4);
+}
+
+.primer-feature-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-3);
+}
+
+.primer-feature h3 {
+    margin-bottom: var(--spacing-2);
+}
+
+.primer-feature p {
+    color: var(--color-text-secondary);
+    margin-bottom: 0;
+}
+
+/* ===== Stats ===== */
+.primer-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-5);
+    padding: var(--spacing-6);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-6);
+}
+
+.primer-stat {
+    text-align: center;
+}
+
+.primer-stat-value {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    line-height: 1;
+    margin-bottom: var(--spacing-2);
+}
+
+.primer-stat-label {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+}
+
+/* Светлая тема - белый фон для Stats */
+body:not(.light-theme) .primer-stats {
+    background: var(--color-bg-primary);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+    :root {
+        --sidebar-width: 240px;
+    }
+
+    .primer-hero-title {
+        font-size: 2.5rem;
+    }
+
+    .primer-section-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .primer-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .primer-sidebar.open {
+        transform: translateX(0);
+    }
+
+    .primer-content {
+        margin-left: 0;
+        padding: var(--spacing-4);
+    }
+
+    .primer-header-nav {
+        display: none;
+    }
+
+    .primer-grid-2,
+    .primer-grid-3,
+    .primer-grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .primer-hero-title {
+        font-size: 2rem;
+    }
+
+    .primer-section-title {
+        font-size: 2rem;
+    }
+
+    .primer-hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .primer-stat-value {
+        font-size: 2.5rem;
+    }
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}

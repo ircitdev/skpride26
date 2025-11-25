@@ -1,0 +1,314 @@
+/**
+ * 📝 СТИЛИ ДЛЯ ФОРМЫ ОТЗЫВА
+ * СК ПРАЙД - Светлый дизайн
+ */
+
+/* ============================================
+   Кнопка в футере bookingPanel
+   ============================================ */
+
+/* Обеспечиваем прокрутку мышкой для offcanvas */
+.offcanvas__body {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+.offcanvas__footer {
+  padding: 1.5rem;
+  background: #0a0a0a;
+  border-top: 1px solid rgba(200, 155, 79, 0.2);
+  margin-top: auto;
+}
+
+.review-cta-box {
+  width: 100%;
+}
+
+.review-cta-subtitle {
+  font-size: 0.85rem;
+  color: rgba(200, 155, 79, 0.7);
+  margin: 0 0 0.75rem;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.review-cta-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #c89b4f 0%, #957a45 100%);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(200, 155, 79, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.review-cta-btn:hover {
+  background: linear-gradient(135deg, #e6b86d 0%, #c89b4f 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200, 155, 79, 0.4);
+}
+
+.review-cta-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   Модальное окно формы отзыва
+   ============================================ */
+
+.review-form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3000; /* Выше всех других модалов */
+  display: none;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  overflow-y: auto;
+  padding: 2rem 1rem;
+}
+
+.review-form-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   Контейнер формы
+   ============================================ */
+
+.review-form-container {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: reviewFormSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes reviewFormSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================
+   Кнопка закрытия
+   ============================================ */
+
+.review-form-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(189, 157, 93, 0.1);
+  border: 2px solid rgba(189, 157, 93, 0.3);
+  color: #bd9d5d;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-form-close:hover {
+  background: rgba(189, 157, 93, 0.2);
+  border-color: rgba(189, 157, 93, 0.6);
+  transform: rotate(90deg);
+}
+
+/* ============================================
+   Заголовок
+   ============================================ */
+
+.review-form-title {
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+
+.review-form-subtitle {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 2rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ============================================
+   Форма
+   ============================================ */
+
+.review-submit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.review-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.review-form-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.review-form-group .required {
+  color: #bd9d5d;
+}
+
+.review-form-group input,
+.review-form-group textarea {
+  padding: 0.875rem 1rem;
+  border: 2px solid rgba(189, 157, 93, 0.2);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: #f8f8f8;
+  transition: all 0.3s ease;
+}
+
+.review-form-group input:focus,
+.review-form-group textarea:focus {
+  outline: none;
+  border-color: rgba(189, 157, 93, 0.6);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(189, 157, 93, 0.1);
+}
+
+.review-form-group input::placeholder,
+.review-form-group textarea::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.review-form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ============================================
+   Кнопка отправки
+   ============================================ */
+
+.review-form-submit {
+  padding: 1.2rem 2.5rem;
+  background: linear-gradient(135deg, #bd9d5d 0%, #d4b76f 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(189, 157, 93, 0.3);
+  margin-top: 1rem;
+}
+
+.review-form-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(189, 157, 93, 0.5);
+  background: linear-gradient(135deg, #d4b76f 0%, #bd9d5d 100%);
+}
+
+.review-form-submit:active {
+  transform: translateY(0);
+}
+
+.review-form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ============================================
+   Адаптивность
+   ============================================ */
+
+@media (max-width: 768px) {
+  .review-form-modal {
+    padding: 1rem;
+  }
+
+  .review-form-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .review-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .review-form-title {
+    font-size: 1.6rem;
+  }
+
+  .review-form-close {
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .review-form-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .review-form-title {
+    font-size: 1.4rem;
+  }
+
+  .review-form-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .review-form-group input,
+  .review-form-group textarea {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .review-form-submit {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}

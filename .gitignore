@@ -1,0 +1,20 @@
+# Video files (too large for git)
+video/
+*.mp4
+*.webm
+*.mov
+
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.temp
+
+# Large libraries (load from CDN)
+three.min.js
+nul

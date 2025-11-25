@@ -1,0 +1,968 @@
+/**
+ * 🎨 CSS ДЛЯ ПРЕМИУМ АНИМАЦИЙ МОДАЛЬНЫХ ОКОН
+ * СК ПРАЙД
+ */
+
+/* ============================================
+   Защита заголовков главных слайдов
+   ============================================ */
+
+/* ВАЖНО: Заголовки главных слайдов НЕ должны скрываться премиум анимациями */
+.slides__caption-headline,
+.slides__caption-headline * {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ============================================
+   Backdrop с blur эффектом (Premium версия)
+   ============================================ */
+
+.modal-backdrop-premium {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(20, 20, 30, 0.85) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1;
+  pointer-events: none;
+  will-change: opacity, backdrop-filter;
+  opacity: 0;
+}
+
+/* Для браузеров без backdrop-filter */
+@supports not (backdrop-filter: blur(20px)) {
+  .modal-backdrop-premium {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.92) 0%, rgba(20, 20, 30, 0.95) 100%);
+  }
+}
+
+/* ============================================
+   Модальные окна - базовые стили
+   ============================================ */
+
+.sport-modal,
+.kids-modal,
+.rest-modal,
+.events-modal,
+.contacts-modal {
+  /* Фиксированное позиционирование - критично! */
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  z-index: 1000;
+
+  /* Не анимируем саму модалку! */
+  transform: none !important;
+
+  /* Плавный рендеринг */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Состояние анимации */
+.modal-animating,
+.modal-closing {
+  pointer-events: auto !important;
+}
+
+/* ВАЖНО: about-modal и pricing-modal полностью исключаются от блокировки pointer-events */
+.about-modal,
+.about-modal *,
+.about-modal .about-scroller,
+.about-modal .about-scroller *,
+.pricing-modal,
+.pricing-modal *,
+.pricing-modal .pricing-scroller,
+.pricing-modal .pricing-scroller * {
+  pointer-events: auto !important;
+}
+
+/* Отключаем взаимодействие с элементами во время анимации,
+   кроме кнопок закрытия, навигации и всех интерактивных элементов */
+.modal-animating:not(.about-modal):not(.pricing-modal) *:not([id^="close"]):not(.modal-close):not(.close-btn):not(.sport-close):not(.about-close):not(.about-scroller):not(.about-scroller *):not(.pricing-scroller):not(.pricing-scroller *):not(.slides-nav__button):not([data-sport-prev]):not([data-sport-next]):not(.sport-btn):not(a):not(button):not(input):not(select):not(textarea),
+.modal-closing:not(.about-modal):not(.pricing-modal) *:not([id^="close"]):not(.modal-close):not(.close-btn):not(.sport-close):not(.about-close):not(.about-scroller):not(.about-scroller *):not(.pricing-scroller):not(.pricing-scroller *):not(.slides-nav__button):not([data-sport-prev]):not([data-sport-next]):not(.sport-btn):not(a):not(button):not(input):not(select):not(textarea) {
+  pointer-events: none !important;
+}
+
+/* Кнопки закрытия всегда доступны и зафиксированы справа вверху */
+[id^="close"],
+.modal-close,
+.close-btn,
+.sport-close {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Кнопки навигации слайдера - ВАЖНО: всегда видимы и кликабельны */
+.slides-nav__button,
+button[data-sport-prev],
+button[data-sport-next],
+.sport-slider-wrap .slides-nav__button,
+.rest-slider-wrap .slides-nav__button,
+.kids-slider-wrap .slides-nav__button,
+.events-slider-wrap .slides-nav__button {
+  /* НЕ переопределяем position - оставляем absolute из style.css */
+  z-index: 9998 !important; /* Чуть ниже крестика, но выше всего остального */
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important; /* Форсируем отображение */
+}
+
+/* Специфические правила для стрелок prev/next */
+.sport-slider-wrap .slides-nav__button--prev,
+.rest-slider-wrap .slides-nav__button--prev,
+.kids-slider-wrap .slides-nav__button--prev,
+.events-slider-wrap .slides-nav__button--prev {
+  left: 10px !important;
+}
+
+.sport-slider-wrap .slides-nav__button--next,
+.rest-slider-wrap .slides-nav__button--next,
+.kids-slider-wrap .slides-nav__button--next,
+.events-slider-wrap .slides-nav__button--next {
+  right: 10px !important;
+}
+
+/* Все кнопки и ссылки внутри модальных окон - ВАЖНО: всегда кликабельны */
+.sport-modal .sport-btn,
+.sport-modal a:not([id^="close"]):not(.modal-close):not(.close-btn):not(.sport-close):not(.about-close),
+.sport-modal button:not([id^="close"]):not(.modal-close):not(.close-btn):not(.sport-close):not(.about-close):not(.slides-nav__button),
+.kids-modal .sport-btn,
+.kids-modal a:not([id^="close"]):not(.modal-close):not(.close-btn),
+.kids-modal button:not([id^="close"]):not(.modal-close):not(.close-btn):not(.slides-nav__button),
+.rest-modal .sport-btn,
+.rest-modal a:not([id^="close"]):not(.modal-close):not(.close-btn),
+.rest-modal button:not([id^="close"]):not(.modal-close):not(.close-btn):not(.slides-nav__button),
+.events-modal .sport-btn,
+.events-modal a:not([id^="close"]):not(.modal-close):not(.close-btn),
+.events-modal button:not([id^="close"]):not(.modal-close):not(.close-btn):not(.slides-nav__button),
+.contacts-modal .sport-btn,
+.contacts-modal a:not([id^="close"]):not(.modal-close):not(.close-btn),
+.contacts-modal button:not([id^="close"]):not(.modal-close):not(.close-btn):not(.slides-nav__button),
+.about-modal .sport-btn,
+.about-modal a:not([id^="close"]):not(.modal-close):not(.close-btn):not(.sport-close):not(.about-close),
+.about-modal button:not([id^="close"]):not(.modal-close):not(.close-btn):not(.sport-close):not(.about-close),
+.about-modal input,
+.about-modal select,
+.about-modal textarea {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  z-index: 100;
+}
+
+/* ============================================
+   Контент модальных окон
+   ============================================ */
+
+#sportContent,
+#kidsContent,
+#restContent,
+#eventsContent,
+#contactsContent,
+#aboutContent,
+[id$="Content"] {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  padding: 80px 2rem 2rem 2rem; /* Отступ сверху для крестика */
+  box-sizing: border-box;
+  pointer-events: auto !important;
+
+  /* Оптимизация производительности */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+
+  /* Плавный скроллинг */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================
+   Видео фоны
+   ============================================ */
+
+.sport-bg,
+.kids-bg,
+.rest-bg,
+.events-bg {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  pointer-events: none;
+
+  /* GPU acceleration */
+  will-change: opacity, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ============================================
+   Overlay и панели - НЕ блокируют клики
+   ============================================ */
+
+.sport-overlay,
+.kids-overlay,
+.rest-overlay,
+.events-overlay,
+.contacts-overlay,
+.about-overlay,
+.sport-panel,
+.kids-panel,
+.rest-panel,
+.events-panel,
+.contacts-panel,
+.about-panel {
+  z-index: 2;
+  pointer-events: none !important;
+}
+
+/* ============================================
+   Анимированные слова
+   ============================================ */
+
+.word-wrapper {
+  display: inline-block;
+  overflow: hidden !important;
+  vertical-align: top;
+  margin: 0 0.15em;
+  /* ВАЖНО: Жесткое скрытие выходящих за границы элементов */
+  clip-path: inset(0 0 0 0);
+  position: relative;
+}
+
+.word-animated {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  position: relative;
+}
+
+/* ============================================
+   Карточки
+   ============================================ */
+
+.sport-card,
+.kids-card,
+.rest-card,
+.events-card,
+.contact-card {
+  /* Оптимизация анимаций */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+
+  /* Базовые стили */
+  position: relative;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto !important;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+/* Эффект подсветки при наведении */
+.sport-card::before,
+.kids-card::before,
+.rest-card::before,
+.events-card::before,
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(189, 157, 93, 0) 0%, rgba(189, 157, 93, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sport-card:hover::before,
+.kids-card:hover::before,
+.rest-card:hover::before,
+.events-card:hover::before,
+.contact-card:hover::before {
+  opacity: 1;
+}
+
+/* Содержимое карточки поверх подсветки */
+.sport-card > *:not(::before),
+.kids-card > *:not(::before),
+.rest-card > *:not(::before),
+.events-card > *:not(::before),
+.contact-card > *:not(::before) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Все элементы внутри карточек кликабельны */
+.sport-card *,
+.kids-card *,
+.rest-card *,
+.events-card *,
+.contact-card *,
+.about-section * {
+  pointer-events: auto !important;
+}
+
+/* Hover эффект (только на десктопе) - плавный подъем с яркостью и тенью */
+@media (min-width: 769px) {
+  .sport-card:hover,
+  .kids-card:hover,
+  .rest-card:hover,
+  .events-card:hover,
+  .contact-card:hover {
+    /* Плавный подъем */
+    transform: translateY(-10px);
+
+    /* Увеличенная яркость фона */
+    background: rgba(255, 255, 255, 0.12);
+
+    /* Красивая объемная тень */
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      0 10px 20px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(189, 157, 93, 0.3);
+
+    /* Усиленная граница */
+    border-color: rgba(189, 157, 93, 0.4);
+  }
+
+  /* Плавное возвращение назад при уходе курсора */
+  .sport-card,
+  .kids-card,
+  .rest-card,
+  .events-card,
+  .contact-card {
+    transform: translateY(0);
+  }
+}
+
+/* Изображения в карточках */
+.sport-card img,
+.kids-card img,
+.rest-card img,
+.events-card img,
+.contact-card img {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 80px;
+  height: auto;
+}
+
+/* Заголовки в карточках */
+.sport-card h3,
+.kids-card h3,
+.rest-card h3,
+.events-card h3,
+.contact-card h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #fff;
+  line-height: 1.3;
+  will-change: transform, opacity;
+}
+
+/* Текст в карточках */
+.sport-card p,
+.kids-card p,
+.rest-card p,
+.events-card p,
+.contact-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  will-change: opacity;
+}
+
+/* Кнопки в карточках */
+.sport-btn,
+.kids-btn,
+.rest-btn,
+.events-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  background: linear-gradient(135deg, #bd9d5d 0%, #d4b76f 100%);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  will-change: transform, opacity;
+  box-shadow: 0 4px 15px rgba(189, 157, 93, 0.3);
+}
+
+.sport-btn:hover,
+.kids-btn:hover,
+.rest-btn:hover,
+.events-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(189, 157, 93, 0.5);
+  background: linear-gradient(135deg, #d4b76f 0%, #bd9d5d 100%);
+}
+
+.sport-btn:active,
+.kids-btn:active,
+.rest-btn:active,
+.events-btn:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   Статистика
+   ============================================ */
+
+.sport-stats,
+.kids-stats,
+.rest-stats,
+.events-stats,
+.contacts-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  will-change: transform, opacity;
+
+  /* Центрирование по середине экрана */
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  margin: 0 !important;
+  z-index: 10;
+}
+
+.sport-stats > div,
+.kids-stats > div,
+.rest-stats > div,
+.events-stats > div,
+.contacts-stats > div {
+  text-align: center;
+  will-change: transform, opacity, scale;
+  backface-visibility: hidden;
+}
+
+.sport-stats span,
+.kids-stats span,
+.rest-stats span,
+.events-stats span,
+.contacts-stats span {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #bd9d5d;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(189, 157, 93, 0.5);
+}
+
+.sport-stats p,
+.kids-stats p,
+.rest-stats p,
+.events-stats p,
+.contacts-stats p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ============================================
+   Intro текст
+   ============================================ */
+
+.sport-intro,
+.kids-intro,
+.rest-intro,
+.events-intro,
+.contacts-intro {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  max-width: 800px;
+  will-change: transform, opacity;
+
+  /* Центрирование по середине экрана */
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 !important;
+  z-index: 10;
+  padding: 0 20px;
+}
+
+/* ============================================
+   Заголовки
+   ============================================ */
+
+.sport-content h1,
+.sport-content h2,
+.kids-content h1,
+.kids-content h2,
+.rest-content h1,
+.rest-content h2,
+.events-content h1,
+.events-content h2,
+.contacts-content h1,
+.contacts-content h2 {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.sport-content h1,
+.kids-content h1,
+.rest-content h1,
+.events-content h1,
+.contacts-content h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.sport-content h2,
+.kids-content h2,
+.rest-content h2,
+.events-content h2,
+.contacts-content h2 {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.3;
+}
+
+/* ============================================
+   Слайдер карточек
+   ============================================ */
+
+.sport-slider-wrap,
+.kids-slider-wrap,
+.rest-slider-wrap,
+.events-slider-wrap {
+  position: relative;
+  overflow: visible !important; /* ВАЖНО: не обрезаем стрелки */
+  padding: 2rem 60px; /* Отступы слева и справа для стрелок */
+  margin: 2rem 0;
+  transition: all 0.6s ease-out; /* Плавный переход позиции */
+  pointer-events: auto !important;
+  z-index: 50;
+
+  /* ВАЖНО: Скрываем слайдер до исчезновения intro */
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Когда intro скрыт, показываем и центрируем слайдер на экране */
+.sport-modal.intro-hidden .sport-slider-wrap,
+.kids-modal.intro-hidden .kids-slider-wrap,
+.rest-modal.intro-hidden .rest-slider-wrap,
+.events-modal.intro-hidden .events-slider-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 1400px;
+  margin: 0;
+  padding: 2rem 60px;
+
+  /* Показываем слайдер */
+  opacity: 1;
+  visibility: visible;
+}
+
+#sportSlider,
+#kidsSlider,
+#restSlider,
+#eventsSlider {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(189, 157, 93, 0.5) rgba(255, 255, 255, 0.1);
+  padding: 1rem 0;
+}
+
+#sportSlider > *,
+#kidsSlider > *,
+#restSlider > *,
+#eventsSlider > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  min-width: 300px;
+  max-width: 350px;
+}
+
+/* Стилизация скроллбара */
+#sportSlider::-webkit-scrollbar,
+#kidsSlider::-webkit-scrollbar,
+#restSlider::-webkit-scrollbar,
+#eventsSlider::-webkit-scrollbar {
+  height: 8px;
+}
+
+#sportSlider::-webkit-scrollbar-track,
+#kidsSlider::-webkit-scrollbar-track,
+#restSlider::-webkit-scrollbar-track,
+#eventsSlider::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+#sportSlider::-webkit-scrollbar-thumb,
+#kidsSlider::-webkit-scrollbar-thumb,
+#restSlider::-webkit-scrollbar-thumb,
+#eventsSlider::-webkit-scrollbar-thumb {
+  background: rgba(189, 157, 93, 0.5);
+  border-radius: 4px;
+}
+
+#sportSlider::-webkit-scrollbar-thumb:hover,
+#kidsSlider::-webkit-scrollbar-thumb:hover,
+#restSlider::-webkit-scrollbar-thumb:hover,
+#eventsSlider::-webkit-scrollbar-thumb:hover {
+  background: rgba(189, 157, 93, 0.8);
+}
+
+/* ============================================
+   Адаптив для мобильных устройств
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Упрощаем backdrop blur */
+  .modal-backdrop-premium {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Уменьшаем padding, но оставляем место для крестика */
+  #sportContent,
+  #kidsContent,
+  #restContent,
+  #eventsContent,
+  #contactsContent {
+    padding: 60px 1rem 1rem 1rem;
+  }
+
+  /* Крестик на мобильных чуть ближе */
+  [id^="close"],
+  .modal-close,
+  .close-btn,
+  .sport-close {
+    top: 10px !important;
+    right: 10px !important;
+  }
+
+  /* Слайдер на мобильных тоже центрируется */
+  .sport-modal.intro-hidden .sport-slider-wrap,
+  .kids-modal.intro-hidden .kids-slider-wrap,
+  .rest-modal.intro-hidden .rest-slider-wrap,
+  .events-modal.intro-hidden .events-slider-wrap {
+    width: 95%;
+    padding: 1rem 40px;
+  }
+
+  /* Адаптивные размеры шрифтов */
+  .sport-intro,
+  .kids-intro,
+  .rest-intro,
+  .events-intro,
+  .contacts-intro {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Статистика - адаптация для планшетов */
+  .sport-stats,
+  .kids-stats,
+  .rest-stats,
+  .events-stats {
+    gap: 1rem;
+    padding: 0.5rem;
+    /* Fallback: гарантируем видимость на мобильных */
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .sport-stats > div,
+  .kids-stats > div,
+  .rest-stats > div,
+  .events-stats > div {
+    min-width: 80px;
+    padding: 0.5rem;
+    /* Гарантируем видимость элементов */
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sport-stats span,
+  .kids-stats span,
+  .rest-stats span,
+  .events-stats span {
+    font-size: 1.8rem;
+  }
+
+  .sport-stats p,
+  .kids-stats p,
+  .rest-stats p,
+  .events-stats p {
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Карточки на всю ширину */
+  #sportSlider > *,
+  #kidsSlider > *,
+  #restSlider > *,
+  #eventsSlider > * {
+    min-width: 280px;
+  }
+
+  /* Упрощаем карточки */
+  .sport-card,
+  .kids-card,
+  .rest-card,
+  .events-card {
+    padding: 1rem;
+  }
+
+  /* Отключаем сложные трансформации */
+  .word-animated,
+  .sport-card,
+  .kids-card,
+  .rest-card,
+  .events-card {
+    will-change: auto;
+    transform-style: flat;
+  }
+}
+
+/* ============================================
+   Мобильные устройства (480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+  /* Статистика - компактный вид для телефонов */
+  .sport-stats,
+  .kids-stats,
+  .rest-stats,
+  .events-stats {
+    gap: 0.5rem;
+    padding: 0.25rem;
+    margin: 4px 0 8px;
+    /* Fallback: гарантируем видимость если GSAP не сработал */
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .sport-stats > div,
+  .kids-stats > div,
+  .rest-stats > div,
+  .events-stats > div {
+    min-width: 60px;
+    padding: 0.25rem 0.5rem;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .sport-stats span,
+  .kids-stats span,
+  .rest-stats span,
+  .events-stats span {
+    font-size: 1.4rem;
+  }
+
+  .sport-stats p,
+  .kids-stats p,
+  .rest-stats p,
+  .events-stats p {
+    font-size: 0.65rem;
+    letter-spacing: 0;
+    margin-top: 2px;
+  }
+
+  /* Intro текст компактнее */
+  .sport-intro,
+  .kids-intro,
+  .rest-intro,
+  .events-intro {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+}
+
+/* ============================================
+   Accessibility - уменьшение движения
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .modal-backdrop-premium,
+  .word-animated,
+  .sport-card,
+  .kids-card,
+  .rest-card,
+  .events-card {
+    will-change: auto !important;
+  }
+}
+
+/* ============================================
+   Плавность рендеринга
+   ============================================ */
+
+.sport-modal *,
+.kids-modal *,
+.rest-modal *,
+.events-modal *,
+.contacts-modal * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* ============================================
+   GPU Acceleration для производительности
+   ============================================ */
+
+.modal-backdrop-premium,
+#sportContent,
+#kidsContent,
+#restContent,
+#eventsContent,
+#contactsContent,
+.sport-card,
+.kids-card,
+.rest-card,
+.events-card,
+.word-animated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* ============================================
+   Focus states для клавиатурной навигации
+   ============================================ */
+
+.sport-btn:focus-visible,
+.kids-btn:focus-visible,
+.rest-btn:focus-visible,
+.events-btn:focus-visible,
+.sport-card:focus-visible,
+.kids-card:focus-visible,
+.rest-card:focus-visible,
+.events-card:focus-visible {
+  outline: 3px solid rgba(189, 157, 93, 0.7);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+.sport-btn:focus:not(:focus-visible),
+.kids-btn:focus:not(:focus-visible),
+.rest-btn:focus:not(:focus-visible),
+.events-btn:focus:not(:focus-visible),
+.sport-card:focus:not(:focus-visible),
+.kids-card:focus:not(:focus-visible),
+.rest-card:focus:not(:focus-visible),
+.events-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   Дополнительные визуальные улучшения
+   ============================================ */
+
+/* Легкое свечение для акцентных элементов */
+.sport-stats span,
+.kids-stats span,
+.rest-stats span,
+.events-stats span {
+  text-shadow:
+    0 0 10px rgba(189, 157, 93, 0.5),
+    0 0 20px rgba(189, 157, 93, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Тонкая граница для карточек */
+.sport-card,
+.kids-card,
+.rest-card,
+.events-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Градиентный оверлей для видео-фонов */
+.sport-bg::after,
+.kids-bg::after,
+.rest-bg::after,
+.events-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  pointer-events: none;
+}

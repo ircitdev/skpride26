@@ -1,0 +1,828 @@
+/* === Переключатель темы === */
+.theme-toggle {
+  right: 160px;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  opacity: 1;
+  margin-right: 15px;
+  order: 1;
+}
+
+.theme-toggle:hover {
+  opacity: 0.7;
+}
+
+/* Иконки переключателя темы - главная страница */
+.theme-toggle .theme-icon {
+  font-size: 1.5rem;
+  position: absolute;
+  display: block !important;
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s ease;
+}
+
+/* По умолчанию (тёмная тема): показываем солнце, скрываем луну */
+.theme-toggle .theme-icon--light {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle .theme-icon--dark {
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate(-180deg) scale(0.5);
+}
+
+/* Светлая тема: показываем луну, скрываем солнце */
+body.light-theme .theme-toggle .theme-icon--light {
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate(180deg) scale(0.5);
+}
+
+body.light-theme .theme-toggle .theme-icon--dark {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(0deg) scale(1);
+}
+
+/* === Светлая тема === */
+body.light-theme {
+  --color-text: #222;
+  --color-bg: #f5f5f5;
+  --color-link: #333;
+  --color-link-hover: #bd9d5d;
+  --color-frame: #bd9d5d;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Акцентный текст в светлой теме */
+body.light-theme .slideTextAccent {
+  background: var(--color-frame);
+  color: #000;
+  text-shadow: 1px 2px 4px #00000069;
+}
+
+body.light-theme .slideTextAccentWhite {
+  background: #fff;
+  color: #000;
+  text-shadow: 1px 2px 4px #00000069;
+  padding: 0 15px;
+}
+
+/* Слайды */
+body.light-theme .slide__img {
+  opacity: 1;
+}
+
+body.light-theme .slide__img::after {
+  background: linear-gradient(
+    to top,
+    rgba(245, 245, 245, 0.6) 25%,
+    rgba(245, 245, 245, 0.3) 60%,
+    rgba(245, 245, 245, 0) 90%
+  ) !important;
+}
+
+/* Заголовки слайдов */
+body.light-theme .slides__caption-headline,
+body.light-theme .slides__caption-link {
+  color: #222;
+  text-shadow: 0 1px 3px rgba(255,255,255,0.8);
+}
+
+/* Навигация */
+body.light-theme .slides-nav__button {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.3);
+  color: #333;
+}
+
+body.light-theme .slides-nav__button:hover {
+  background: rgba(189, 157, 93, 0.3);
+  border-color: #bd9d5d;
+  color: #bd9d5d;
+}
+
+body.light-theme .slides-nav__index {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.3);
+  color: #333;
+}
+
+body.light-theme .slides-nav__index:hover {
+  background: rgba(189, 157, 93, 0.2);
+  border-color: #bd9d5d;
+}
+
+/* Frame */
+body.light-theme .frame__links a,
+body.light-theme .frame a {
+  color: #bd9d5d;
+}
+
+body.light-theme .frame__demos {
+  background: rgba(245, 245, 245, 0.9);
+  border-top-color: rgba(189, 157, 93, 0.3);
+}
+
+body.light-theme button.frame__info {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+body.light-theme button.frame__info:hover {
+  background: #957a45;
+}
+
+/* Preloader */
+body.light-theme .page-preloader {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 50%, #ffffff 100%);
+}
+
+body.light-theme .preloader-text {
+  color: #bd9d5d;
+}
+
+body.light-theme .preloader-logo-base {
+  filter: grayscale(100%) brightness(1.6);
+}
+
+/* Offcanvas панель */
+body.light-theme .offcanvas {
+  background: #fff;
+}
+
+body.light-theme .offcanvas__header {
+  background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+  border-bottom-color: #bd9d5d;
+}
+
+body.light-theme .offcanvas__header h2 {
+  color: #bd9d5d;
+}
+
+body.light-theme .offcanvas__close {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: #bd9d5d;
+  color: #bd9d5d;
+}
+
+body.light-theme .offcanvas__close:hover {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+body.light-theme .offcanvas__body {
+  background: #fff;
+}
+
+body.light-theme .offcanvas__body::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+/* Форма */
+body.light-theme .booking-form input,
+body.light-theme .booking-form select {
+  background: #f5f5f5;
+  border-color: #ddd;
+  color: #222;
+}
+
+body.light-theme .booking-form input:focus,
+body.light-theme .booking-form select:focus {
+  background: #fff;
+  border-color: #bd9d5d;
+  box-shadow: 0 0 0 3px rgba(189, 157, 93, 0.1);
+}
+
+body.light-theme .booking-form label {
+  color: #bd9d5d;
+}
+
+/* Опции */
+body.light-theme .custom-option {
+  background: #f5f5f5;
+  border-color: #ddd;
+}
+
+body.light-theme .custom-option:hover {
+  background: #fff;
+  border-color: #bd9d5d;
+  box-shadow: 0 4px 12px rgba(189, 157, 93, 0.2);
+}
+
+body.light-theme .option-title {
+  color: #222;
+}
+
+body.light-theme .option-sub {
+  color: #666;
+}
+
+/* Sport Modal */
+body.light-theme .sport-modal {
+  background: #f5f5f5;
+}
+
+body.light-theme .sport-bg {
+  opacity: 0.3;
+  filter: brightness(1.3);
+}
+
+body.light-theme .sport-overlay {
+  background: rgba(245, 245, 245, 0.7);
+}
+
+body.light-theme .sport-content {
+  color: #222;
+}
+
+body.light-theme .sport-close {
+  color: #333;
+}
+
+body.light-theme .sport-card {
+  background: rgba(255, 255, 255, 0.9);
+  color: #222;
+}
+
+body.light-theme .sport-card h3 {
+  color: #222;
+}
+
+body.light-theme .sport-card p {
+  color: #555;
+}
+
+/* Schedule Modal */
+body.light-theme .schedule-modal {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+}
+
+body.light-theme .schedule-header {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom-color: #bd9d5d;
+}
+
+body.light-theme .schedule-close {
+  color: #333;
+}
+
+body.light-theme .schedule-close:hover {
+  color: #bd9d5d;
+}
+
+body.light-theme .timetable {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+body.light-theme .timetable td {
+  color: #222;
+  border-color: rgba(0,0,0,0.1);
+}
+
+body.light-theme .timetable th {
+  background: #bd9d5d;
+  color: #fff;
+  border-color: rgba(0,0,0,0.1);
+}
+
+body.light-theme .timetable .time-cell {
+  background: rgba(189, 157, 93, 0.15);
+}
+
+body.light-theme .timetable .class-link {
+  color: #bd9d5d;
+}
+
+body.light-theme .timetable .class-link:hover {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+body.light-theme .timetable .age {
+  font-size: 0.55rem;
+  color: #333;
+}
+
+body.light-theme .timetable .trainer {
+  font-size: 0.55rem;
+  color: #1a1a1a;
+}
+
+/* Fulldesc Modal */
+body.light-theme .fulldesc-modal {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+}
+
+body.light-theme .fulldesc-content {
+  color: #222;
+}
+
+body.light-theme .fulldesc-close {
+  border-color: #bd9d5d;
+  color: #bd9d5d;
+}
+
+body.light-theme .fulldesc-close:hover {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+/* Form elements в светлой теме */
+body.light-theme .form-image-gradient {
+  background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+}
+
+body.light-theme .breadcrumb-info {
+  border-bottom-color: #bd9d5d;
+  opacity: 0.7;
+}
+
+body.light-theme .form-timetable,
+body.light-theme .form-price {
+  background: rgba(189, 157, 93, 0.1);
+}
+
+body.light-theme .form-description {
+  opacity: 0.9;
+  color: #555;
+}
+
+body.light-theme .final-fields-title {
+  color: #bd9d5d;
+}
+
+/* Virtual Tour Modal в светлой теме */
+body.light-theme .tour-modal {
+  background: #fff;
+}
+
+body.light-theme .tour-close {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #bd9d5d;
+  color: #bd9d5d;
+}
+
+body.light-theme .tour-close:hover {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+/* === REST MODAL в светлой теме === */
+body.light-theme .rest-modal {
+  background: #f5f5f5;
+}
+
+body.light-theme .rest-panel.diagonal {
+  background: #e5e5e5;
+}
+
+body.light-theme .rest-bg {
+  opacity: 0.3;
+  filter: brightness(1.3);
+}
+
+body.light-theme .rest-overlay {
+  background: rgba(245, 245, 245, 0.7);
+}
+
+body.light-theme .rest-content {
+  color: #222;
+}
+
+body.light-theme .rest-close {
+  color: #333;
+}
+
+body.light-theme .rest-close:hover {
+  color: #bd9d5d;
+}
+
+body.light-theme .rest-stats span {
+  color: #bd9d5d;
+}
+
+body.light-theme .rest-stats p {
+  color: #555;
+}
+
+body.light-theme .rest-intro {
+  color: #333;
+}
+
+body.light-theme .rest-card {
+  background: rgba(255, 255, 255, 0.9);
+  color: #222;
+}
+
+body.light-theme .rest-card h3 {
+  color: #222;
+}
+
+body.light-theme .rest-card p {
+  color: #555;
+}
+
+body.light-theme .rest-btn {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+body.light-theme .rest-btn:hover {
+  background: #957a45;
+}
+
+/* === KIDS MODAL в светлой теме === */
+body.light-theme .kids-modal {
+  background: #f5f5f5;
+}
+
+body.light-theme .kids-panel.diagonal {
+  background: #e5e5e5;
+}
+
+body.light-theme .kids-bg {
+  opacity: 0.3;
+  filter: brightness(1.3);
+}
+
+body.light-theme .kids-overlay {
+  background: rgba(245, 245, 245, 0.7);
+}
+
+body.light-theme .kids-content {
+  color: #222;
+}
+
+body.light-theme .kids-close {
+  color: #333;
+}
+
+body.light-theme .kids-close:hover {
+  color: #bd9d5d;
+}
+
+body.light-theme .kids-stats span {
+  color: #bd9d5d;
+}
+
+body.light-theme .kids-stats p {
+  color: #555;
+}
+
+body.light-theme .kids-intro {
+  color: #333;
+}
+
+body.light-theme .kids-card {
+  background: rgba(255, 255, 255, 0.9);
+  color: #222;
+}
+
+body.light-theme .kids-card h3 {
+  color: #222;
+}
+
+body.light-theme .kids-card p {
+  color: #555;
+}
+
+body.light-theme .kids-btn {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+body.light-theme .kids-btn:hover {
+  background: #957a45;
+}
+
+/* === EVENTS MODAL в светлой теме === */
+body.light-theme .events-modal {
+  background: #f5f5f5;
+}
+
+body.light-theme .events-panel.diagonal {
+  background: #e5e5e5;
+}
+
+body.light-theme .events-bg {
+  opacity: 0.3;
+  filter: brightness(1.3);
+}
+
+body.light-theme .events-overlay {
+  background: rgba(245, 245, 245, 0.7);
+}
+
+body.light-theme .events-content {
+  color: #222;
+}
+
+body.light-theme .events-close {
+  color: #333;
+}
+
+body.light-theme .events-close:hover {
+  color: #bd9d5d;
+}
+
+body.light-theme .events-stats span {
+  color: #bd9d5d;
+}
+
+body.light-theme .events-stats p {
+  color: #555;
+}
+
+body.light-theme .events-intro {
+  color: #333;
+}
+
+body.light-theme .events-card {
+  background: rgba(255, 255, 255, 0.9);
+  color: #222;
+}
+
+body.light-theme .events-card h3 {
+  color: #222;
+}
+
+body.light-theme .events-card p {
+  color: #555;
+}
+
+body.light-theme .events-btn {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+body.light-theme .events-btn:hover {
+  background: #957a45;
+}
+
+/* === CONTACTS MODAL в светлой теме === */
+body.light-theme .contacts-modal {
+  background: #f5f5f5;
+}
+
+body.light-theme .contacts-panel.diagonal {
+  background: #e5e5e5;
+}
+
+body.light-theme .contacts-content {
+  color: #222;
+}
+
+body.light-theme .contacts-close {
+  color: #333;
+}
+
+body.light-theme .contacts-close:hover {
+  color: #bd9d5d;
+}
+
+body.light-theme .contacts-info h2 {
+  color: #bd9d5d;
+}
+
+body.light-theme .contact-item {
+  color: #333;
+}
+
+body.light-theme .contact-item a {
+  color: #bd9d5d;
+}
+
+body.light-theme .contact-item a:hover {
+  color: #957a45;
+}
+
+body.light-theme .contact-socials a {
+  background: rgba(189, 157, 93, 0.1);
+  color: #bd9d5d;
+}
+
+body.light-theme .contact-socials a:hover {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+body.light-theme .route-link {
+  background: #bd9d5d;
+  color: #fff;
+}
+
+body.light-theme .route-link:hover {
+  background: #957a45;
+}
+
+body.light-theme .contacts-map {
+  border-color: rgba(189, 157, 93, 0.3);
+}
+
+/* Desktop: кнопка темы слева от Онлайн-заявка */
+@media (min-width: 53em) {
+  .frame__info {
+    order: 2;
+  }
+
+  .theme-toggle {
+    grid-area: info;
+    justify-self: end;
+    margin-right: 10px;
+  }
+}
+
+/* Mobile: кнопка в правом верхнем углу */
+@media (max-width: 53em) {
+  .theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 10000;
+    margin-right: 0;
+  }
+
+  .theme-icon {
+    font-size: 1.25rem;
+  }
+
+  /* Стили для ссылок слайдов только на мобильных в светлой теме */
+  body.light-theme .slides__caption-link {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -.5px;
+  }
+
+  /* Offcanvas в светлой теме на мобильных */
+  body.light-theme .offcanvas {
+    box-shadow: none;
+  }
+}
+
+/* ============================================
+   АНИМАЦИИ INTRO ДЛЯ МОДАЛЬНЫХ ОКОН
+   ============================================ */
+
+/* Scroll Hint - кликабельный элемент */
+.relax-scroll-hint,
+.ice-scroll-hint,
+.about-scroll-hint {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.relax-scroll-hint:hover,
+.ice-scroll-hint:hover,
+.about-scroll-hint:hover {
+  color: #bd9d5d !important;
+  transform: translateY(5px);
+}
+
+/* Стили для SplitText анимации */
+.char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.word {
+  display: inline-block;
+}
+
+.line {
+  display: block;
+}
+
+/* Плавные переходы для темы */
+.relax-modal,
+.ice-modal,
+.about-modal {
+  transition: background-color 0.4s ease;
+}
+
+.relax-modal *,
+.ice-modal *,
+.about-modal * {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Темная тема - базовые стили */
+.relax-modal.theme-dark,
+.ice-modal.theme-dark,
+.about-modal.theme-dark {
+  background-color: #1a1a1a;
+}
+
+.relax-modal.theme-dark .relax-main-title,
+.ice-modal.theme-dark .ice-main-title,
+.about-modal.theme-dark .about-main-title {
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.relax-modal.theme-dark .relax-main-subtitle,
+.ice-modal.theme-dark .ice-main-subtitle,
+.about-modal.theme-dark .about-main-subtitle {
+  color: #bd9d5d;
+}
+
+.relax-modal.theme-dark .relax-scroll-hint,
+.ice-modal.theme-dark .ice-scroll-hint,
+.about-modal.theme-dark .about-scroll-hint {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Галерея в темной теме */
+.relax-modal.theme-dark .relax-gallery-section,
+.ice-modal.theme-dark .ice-gallery-section,
+.about-modal.theme-dark .about-gallery-section {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+}
+
+.relax-modal.theme-dark .relax-gallery-title,
+.ice-modal.theme-dark .ice-gallery-title,
+.about-modal.theme-dark .about-gallery-title {
+  color: #f5f5f5;
+}
+
+.relax-modal.theme-dark .relax-gallery-subtitle,
+.ice-modal.theme-dark .ice-gallery-subtitle,
+.about-modal.theme-dark .about-gallery-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Финальная секция в темной теме */
+.relax-modal.theme-dark .relax-final-section,
+.ice-modal.theme-dark .ice-final-section,
+.about-modal.theme-dark .about-final-section {
+  background: #1a1a1a;
+}
+
+.relax-modal.theme-dark .relax-final-content h2,
+.ice-modal.theme-dark .ice-final-content h2,
+.about-modal.theme-dark .about-final-content h2 {
+  color: #bd9d5d;
+}
+
+/* Карточки features в темной теме */
+.relax-modal.theme-dark .relax-feature,
+.ice-modal.theme-dark .ice-feature,
+.about-modal.theme-dark .about-feature {
+  background: rgba(40, 40, 40, 0.8);
+  border-color: rgba(189, 157, 93, 0.3);
+}
+
+.relax-modal.theme-dark .relax-feature h3,
+.ice-modal.theme-dark .ice-feature h3,
+.about-modal.theme-dark .about-feature h3 {
+  color: #f5f5f5;
+}
+
+.relax-modal.theme-dark .relax-feature p,
+.ice-modal.theme-dark .ice-feature p,
+.about-modal.theme-dark .about-feature p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Контакты и расписание в темной теме */
+.relax-modal.theme-dark .relax-schedule-info,
+.relax-modal.theme-dark .relax-contact-info,
+.ice-modal.theme-dark .ice-schedule-info,
+.ice-modal.theme-dark .ice-contact-info,
+.about-modal.theme-dark .about-contact-info {
+  background: rgba(40, 40, 40, 0.9);
+  border-color: rgba(189, 157, 93, 0.3);
+}
+
+.relax-modal.theme-dark .relax-schedule-info p,
+.relax-modal.theme-dark .relax-contact-info p,
+.ice-modal.theme-dark .ice-schedule-info p,
+.ice-modal.theme-dark .ice-contact-info p,
+.about-modal.theme-dark .about-contact-info p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.relax-modal.theme-dark .relax-contact-info a,
+.ice-modal.theme-dark .ice-contact-info a,
+.about-modal.theme-dark .about-contact-info a {
+  color: #f5f5f5;
+}
+
+.relax-modal.theme-dark .relax-contact-info a:hover,
+.ice-modal.theme-dark .ice-contact-info a:hover,
+.about-modal.theme-dark .about-contact-info a:hover {
+  color: #bd9d5d;
+}
