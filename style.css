@@ -3,8 +3,25 @@
 *::before {
 	box-sizing: border-box;
 }
-html, body {
-  overflow-x: hidden;
+html {
+  overflow-x: hidden !important;
+  overscroll-behavior-x: none;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+body {
+  overflow-x: hidden !important;
+  overscroll-behavior-x: none;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  /* Запрет увеличения на iOS */
+  touch-action: pan-y;
+  -webkit-touch-callout: none;
 }
 :root {
 	font-size: 18px;
@@ -52,12 +69,20 @@ a, button, input, select, textarea, [role="button"], [tabindex]:not([tabindex="-
 body {
 	margin: 0;
 	--color-text: #fff;
-	--color-bg: #000;
 	--color-link: #fff;
 	--color-link-hover: #fff;
 	--color-frame: #bd9d5d;
 	color: var(--color-text);
-	background-color: var(--color-bg);
+	/* Градиентный фон для тёмной темы - глубокий космический */
+	background:
+		radial-gradient(ellipse 80% 50% at 20% -10%, rgba(100, 80, 180, 0.3) 0%, transparent 50%),
+		radial-gradient(ellipse 60% 80% at 95% 110%, rgba(180, 120, 50, 0.25) 0%, transparent 50%),
+		radial-gradient(ellipse 100% 100% at 50% 50%, rgba(40, 50, 100, 0.35) 0%, transparent 60%),
+		radial-gradient(circle at 25% 75%, rgba(200, 155, 79, 0.12) 0%, transparent 35%),
+		radial-gradient(circle at 80% 20%, rgba(80, 60, 120, 0.2) 0%, transparent 30%),
+		linear-gradient(135deg, #03030a 0%, #08081a 20%, #100825 40%, #0a0818 60%, #080512 80%, #030308 100%);
+	background-color: #030308;
+	background-attachment: fixed;
 	font-family: rucksack, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -94,6 +119,23 @@ body {
 @media screen and (max-width: 767px) {
 	.mobile-br {
 		display: inline;
+	}
+}
+
+/* frame__links на мобильных */
+@media screen and (max-width: 768px) {
+	/* Тёмная тема - золотой цвет */
+	.frame__links a,
+	.frame__links.nav--light a,
+	.frame__links.nav--dark a {
+		color: #bd9d5d !important;
+	}
+
+	/* Светлая тема - чёрный цвет */
+	body.light-theme .frame__links a,
+	body.light-theme .frame__links.nav--light a,
+	body.light-theme .frame__links.nav--dark a {
+		color: #000 !important;
 	}
 }
 
@@ -315,13 +357,13 @@ body.loaded .slides-nav {
 /* Mobile preloader adjustments */
 @media (max-width: 768px) {
 	.preloader-logo-wrapper {
-		width: 150px;
-		height: 150px;
-		margin-bottom: 20px;
+		width: 300px;
+		height: 300px;
+		margin-bottom: 25px;
 	}
 
 	.preloader-text {
-		font-size: .5rem;
+		font-size: .6rem;
 		padding: 0 20px;
 	}
 }
@@ -452,10 +494,10 @@ a:focus-visible {
 	font-weight: bold;
 }
 
-.frame__links a:not(:last-child),
-.frame__demos a:not(:last-child) {
+.frame__links a:not(:last-child) {
 	margin-right: 1rem;
 }
+
 
 .frame__demos {
 	position: fixed;
@@ -464,28 +506,102 @@ a:focus-visible {
 	right: 0;
 	display: flex;
 	justify-content: center;
-	gap: 2rem;
-	padding: 1.5rem 2rem 1.8rem;
-	background: rgba(0, 0, 0, 0.8);
-	backdrop-filter: blur(10px);
+	gap: 0;
+	padding: 0;
+	background: linear-gradient(
+		180deg,
+		rgba(5, 5, 10, 0) 0%,
+		rgba(5, 5, 10, 0.85) 30%,
+		rgba(3, 3, 8, 0.95) 100%
+	);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
 	margin: 0;
 	z-index: calc(var(--z-frame) - 1);
-	border-top: 1px solid rgba(200, 155, 79, 0.3);
+	border-top: 1px solid rgba(200, 155, 79, 0.15);
 }
 
 a.frame__demo--current {
 	font-family: "Montserrat", sans-serif;
-	font-size: .6em;
-	color: var(--color-text);
-	opacity: .7;
+	font-size: 0.7rem;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 0.7);
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	padding: 1.2rem 1.8rem;
+	position: relative;
+	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	border-right: 1px solid rgba(200, 155, 79, 0.2);
 }
+
+a.frame__demo--current:last-child {
+	border-right: none;
+}
+
+a.frame__demo--current::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%) scaleX(0);
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, var(--color-frame), transparent);
+	transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a.frame__demo--current::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(ellipse at center top, rgba(200, 155, 79, 0.15) 0%, transparent 70%);
+	opacity: 0;
+	transition: opacity 0.4s ease;
+	pointer-events: none;
+}
+
 a.frame__demo--current:hover {
 	color: var(--color-frame);
+}
+
+a.frame__demo--current:hover::before {
+	transform: translateX(-50%) scaleX(1);
+}
+
+a.frame__demo--current:hover::after {
 	opacity: 1;
 }
 
+/* Light theme */
+body.light-theme .frame__demos {
+	background: linear-gradient(
+		180deg,
+		rgba(255, 253, 245, 0) 0%,
+		rgba(255, 253, 245, 0.9) 30%,
+		rgba(253, 250, 242, 0.98) 100%
+	);
+	border-top-color: rgba(180, 140, 60, 0.2);
+}
+
+body.light-theme a.frame__demo--current {
+	color: rgba(50, 50, 50, 0.7);
+	border-right-color: rgba(139, 105, 20, 0.15);
+}
+
+body.light-theme a.frame__demo--current:hover {
+	color: #8b6914;
+}
+
+body.light-theme a.frame__demo--current::before {
+	background: linear-gradient(90deg, transparent, #8b6914, transparent);
+}
+
+body.light-theme a.frame__demo--current::after {
+	background: radial-gradient(ellipse at center top, rgba(139, 105, 20, 0.1) 0%, transparent 70%);
+}
+
 .slideshow {
-	width: 100vw;
+	width: 100%;
 	height: calc(100vh - 13rem);
 	position: relative;
 	z-index: var(--z-base);
@@ -829,22 +945,33 @@ button.frame__info:hover {
 		width: 100%;
 		display: flex !important;
 		justify-content: center;
+		align-items: center;
+		gap: 0.75rem; /* Одинаковое расстояние между всеми элементами */
 		padding: 0 1rem;
 		z-index: var(--z-frame);
 	}
 
-	.slides-nav__button {
+	/* Кнопки главного слайдера - всегда видимы */
+	nav.slides-nav > .slides-nav__button {
 		width: 45px;
 		height: 45px;
 		font-size: 1.25rem;
-		margin: 0 0.5rem;
+		margin: 0; /* Убираем margin - используем gap */
+		opacity: 1 !important;
+		visibility: visible !important;
+		display: flex !important;
 	}
 
 	.slides-nav__index {
-		margin-left: 1rem;
+		margin: 0; /* Убираем margin - используем gap */
 		padding: 0.6rem 1.2rem;
 		font-size: 0.9rem;
 		opacity: .4;
+	}
+
+	/* Hamburger в одну линию с остальными элементами */
+	nav.slides-nav > #hamburger-menu {
+		margin: 0; /* Используем gap вместо margin */
 	}
 
 	.tour-fixed {
@@ -1071,6 +1198,9 @@ button.frame__info:hover {
 
   .offcanvas__body {
     padding: 2rem 1.5rem !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-y: contain !important;
   }
 
   .offcanvas form input,
@@ -1096,27 +1226,60 @@ button.frame__info:hover {
 
 
 
-/* Градиент для слайдов - только на мобильных */
+/* Градиент для слайдов - улучшение читаемости текста */
 .slide__img {
   position: relative;
+}
+
+/* Градиент поверх изображения для контраста текста */
+.slide__img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Градиент слева и снизу для читаемости текста в тёмной теме */
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 35%, transparent 65%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.2) 25%, transparent 50%);
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.5s ease;
+}
+
+/* Светлая тема - светлый градиент */
+body.light-theme .slide__img::after {
+  background:
+    linear-gradient(90deg, rgba(255, 253, 245, 0.7) 0%, rgba(255, 253, 245, 0.4) 35%, transparent 65%),
+    linear-gradient(0deg, rgba(255, 253, 245, 0.6) 0%, rgba(255, 253, 245, 0.3) 25%, transparent 50%);
 }
 
 .slide__caption {
   position: relative;
   z-index: var(--z-slide-caption);
   color: #fff;
+  /* Улучшенная тень для читаемости */
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.5),
+    0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Градиент только на мобильной версии - для читаемости текста */
+/* Светлая тема - тёмный текст */
+body.light-theme .slide__caption {
+  color: #1a1a1a;
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.8),
+    0 2px 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Мобильная версия - усиленный градиент */
 @media (max-width: 768px) {
   .slide__img::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    /* Светлый градиент для светлой темы по умолчанию */
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.4) 30%, rgba(255, 255, 255, 0) 60%);
-    z-index: 1;
-    pointer-events: none;
+    background:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 70%);
+  }
+
+  body.light-theme .slide__img::after {
+    background:
+      linear-gradient(0deg, rgba(255, 253, 245, 0.85) 0%, rgba(255, 253, 245, 0.5) 40%, transparent 70%);
   }
 }
 /* Контейнер кнопки снизу */
@@ -1364,6 +1527,9 @@ font-family: "Montserrat", sans-serif;
   padding: 2rem 1.5rem;
   overflow-y: auto;
   background: #0a0a0a;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior-y: contain;
 }
 
 .offcanvas__body::-webkit-scrollbar {
@@ -1671,11 +1837,21 @@ input.error {
 
 /* ===== FULLSCREEN SPORT MODAL ===== */
 body.modal-open { overflow: hidden; }
-.sport-modal{
+.sport-modal,
+.kids-modal,
+.rest-modal,
+.events-modal {
   position:fixed; inset:0; display:none; justify-content:center; align-items:center;
-  z-index: var(--z-modal); background:#000; overflow-x:hidden; overflow-y:auto;
+  z-index: var(--z-modal); background:#000; overflow-x:hidden !important; overflow-y:auto !important;
+  /* Разрешаем touch-события внутри модалки */
+  touch-action: pan-y !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-y: contain !important;
 }
-.sport-modal.active{ display:flex; }
+.sport-modal.active,
+.kids-modal.active,
+.rest-modal.active,
+.events-modal.active { display:flex; }
 
 /* Диагональная панель (еле заметный пролёт) - нижний слой внутри modal */
 .sport-panel.diagonal{
@@ -1687,6 +1863,26 @@ body.modal-open { overflow: hidden; }
 /* Видео фон + затемнение - средние слои внутри modal */
 .sport-bg{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2; opacity:0;
+}
+
+/* Desktop видео - показываем на больших экранах */
+.sport-bg-desktop {
+  display: block;
+}
+
+/* Mobile видео - скрываем на десктопе */
+.sport-bg-mobile {
+  display: none;
+}
+
+/* На мобильных (< 768px) меняем местами */
+@media (max-width: 768px) {
+  .sport-bg-desktop {
+    display: none;
+  }
+  .sport-bg-mobile {
+    display: block;
+  }
 }
 .sport-overlay{
   position:absolute; inset:0; z-index:3; background:rgba(0,0,0,0.6);
@@ -1730,11 +1926,18 @@ body.modal-open { overflow: hidden; }
 }
 
 /* Горизонтальный слайдер */
-.sport-slider{
+.sport-slider,
+.kids-slider,
+.rest-slider,
+.events-slider {
   display:flex; gap:20px; padding:20px 8px 55px; overflow-x:auto; overflow-y:hidden;
   scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
   scroll-padding: 0 calc(50% - 160px);
   opacity: .7;
+  /* Разрешаем горизонтальный свайп на мобильных */
+  touch-action: pan-x;
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
 }
 .sport-slider:hover {
   opacity: 1;
@@ -1789,19 +1992,234 @@ body.modal-open { overflow: hidden; }
   box-shadow: 0 16px 40px rgba(0,0,0,.55);
 }
 
-/* Адаптив */
-@media (max-width:600px){
-  .sport-card{
-    flex: 0 0 90vw;
-    max-width: 320px;
+/* Адаптив для карточек */
+@media (max-width:768px){
+  /* Контейнер слайдера - центрирование */
+  .sport-slider-wrap,
+  .kids-slider-wrap,
+  .rest-slider-wrap,
+  .events-slider-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: auto !important;
   }
-  .sport-slider{
-    scroll-snap-type: x mandatory;
-    scroll-padding: 0 calc(50vw - 45vw);
-    padding-left: calc(50vw - 45vw);
-    padding-right: calc(50vw - 45vw);
+
+  /* Сам слайдер - центрирование карточек */
+  .sport-slider,
+  .kids-slider,
+  .rest-slider,
+  .events-slider {
+    display: flex !important;
+    scroll-snap-type: x mandatory !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    gap: 0 !important;
+    padding: 15px 0 70px 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x !important;
+    overscroll-behavior-x: contain;
+    scroll-padding: 0 calc(50% - (100vw - 40px) / 2) !important;
+    /* Скрываем скроллбар */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .sport-slider::-webkit-scrollbar,
+  .kids-slider::-webkit-scrollbar,
+  .rest-slider::-webkit-scrollbar,
+  .events-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Карточки - компактные для iPhone */
+  .sport-card,
+  .kids-card,
+  .rest-card,
+  .events-card {
+    flex: 0 0 calc(100vw - 40px) !important;
+    width: calc(100vw - 40px) !important;
+    max-width: calc(100vw - 40px) !important;
+    min-width: calc(100vw - 40px) !important;
+    max-height: 65vh !important;
+    padding: 20px 15px !important;
+    margin: 0 20px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    box-sizing: border-box !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-y: contain !important;
+  }
+
+  /* Первая карточка - отступ слева для центрирования */
+  .sport-card:first-child,
+  .kids-card:first-child,
+  .rest-card:first-child,
+  .events-card:first-child {
+    margin-left: calc(50vw - (100vw - 40px) / 2) !important;
+  }
+
+  /* Последняя карточка - отступ справа для центрирования */
+  .sport-card:last-child,
+  .kids-card:last-child,
+  .rest-card:last-child,
+  .events-card:last-child {
+    margin-right: calc(50vw - (100vw - 40px) / 2) !important;
+  }
+
+  .sport-card h3,
+  .kids-card h3,
+  .rest-card h3,
+  .events-card h3 {
+    font-size: 1rem !important;
+    margin-bottom: 8px !important;
+    text-align: center !important;
+  }
+
+  .sport-card p,
+  .kids-card p,
+  .rest-card p,
+  .events-card p {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 12px !important;
+    text-align: center !important;
+  }
+
+  /* Иконки карточек - уменьшенные */
+  .sport-card .card-icon,
+  .kids-card .card-icon,
+  .rest-card .card-icon,
+  .events-card .card-icon,
+  .sport-card img,
+  .kids-card img,
+  .rest-card img,
+  .events-card img {
+    display: block !important;
+    margin: 0 auto 10px auto !important;
+    max-width: 60px !important;
+    max-height: 60px !important;
+  }
+
+  /* Кнопки - компактные */
+  .sport-btn,
+  .kids-btn,
+  .rest-btn,
+  .events-btn {
+    display: block !important;
+    width: 100% !important;
+    margin: 6px 0 !important;
+    padding: 12px 12px !important;
+    font-size: 0.8rem !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
   }
 }
+
+@media (max-width:400px){
+  .sport-card,
+  .kids-card,
+  .rest-card,
+  .events-card {
+    flex: 0 0 calc(100vw - 40px) !important;
+    width: calc(100vw - 40px) !important;
+    max-width: calc(100vw - 40px) !important;
+    min-width: calc(100vw - 40px) !important;
+    padding: 20px 15px !important;
+    margin: 0 20px !important;
+  }
+
+  /* Первая карточка - центрирование */
+  .sport-card:first-child,
+  .kids-card:first-child,
+  .rest-card:first-child,
+  .events-card:first-child {
+    margin-left: calc(50vw - (100vw - 40px) / 2) !important;
+  }
+
+  /* Последняя карточка - центрирование */
+  .sport-card:last-child,
+  .kids-card:last-child,
+  .rest-card:last-child,
+  .events-card:last-child {
+    margin-right: calc(50vw - (100vw - 40px) / 2) !important;
+  }
+
+  .sport-slider,
+  .kids-slider,
+  .rest-slider,
+  .events-slider {
+    padding: 15px 0 50px 0 !important;
+    scroll-padding: 0 calc(50% - (100vw - 40px) / 2) !important;
+  }
+
+  .sport-btn,
+  .kids-btn,
+  .rest-btn,
+  .events-btn {
+    padding: 12px 10px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .sport-card h3,
+  .kids-card h3,
+  .rest-card h3,
+  .events-card h3 {
+    font-size: 1rem !important;
+  }
+
+  .sport-card p,
+  .kids-card p,
+  .rest-card p,
+  .events-card p {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* iOS Safari - улучшенная поддержка прокрутки модальных окон */
+@supports (-webkit-touch-callout: none) {
+  .sport-modal,
+  .kids-modal,
+  .rest-modal,
+  .events-modal,
+  .contacts-modal,
+  .planevent-modal {
+    -webkit-overflow-scrolling: touch !important;
+    overflow-y: auto !important;
+  }
+
+  .sport-card,
+  .kids-card,
+  .rest-card,
+  .events-card {
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .about-scroller,
+  .pricing-scroller {
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-y: contain !important;
+    overflow-y: scroll !important;
+  }
+
+  .offcanvas__body {
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-y: contain !important;
+    overflow-y: auto !important;
+  }
+}
+
 /* PAGE TRANSITION - между overlay и content */
 .sport-transition {
   position:absolute; inset:0; display:flex; z-index:5;
@@ -1821,10 +2239,41 @@ body.modal-open { overflow: hidden; }
 .sport-slider-wrap .slides-nav__button--prev { left:10px; }
 .sport-slider-wrap .slides-nav__button--next { right:10px; }
 
-/* Скрыть стрелки на мобильных */
+/* Стрелки на мобильных - внизу экрана */
 @media (max-width: 768px) {
-  .sport-slider-wrap .slides-nav__button {
-    display: none;
+  .sport-slider-wrap .slides-nav__button,
+  .kids-slider-wrap .slides-nav__button,
+  .rest-slider-wrap .slides-nav__button,
+  .events-slider-wrap .slides-nav__button {
+    display: flex !important;
+    position: fixed !important;
+    top: auto !important;
+    bottom: 50px !important;
+    transform: none !important;
+    width: 45px !important;
+    height: 45px !important;
+    z-index: 10001 !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  }
+
+  .sport-slider-wrap .slides-nav__button--prev,
+  .kids-slider-wrap .slides-nav__button--prev,
+  .rest-slider-wrap .slides-nav__button--prev,
+  .events-slider-wrap .slides-nav__button--prev {
+    left: 30px !important;
+    right: auto !important;
+  }
+
+  .sport-slider-wrap .slides-nav__button--next,
+  .kids-slider-wrap .slides-nav__button--next,
+  .rest-slider-wrap .slides-nav__button--next,
+  .events-slider-wrap .slides-nav__button--next {
+    right: 30px !important;
+    left: auto !important;
   }
 }
 
@@ -1866,6 +2315,9 @@ body.modal-open { overflow: hidden; }
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   z-index: calc(var(--z-modal) + 10);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior-y: contain;
   transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   box-shadow: -5px 0 30px rgba(0,0,0,0.8);
 }
@@ -1993,6 +2445,9 @@ body.modal-open { overflow: hidden; }
   z-index: calc(var(--z-offcanvas) + 100);
   transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior-y: contain;
   padding: 60px 40px 40px;
   box-sizing: border-box;
 }
@@ -2194,7 +2649,10 @@ body.modal-open { overflow: hidden; }
 /* === REST MODAL === */
 .rest-modal{
   position:fixed; inset:0; display:none; justify-content:center; align-items:center;
-  z-index: var(--z-modal); background:#000; overflow-x:hidden; overflow-y:auto;
+  z-index: var(--z-modal); background:#000; overflow-x:hidden !important; overflow-y:auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: contain !important;
 }
 .rest-modal.active{ display:flex; }
 
@@ -2296,7 +2754,6 @@ body.modal-open { overflow: hidden; }
 .rest-slider-wrap .slides-nav__button--next { right:10px; }
 
 @media (max-width: 768px) {
-  .rest-slider-wrap .slides-nav__button { display:none; }
   .rest-stats{ flex-wrap:wrap; gap:12px; }
   .rest-card{ flex:0 0 260px; }
 }
@@ -2304,7 +2761,10 @@ body.modal-open { overflow: hidden; }
 /* === KIDS MODAL === */
 .kids-modal{
   position:fixed; inset:0; display:none; justify-content:center; align-items:center;
-  z-index: var(--z-modal); background:#000; overflow-x:hidden; overflow-y:auto;
+  z-index: var(--z-modal); background:#000; overflow-x:hidden !important; overflow-y:auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: contain !important;
 }
 .kids-modal.active{ display:flex; }
 
@@ -2406,7 +2866,6 @@ body.modal-open { overflow: hidden; }
 .kids-slider-wrap .slides-nav__button--next { right:10px; }
 
 @media (max-width: 768px) {
-  .kids-slider-wrap .slides-nav__button { display:none; }
   .kids-stats{ flex-wrap:wrap; gap:12px; }
   .kids-card{ flex:0 0 260px; }
 }
@@ -2414,7 +2873,10 @@ body.modal-open { overflow: hidden; }
 /* === EVENTS MODAL === */
 .events-modal{
   position:fixed; inset:0; display:none; justify-content:center; align-items:center;
-  z-index: var(--z-modal); background:#000; overflow-x:hidden; overflow-y:auto;
+  z-index: var(--z-modal); background:#000; overflow-x:hidden !important; overflow-y:auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: contain !important;
 }
 .events-modal.active{ display:flex; }
 
@@ -2560,7 +3022,6 @@ body.modal-open { overflow: hidden; }
 .events-slider-wrap .slides-nav__button--next { right:10px; }
 
 @media (max-width: 768px) {
-  .events-slider-wrap .slides-nav__button { display:none; }
   .events-stats{ flex-wrap:wrap; gap:12px; }
   .events-card{
     flex:0 0 280px;
@@ -2578,7 +3039,10 @@ body.modal-open { overflow: hidden; }
 /* === CONTACTS MODAL === */
 .contacts-modal{
   position:fixed; inset:0; display:none; justify-content:center; align-items:center;
-  z-index: var(--z-modal); background:#000; overflow:hidden;
+  z-index: var(--z-modal); background:#000; overflow-x:hidden !important; overflow-y:auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: contain !important;
 }
 .contacts-modal.active{ display:flex; }
 
@@ -2710,6 +3174,120 @@ body.modal-open { overflow: hidden; }
   border: none;
 }
 
+/* === TOUR PRELOADER === */
+.tour-preloader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.tour-preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.tour-preloader__spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.tour-preloader__circle {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(189, 157, 93, 0.3);
+  border-top-color: var(--color-frame);
+  border-radius: 50%;
+  animation: tourSpin 1s linear infinite;
+}
+
+@keyframes tourSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.tour-preloader__text {
+  font-family: var(--font-base);
+  font-size: 1rem;
+  color: var(--color-frame);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  animation: tourPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes tourPulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* === TOUR FALLBACK для мобильных === */
+.tour-fallback {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 11;
+  padding: 20px;
+}
+
+.tour-fallback.active {
+  display: flex;
+}
+
+.tour-fallback__content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.tour-fallback__content h3 {
+  font-size: 1.5rem;
+  color: var(--color-frame);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.tour-fallback__content p {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.tour-fallback__button {
+  display: inline-block;
+  padding: 15px 30px;
+  background: linear-gradient(135deg, var(--color-frame) 0%, #8b7548 100%);
+  color: #000;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tour-fallback__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(189, 157, 93, 0.4);
+}
+
 .tour-close {
   position: absolute;
   top: 20px;
@@ -2737,6 +3315,126 @@ body.modal-open { overflow: hidden; }
   transform: rotate(90deg) scale(1.1);
 }
 
+/* === VIRTUAL TOUR MODAL (from mobile menu) === */
+.virtual-tour-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: #000;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.virtual-tour-modal.active {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.virtual-tour-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000;
+}
+
+.virtual-tour-modal__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.virtual-tour-modal__content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.virtual-tour-modal__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 100000;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #c89b4f;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.virtual-tour-modal__close span {
+  position: absolute;
+  width: 22px;
+  height: 3px;
+  background: #c89b4f;
+  border-radius: 2px;
+}
+
+.virtual-tour-modal__close span:first-child {
+  transform: rotate(45deg);
+}
+
+.virtual-tour-modal__close span:last-child {
+  transform: rotate(-45deg);
+}
+
+.virtual-tour-modal__close:hover {
+  background: #c89b4f;
+  transform: rotate(90deg) scale(1.1);
+}
+
+.virtual-tour-modal__close:hover span {
+  background: #000;
+}
+
+/* Mobile adjustments for tour modals */
+@media (max-width: 768px) {
+  .tour-modal,
+  .virtual-tour-modal {
+    height: 100dvh;
+  }
+
+  .tour-close {
+    top: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+    font-size: 2rem;
+  }
+
+  .virtual-tour-modal__close {
+    top: 10px;
+    right: 10px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .virtual-tour-modal__close span {
+    width: 18px;
+    height: 2px;
+  }
+}
+
 @media (max-width: 768px) {
   .tour-close {
     top: 10px;
@@ -2751,6 +3449,9 @@ body.modal-open { overflow: hidden; }
 .planevent-modal{
   position:fixed; inset:0; display:none; justify-content:center; align-items:center;
   z-index: var(--z-modal); background:#000; overflow-x:hidden; overflow-y:auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior-y: contain;
 }
 .planevent-modal.active{ display:flex; }
 
@@ -2885,6 +3586,9 @@ body.modal-open { overflow: hidden; }
   padding: 30px;
   max-height: 70vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior-y: contain;
   z-index: 5600;
   transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.5);
@@ -3022,6 +3726,55 @@ body.modal-open { overflow: hidden; }
     height: 35px;
     font-size: 28px;
   }
+}
+
+/* Light Theme */
+body.light-theme .slide-selector-backdrop {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+body.light-theme .slide-selector-panel {
+  background: linear-gradient(135deg, #fafafa 0%, #f0f0f5 100%);
+  box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.15);
+}
+
+body.light-theme .slide-selector-header {
+  border-bottom-color: var(--color-frame-light);
+}
+
+body.light-theme .slide-selector-header h3 {
+  color: var(--color-frame-light);
+}
+
+body.light-theme .slide-selector-close {
+  background: rgba(0, 0, 0, 0.08);
+  color: #333;
+}
+
+body.light-theme .slide-selector-close:hover {
+  background: var(--color-frame-light);
+  color: #fff;
+}
+
+body.light-theme .slide-selector-item {
+  background: #f5f5f5;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-theme .slide-selector-item:hover {
+  border-color: var(--color-frame-light);
+  box-shadow: 0 5px 20px rgba(139, 105, 20, 0.3);
+}
+
+body.light-theme .slide-selector-item.active {
+  border-color: var(--color-frame-light);
+  box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.2);
+}
+
+body.light-theme .slide-selector-item-number {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-frame-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* ================================================
@@ -3574,7 +4327,47 @@ button.share-event-btn {
     padding-left: 10px !important;
 }
 
-/* ===== BACKGROUNDCHECK STYLES ===== */
+/* ===== MIX-BLEND-MODE AUTO CONTRAST ===== */
+/* Автоматическая смена цвета в зависимости от фона */
+/* Приоритет выше чем BackgroundCheck классы */
+
+/* Frame links с автоматическим контрастом - перебивает background--light/dark */
+.frame__links.auto-contrast,
+.frame__links.auto-contrast.background--light,
+.frame__links.auto-contrast.background--dark,
+.frame__links.nav--light.auto-contrast.background--light,
+.frame__links.nav--light.auto-contrast.background--dark {
+	mix-blend-mode: difference;
+}
+
+.frame__links.auto-contrast a,
+.frame__links.auto-contrast.background--light a,
+.frame__links.auto-contrast.background--dark a,
+.frame__links.nav--light.auto-contrast.background--light a,
+.frame__links.nav--light.auto-contrast.background--dark a {
+	color: #fff !important;
+	text-shadow: none !important;
+}
+
+/* Slides nav с автоматическим контрастом */
+.slides-nav.auto-contrast,
+.slides-nav.auto-contrast.background--light,
+.slides-nav.auto-contrast.background--dark {
+	mix-blend-mode: difference;
+}
+
+.slides-nav.auto-contrast .slides-nav__button,
+.slides-nav.auto-contrast .slides-nav__index,
+.slides-nav.auto-contrast.background--light .slides-nav__button,
+.slides-nav.auto-contrast.background--light .slides-nav__index,
+.slides-nav.auto-contrast.background--dark .slides-nav__button,
+.slides-nav.auto-contrast.background--dark .slides-nav__index {
+	color: #fff !important;
+	border-color: rgba(255, 255, 255, 0.5) !important;
+	background: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* ===== BACKGROUNDCHECK STYLES (fallback) ===== */
 
 /* Frame links - светлый текст на темном фоне */
 .frame__links.nav--light.background--dark a {
@@ -3594,7 +4387,7 @@ button.share-event-btn {
 .slides-nav.background--dark .slides-nav__index {
 	color: #fff;
 	border-color: rgba(255, 255, 255, 0.3);
-	background: rgba(255, 255, 255, 0.1);
+	background: transparent;
 }
 
 .slides-nav.background--dark .slides-nav__button:hover,
@@ -3865,4 +4658,91 @@ button.share-event-btn {
 .confirm-dialog-btn.cancel:hover {
 	border-color: #888;
 	color: #fff;
+}
+
+/* ============================================
+   iOS Safari / Mobile фикс для offcanvas
+   На мобильных - fullscreen панель
+   ============================================ */
+
+@media (max-width: 768px) {
+  .offcanvas {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    transform: translateY(100%) !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .offcanvas.active {
+    transform: translateY(0) !important;
+  }
+
+  .offcanvas__header {
+    flex-shrink: 0 !important;
+  }
+
+  .offcanvas__body {
+    flex: 1 1 auto !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+  }
+}
+
+/* iOS специфичный фикс */
+@supports (-webkit-touch-callout: none) {
+  .offcanvas {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .offcanvas.active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    height: 100vh !important;
+    height: -webkit-fill-available !important;
+    overflow: hidden !important;
+  }
+
+  .offcanvas__header {
+    flex-shrink: 0 !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  .offcanvas__body {
+    flex: 1 1 auto !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Форма внутри должна быть статичной */
+  .offcanvas__body .booking-form,
+  .offcanvas__body form {
+    position: static !important;
+    overflow: visible !important;
+  }
 }

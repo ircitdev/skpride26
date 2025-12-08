@@ -57,11 +57,19 @@ body.light-theme .theme-toggle .theme-icon--dark {
 /* === Светлая тема === */
 body.light-theme {
   --color-text: #222;
-  --color-bg: #f5f5f5;
   --color-link: #333;
   --color-link-hover: #bd9d5d;
   --color-frame: #bd9d5d;
-  background-color: var(--color-bg);
+  /* Градиентный фон для светлой темы - яркий и выразительный */
+  background:
+    radial-gradient(ellipse 90% 80% at -15% -20%, rgba(200, 155, 79, 0.4) 0%, transparent 45%),
+    radial-gradient(ellipse 100% 90% at 115% 120%, rgba(180, 130, 60, 0.35) 0%, transparent 45%),
+    radial-gradient(ellipse 70% 60% at 90% 5%, rgba(230, 190, 100, 0.3) 0%, transparent 40%),
+    radial-gradient(ellipse 60% 50% at 5% 95%, rgba(200, 160, 80, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 50% 40%, rgba(255, 240, 200, 0.4) 0%, transparent 50%),
+    linear-gradient(135deg, #fffef8 0%, #f8f0e0 20%, #f0e8d8 40%, #f5ede0 60%, #f8f2e8 80%, #fffdf5 100%);
+  background-color: #fffdf5;
+  background-attachment: fixed;
   color: var(--color-text);
 }
 
@@ -377,6 +385,20 @@ body.light-theme .tour-close {
 body.light-theme .tour-close:hover {
   background: #bd9d5d;
   color: #fff;
+}
+
+/* Tour Preloader в светлой теме */
+body.light-theme .tour-preloader {
+  background: rgba(255, 255, 255, 0.98);
+}
+
+body.light-theme .tour-preloader__circle {
+  border-color: rgba(189, 157, 93, 0.2);
+  border-top-color: #bd9d5d;
+}
+
+body.light-theme .tour-preloader__text {
+  color: #bd9d5d;
 }
 
 /* === REST MODAL в светлой теме === */

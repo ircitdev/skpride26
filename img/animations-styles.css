@@ -1,0 +1,305 @@
+/**
+ * Стили для премиальных GSAP анимаций
+ * Добавляет поддержку для всех эффектов
+ */
+
+/* ============================================
+   ScrollSmoother - Wrapper стили
+   ============================================ */
+#smooth-wrapper {
+  overflow: hidden;
+}
+
+#smooth-content {
+  overflow: visible;
+  will-change: transform;
+}
+
+/* ============================================
+   SplitText - Стили для букв
+   ============================================ */
+.char,
+.word,
+.line {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.char {
+  transform-origin: 50% 100%;
+}
+
+/* Предотвращаем разрыв слов */
+.word {
+  white-space: nowrap;
+}
+
+/* ============================================
+   Ripple эффект для кнопок
+   ============================================ */
+.animated-button,
+.sport-btn,
+.slides__caption-link a {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  transform: scale(0);
+}
+
+/* ============================================
+   Reveal эффект для изображений
+   ============================================ */
+.reveal-image {
+  will-change: transform, opacity;
+}
+
+.image-overlay {
+  pointer-events: none;
+}
+
+/* ============================================
+   Карточки с анимацией
+   ============================================ */
+.fade-in-scale,
+.trainer-card,
+.section-card,
+.event-card {
+  will-change: transform, opacity;
+}
+
+/* ============================================
+   Slide in эффекты
+   ============================================ */
+.slide-in {
+  will-change: transform, opacity;
+}
+
+/* ============================================
+   Draggable элементы
+   ============================================ */
+.horizontal-scroll {
+  cursor: grab;
+  will-change: transform;
+}
+
+.horizontal-scroll:active {
+  cursor: grabbing;
+}
+
+.horizontal-scroll .card {
+  will-change: transform, opacity;
+  user-select: none;
+}
+
+/* ============================================
+   Параллакс элементы
+   ============================================ */
+[data-speed] {
+  will-change: transform;
+}
+
+/* ============================================
+   Pulse эффект для акций
+   ============================================ */
+.promo-badge,
+.discount-label {
+  will-change: transform;
+}
+
+/* ============================================
+   Счетчики
+   ============================================ */
+[data-counter] {
+  font-variant-numeric: tabular-nums;
+  will-change: contents;
+}
+
+/* ============================================
+   Оптимизация производительности
+   ============================================ */
+
+/* Отключаем pointer events во время анимаций */
+body.is-animating * {
+  pointer-events: none !important;
+}
+
+body.is-animating {
+  pointer-events: auto !important;
+}
+
+/* Улучшаем рендеринг */
+.slide__img,
+.slide__img-wrap,
+figure.slide {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* ============================================
+   Responsive - упрощение на мобильных
+   ============================================ */
+@media (max-width: 768px) {
+  /* Отключаем сложные эффекты на слабых устройствах */
+  .char,
+  .word,
+  [data-speed],
+  .fade-in-scale {
+    will-change: auto;
+  }
+
+  /* Упрощаем ripple */
+  .ripple {
+    display: none;
+  }
+}
+
+/* Для устройств с низкой производительностью */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Отключаем GSAP анимации */
+  .char,
+  .word,
+  .line,
+  [data-speed],
+  .fade-in-scale,
+  .slide-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   Debug режим (для разработки)
+   ============================================ */
+body.debug-animations .char {
+  outline: 1px solid red;
+}
+
+body.debug-animations .word {
+  outline: 1px solid blue;
+}
+
+body.debug-animations [data-speed] {
+  outline: 2px solid green;
+}
+
+/* ============================================
+   Плавные переходы по умолчанию
+   ============================================ */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   Прелоадер анимации
+   ============================================ */
+.page-preloader {
+  will-change: opacity;
+}
+
+/* ============================================
+   Модальные окна
+   ============================================ */
+.modal {
+  will-change: transform, opacity;
+}
+
+.modal-backdrop {
+  will-change: opacity;
+}
+
+/* ============================================
+   Слайдер навигация
+   ============================================ */
+.slides-nav {
+  will-change: transform, opacity;
+}
+
+/* ============================================
+   Booking панель
+   ============================================ */
+.booking-item {
+  will-change: transform, opacity;
+}
+
+/* ============================================
+   Hover эффекты
+   ============================================ */
+.trainer-card,
+.section-card,
+.event-card {
+  transition: box-shadow 0.3s ease;
+}
+
+.trainer-card:hover,
+.section-card:hover,
+.event-card:hover {
+  cursor: pointer;
+}
+
+/* ============================================
+   SVG анимации
+   ============================================ */
+.logo svg path,
+.icon svg path {
+  will-change: stroke-dasharray, stroke-dashoffset;
+}
+
+/* ============================================
+   Smooth scrolling для браузеров без JS
+   ============================================ */
+@supports not (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   Accessibility
+   ============================================ */
+
+/* Показываем фокус для клавиатурной навигации */
+*:focus-visible {
+  outline: 2px solid var(--color-accent, #FF6B35);
+  outline-offset: 2px;
+}
+
+/* Скрываем фокус при клике мышью */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   Print стили (отключаем анимации)
+   ============================================ */
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  #smooth-wrapper,
+  #smooth-content {
+    transform: none !important;
+  }
+}

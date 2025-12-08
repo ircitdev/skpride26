@@ -1,0 +1,145 @@
+/**
+ * Custom Cursor - СК ПРАЙД
+ * Двойной курсор с эффектами
+ */
+
+/* Скрываем стандартный курсор на desktop */
+@media (min-width: 769px) and (hover: hover) {
+    body:not(.touch-device) {
+        cursor: none;
+    }
+
+    body:not(.touch-device) a,
+    body:not(.touch-device) button,
+    body:not(.touch-device) [role="button"],
+    body:not(.touch-device) input,
+    body:not(.touch-device) select,
+    body:not(.touch-device) textarea {
+        cursor: none;
+    }
+}
+
+/* Основной контейнер курсора */
+.cursor {
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    mix-blend-mode: difference;
+}
+
+/* Внешний круг */
+.cursor__outer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+    z-index: 99998;
+    mix-blend-mode: difference;
+}
+
+/* Внутренняя точка */
+.cursor__inner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
+    z-index: 99999;
+    mix-blend-mode: difference;
+}
+
+/* Hover на интерактивных элементах */
+.cursor--hover .cursor__outer {
+    width: 130px;
+    height: 130px;
+    border-color: #c89b4f;
+    background: rgba(200, 155, 79, 0.08);
+}
+
+.cursor--hover .cursor__inner {
+    width: 6px;
+    height: 6px;
+    background: #c89b4f;
+}
+
+/* Клик */
+.cursor--click .cursor__outer {
+    width: 35px;
+    height: 35px;
+}
+
+.cursor--click .cursor__inner {
+    width: 12px;
+    height: 12px;
+}
+
+/* Скрытие при выходе за пределы окна */
+.cursor--hidden .cursor__outer,
+.cursor--hidden .cursor__inner {
+    opacity: 0;
+}
+
+/* На текстовых полях показываем текстовый курсор */
+.cursor--text .cursor__outer {
+    width: 4px;
+    height: 30px;
+    border-radius: 2px;
+    border: none;
+    background: #fff;
+}
+
+.cursor--text .cursor__inner {
+    opacity: 0;
+}
+
+/* Магнитный эффект - курсор "прилипает" к кнопке */
+.cursor--magnetic .cursor__outer {
+    width: 140px;
+    height: 140px;
+    border-color: #c89b4f;
+    background: rgba(200, 155, 79, 0.12);
+}
+
+/* Light theme */
+body.light-theme .cursor__outer {
+    border-color: #333;
+}
+
+body.light-theme .cursor__inner {
+    background: #333;
+}
+
+body.light-theme .cursor--hover .cursor__outer {
+    border-color: #8b6914;
+    background: rgba(139, 105, 20, 0.1);
+}
+
+body.light-theme .cursor--hover .cursor__inner {
+    background: #8b6914;
+}
+
+/* Скрываем на мобильных и touch устройствах */
+@media (max-width: 768px), (hover: none) {
+    .cursor,
+    .cursor__outer,
+    .cursor__inner {
+        display: none !important;
+    }
+
+    body {
+        cursor: auto !important;
+    }
+}

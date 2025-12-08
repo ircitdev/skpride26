@@ -114,7 +114,7 @@
 
     bookingPanel.classList.add('active');
     backdrop.classList.add('show');
-    document.body.style.overflow = 'hidden';
+    // НЕ блокируем body.overflow - это ломает scroll на iOS
 
     // Загружаем форму если функция доступна
     if (typeof loadFormConfig === 'function') {

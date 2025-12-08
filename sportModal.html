@@ -6,8 +6,11 @@
 	<div class="sport-transition__panel"></div>
 	<div class="sport-transition__panel"></div>
 </div>
-<!-- 2) Видео фон -->
-<video class="sport-bg" autoplay muted loop playsinline>
+<!-- 2) Видео фон (desktop: zal24.mp4, mobile: gym.mp4) -->
+<video class="sport-bg sport-bg-desktop" autoplay muted loop playsinline>
+	<source src="img/gym/zal24.mp4" type="video/mp4">
+</video>
+<video class="sport-bg sport-bg-mobile" autoplay muted loop playsinline>
 	<source src="video/gym.mp4" type="video/mp4">
 </video>
 <div class="sport-overlay"></div>
@@ -26,7 +29,7 @@
 
 	<!-- СЛАЙДЕР КАРТОЧЕК -->
 	<div class="sport-slider-wrap">
-		<button class="slides-nav__button slides-nav__button--prev" data-sport-prev aria-label="Пред">←</button>
+		<button class="slides-nav__button slides-nav__button--prev arrow-hidden" data-sport-prev aria-label="Пред">←</button>
 		<div class="sport-slider" id="sportSlider">
 			<!-- 1 -->
 			<div class="sport-card" data-slide-id="gym">
@@ -93,6 +96,6 @@
 				<a href="https://pride34.ru/cameras/" class="sport-btn">Онлайн-камеры</a>
 			</div>
 		</div>
-		<button class="slides-nav__button slides-nav__button--next" data-sport-next aria-label="След">→</button>
+		<button class="slides-nav__button slides-nav__button--next arrow-visible" data-sport-next aria-label="След">→</button>
 	</div>
 </div>

@@ -1,20 +1,43 @@
-# Video files (too large for git)
-video/
-*.mp4
-*.webm
-*.mov
+# IDE
+.vs/
+.vscode/
+.idea/
 
-# Node modules
-node_modules/
-
-# OS files
+# OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Temp files
+# Temporary files
 *.tmp
 *.temp
-
-# Large libraries (load from CDN)
-three.min.js
+*.log
 nul
+
+# Backups
+*.backup
+*.bak
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Credentials & secrets
+*.pem
+*.key
+*.crt
+*.json
+!form.json
+
+# Python
+*.pyc
+__pycache__/
+*.py
+
+# FTP config
+.ftpconfig
+
+# Restore files
+*_restore*
+index_restore_files/

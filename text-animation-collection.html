@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Animations - GSAP Library | СК ПРАЙД</title>
+
+    <!-- GSAP Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="text-animation-collection.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="ta-header">
+        <div class="ta-container">
+            <div class="ta-logo">
+                <h1>СК ПРАЙД</h1>
+                <span>Text Animations</span>
+            </div>
+            <nav class="ta-nav">
+                <a href="index.html">Главная</a>
+                <a href="components-collection.html">Компоненты</a>
+                <a href="#words">Words</a>
+                <a href="#letters">Letters</a>
+                <a href="#lines">Lines</a>
+            </nav>
+            <button id="themeToggle" class="theme-toggle">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="ta-hero">
+        <div class="ta-container">
+            <h1 class="ta-hero-title" data-animation="hero">
+                Коллекция Текстовых Анимаций GSAP
+            </h1>
+            <p class="ta-hero-subtitle">
+                20+ профессиональных эффектов для вашего сайта
+            </p>
+        </div>
+    </section>
+
+    <!-- WORDS ANIMATIONS -->
+    <section id="words" class="ta-section">
+        <div class="ta-container">
+            <h2 class="section-title">Words Animations</h2>
+            <p class="section-desc">Анимации на уровне слов - каждое слово анимируется отдельно</p>
+
+            <!-- Words Slam Down -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Words Slam Down</h3>
+                    <span class="demo-badge">Popular</span>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="words-slam-down">
+                        Тренируйтесь с нами в СК ПРАЙД
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Слова резко падают вниз с эффектом гравитации</p>
+                </div>
+            </div>
+
+            <!-- Words Slide Up -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Words Slide Up</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="words-slide-up">
+                        Современный фитнес-клуб премиум класса
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Плавное поднятие слов снизу вверх</p>
+                </div>
+            </div>
+
+            <!-- Words Rotate In -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Words Rotate In</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="words-rotate-in">
+                        Достигайте своих целей вместе с нами
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Слова вращаются при появлении</p>
+                </div>
+            </div>
+
+            <!-- Words Float Up -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Words Float Up</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="words-float-up">
+                        Ледовая арена для всей семьи
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Плавающее движение слов с эффектом невесомости</p>
+                </div>
+            </div>
+
+            <!-- Words Scale In -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Words Scale In</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="words-scale-in">
+                        Релакс-зона с финской сауной
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Масштабирование слов от малого к нормальному размеру</p>
+                </div>
+            </div>
+
+            <!-- Words Flip In -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Words Flip In 3D</h3>
+                    <span class="demo-badge">3D</span>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="words-flip-in">
+                        Профессиональные тренажеры и оборудование
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Трёхмерный переворот слов</p>
+                </div>
+            </div>
+
+            <!-- Words Jelly In -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Words Jelly In</h3>
+                    <span class="demo-badge">Fun</span>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="words-jelly-in">
+                        Детский фитнес и развивающие занятия
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>"Студенистое" появление с эластичной деформацией</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LETTERS ANIMATIONS -->
+    <section id="letters" class="ta-section">
+        <div class="ta-container">
+            <h2 class="section-title">Letters Animations</h2>
+            <p class="section-desc">Анимации на уровне букв - каждая буква анимируется индивидуально</p>
+
+            <!-- Letters Slide Up -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Letters Slide Up</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="letters-slide-up">
+                        ПРАЙД - ТЕРРИТОРИЯ СИЛЫ
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Буквы поднимаются последовательно снизу вверх</p>
+                </div>
+            </div>
+
+            <!-- Letters Fade In Random -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Letters Fade In Random</h3>
+                    <span class="demo-badge">Random</span>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="letters-fade-random">
+                        БУДЬТЕ В ФОРМЕ КРУГЛЫЙ ГОД
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Случайное появление букв</p>
+                </div>
+            </div>
+
+            <!-- Letters Zoom In -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Letters Zoom In</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="letters-zoom-in">
+                        СОВРЕМЕННОЕ ОБОРУДОВАНИЕ
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Приближение букв с масштабированием</p>
+                </div>
+            </div>
+
+            <!-- Letters Rotate In -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Letters Rotate In</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="letters-rotate-in">
+                        ПЕРСОНАЛЬНЫЕ ТРЕНИРОВКИ
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Вращение каждой буквы при появлении</p>
+                </div>
+            </div>
+
+            <!-- Letters Blur In -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Letters Blur In</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="letters-blur-in">
+                        ГРУППОВЫЕ ЗАНЯТИЯ
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Размытое появление букв с фокусировкой</p>
+                </div>
+            </div>
+
+            <!-- Letters Pulse In -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Letters Pulse In</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="letters-pulse-in">
+                        КОМФОРТНАЯ АТМОСФЕРА
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Пульсирующее появление каждой буквы</p>
+                </div>
+            </div>
+
+            <!-- Letters Clip Up -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Letters Clip Up</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="letters-clip-up">
+                        ВЫГОДНЫЕ АБОНЕМЕНТЫ
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Обрезание букв снизу вверх</p>
+                </div>
+            </div>
+
+            <!-- Letters Blast Apart -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Letters Blast Apart</h3>
+                    <span class="demo-badge">Explosive</span>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="letters-blast-apart">
+                        МАКСИМУМ ЭНЕРГИИ
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Взрывоподобное рассеивание букв с последующим собиранием</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINES ANIMATIONS -->
+    <section id="lines" class="ta-section">
+        <div class="ta-container">
+            <h2 class="section-title">Lines Animations</h2>
+            <p class="section-desc">Анимации целых строк текста</p>
+
+            <!-- Lines Slide Up -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Lines Slide Up</h3>
+                </div>
+                <div class="demo-content">
+                    <div class="text-anim multiline" data-animation="lines-slide-up">
+                        <p>СК ПРАЙД - это современный фитнес-клуб премиум класса</p>
+                        <p>Мы предлагаем широкий спектр услуг для всей семьи</p>
+                        <p>Тренажерный зал, ледовая арена, релакс-зона</p>
+                        <p>Присоединяйтесь к нам сегодня!</p>
+                    </div>
+                </div>
+                <div class="demo-info">
+                    <p>Целые строки поднимаются последовательно</p>
+                </div>
+            </div>
+
+            <!-- Lines Fade In Stagger -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Lines Fade In Stagger</h3>
+                </div>
+                <div class="demo-content">
+                    <div class="text-anim multiline" data-animation="lines-fade-stagger">
+                        <p>Профессиональные тренеры</p>
+                        <p>Современное оборудование</p>
+                        <p>Удобное расположение</p>
+                        <p>Доступные цены</p>
+                    </div>
+                </div>
+                <div class="demo-info">
+                    <p>Плавное появление строк с задержкой</p>
+                </div>
+            </div>
+
+            <!-- Lines Scale Reveal -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Lines Scale Reveal</h3>
+                </div>
+                <div class="demo-content">
+                    <div class="text-anim multiline" data-animation="lines-scale-reveal">
+                        <p>КАРДИО ТРЕНИРОВКИ</p>
+                        <p>СИЛОВЫЕ ПРОГРАММЫ</p>
+                        <p>ГРУППОВЫЕ ЗАНЯТИЯ</p>
+                    </div>
+                </div>
+                <div class="demo-info">
+                    <p>Масштабирование строк при появлении</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPECIAL EFFECTS -->
+    <section id="special" class="ta-section">
+        <div class="ta-container">
+            <h2 class="section-title">Special Effects</h2>
+            <p class="section-desc">Комбинированные и продвинутые эффекты</p>
+
+            <!-- Gradient Text Wave -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Gradient Text Wave</h3>
+                    <span class="demo-badge">Premium</span>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim gradient-text" data-animation="gradient-wave">
+                        ПРЕМИУМ ФИТНЕС-КЛУБ
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Градиентный текст с волновым эффектом</p>
+                </div>
+            </div>
+
+            <!-- Glitch Effect -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Glitch Text</h3>
+                    <span class="demo-badge">Cyberpunk</span>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim glitch-text" data-animation="glitch">
+                        MODERN FITNESS
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Эффект цифрового искажения</p>
+                </div>
+            </div>
+
+            <!-- Typing Effect -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Typewriter</h3>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="typewriter">
+                        Добро пожаловать в СК ПРАЙД!
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Классический эффект печатной машинки</p>
+                </div>
+            </div>
+
+            <!-- Split Reveal -->
+            <div class="animation-demo">
+                <div class="demo-header">
+                    <h3>Split Reveal</h3>
+                    <span class="demo-badge">Cinematic</span>
+                </div>
+                <div class="demo-content">
+                    <h2 class="text-anim" data-animation="split-reveal">
+                        НАЧНИТЕ ТРЕНИРОВАТЬСЯ СЕГОДНЯ
+                    </h2>
+                </div>
+                <div class="demo-info">
+                    <p>Кинематографичное раскрытие текста из центра</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="ta-footer">
+        <div class="ta-container">
+            <p>&copy; 2026 СК ПРАЙД - Text Animation Collection</p>
+            <p>Powered by GSAP & SplitType</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="text-animation-collection.js"></script>
+</body>
+</html>

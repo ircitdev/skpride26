@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pride34 Design System</title>
+    <link rel="stylesheet" href="styleguide-v2.css">
+    <link rel="stylesheet" href="theme-styles.css">
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="primer-header">
+        <div class="primer-header-container">
+            <div class="primer-logo">Pride34</div>
+            <nav class="primer-header-nav">
+                <a href="#primitives">Primitives</a>
+                <a href="#components">Components</a>
+                <a href="#patterns">Patterns</a>
+                <a href="font-pairing.html" target="_blank">Font Pairing</a>
+                <a href="components-collection.html" target="_blank">Collection</a>
+            </nav>
+            <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                <span class="theme-icon theme-icon--light">☀️</span>
+                <span class="theme-icon theme-icon--dark">🌙</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Основной контейнер с боковой навигацией -->
+    <div class="primer-layout">
+        <!-- Боковая навигация -->
+        <aside class="primer-sidebar">
+            <nav class="primer-nav">
+                <div class="primer-nav-section">
+                    <h3 class="primer-nav-heading">Introduction</h3>
+                    <a href="#overview" class="primer-nav-link">Overview</a>
+                    <a href="#principles" class="primer-nav-link">Design Principles</a>
+                </div>
+
+                <div class="primer-nav-section">
+                    <h3 class="primer-nav-heading">Primitives</h3>
+                    <a href="#colors" class="primer-nav-link">Colors</a>
+                    <a href="#typography" class="primer-nav-link">Typography</a>
+                    <a href="#spacing" class="primer-nav-link">Spacing</a>
+                    <a href="#elevation" class="primer-nav-link">Elevation</a>
+                </div>
+
+                <div class="primer-nav-section">
+                    <h3 class="primer-nav-heading">Components</h3>
+                    <a href="#buttons" class="primer-nav-link">Button</a>
+                    <a href="#cards" class="primer-nav-link">Card</a>
+                    <a href="#forms" class="primer-nav-link">Forms</a>
+                    <a href="#badges" class="primer-nav-link">Label</a>
+                    <a href="#alerts" class="primer-nav-link">Banner</a>
+                </div>
+
+                <div class="primer-nav-section">
+                    <h3 class="primer-nav-heading">Patterns</h3>
+                    <a href="#hero" class="primer-nav-link">Hero</a>
+                    <a href="#features" class="primer-nav-link">Features</a>
+                    <a href="#stats" class="primer-nav-link">Stats</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Основной контент -->
+        <main class="primer-content">
+
+            <!-- Overview -->
+            <section id="overview" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Pride34 Design System</h1>
+                    <p class="primer-section-subtitle">Современная дизайн-система для создания согласованного пользовательского опыта</p>
+                </div>
+
+                <div class="primer-box">
+                    <h2>О системе</h2>
+                    <p>Pride34 Design System — это набор компонентов, паттернов и принципов для создания единообразных интерфейсов. Система включает в себя все необходимые элементы от цветовой палитры до сложных компонентов.</p>
+                </div>
+
+                <div class="primer-grid-2">
+                    <div class="primer-card">
+                        <h3>🎨 Визуальный язык</h3>
+                        <p>Единая цветовая палитра, типографика и стиль</p>
+                    </div>
+                    <div class="primer-card">
+                        <h3>⚡ Производительность</h3>
+                        <p>Оптимизированные компоненты для быстрой загрузки</p>
+                    </div>
+                    <div class="primer-card">
+                        <h3>♿ Доступность</h3>
+                        <p>WCAG 2.1 соответствие для всех компонентов</p>
+                    </div>
+                    <div class="primer-card">
+                        <h3>📱 Адаптивность</h3>
+                        <p>Mobile-first подход к дизайну</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Design Principles -->
+            <section id="principles" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Design Principles</h1>
+                    <p class="primer-section-subtitle">Основные принципы, которыми мы руководствуемся</p>
+                </div>
+
+                <div class="primer-stack">
+                    <div class="primer-box primer-box-accent">
+                        <h3>Простота</h3>
+                        <p>Создавайте интуитивно понятные интерфейсы без лишней сложности</p>
+                    </div>
+                    <div class="primer-box primer-box-accent">
+                        <h3>Согласованность</h3>
+                        <p>Используйте единые паттерны во всех продуктах</p>
+                    </div>
+                    <div class="primer-box primer-box-accent">
+                        <h3>Понятность</h3>
+                        <p>Каждый элемент должен четко передавать свое назначение</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Colors -->
+            <section id="colors" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Colors</h1>
+                    <p class="primer-section-subtitle">Палитра цветов для создания визуальной иерархии</p>
+                </div>
+
+                <h2 class="primer-heading-2">Brand Colors</h2>
+                <div class="primer-color-grid">
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #bd9d5d;"></div>
+                        <div class="primer-color-info">
+                            <h4>Gold</h4>
+                            <code>#bd9d5d</code>
+                            <p>Primary brand color</p>
+                        </div>
+                    </div>
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #957a45;"></div>
+                        <div class="primer-color-info">
+                            <h4>Gold Dark</h4>
+                            <code>#957a45</code>
+                            <p>Hover & active states</p>
+                        </div>
+                    </div>
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #e8d4b8;"></div>
+                        <div class="primer-color-info">
+                            <h4>Gold Light</h4>
+                            <code>#e8d4b8</code>
+                            <p>Backgrounds & accents</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="primer-heading-2">Functional Colors</h2>
+                <div class="primer-color-grid">
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #4caf50;"></div>
+                        <div class="primer-color-info">
+                            <h4>Success</h4>
+                            <code>#4caf50</code>
+                            <p>Success states</p>
+                        </div>
+                    </div>
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #f44336;"></div>
+                        <div class="primer-color-info">
+                            <h4>Error</h4>
+                            <code>#f44336</code>
+                            <p>Error states</p>
+                        </div>
+                    </div>
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #ff9800;"></div>
+                        <div class="primer-color-info">
+                            <h4>Warning</h4>
+                            <code>#ff9800</code>
+                            <p>Warning states</p>
+                        </div>
+                    </div>
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #2196f3;"></div>
+                        <div class="primer-color-info">
+                            <h4>Info</h4>
+                            <code>#2196f3</code>
+                            <p>Information states</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="primer-heading-2">Neutral Colors</h2>
+                <div class="primer-color-grid">
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #000000;"></div>
+                        <div class="primer-color-info">
+                            <h4>Black</h4>
+                            <code>#000000</code>
+                            <p>Dark backgrounds</p>
+                        </div>
+                    </div>
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #1a1a1a;"></div>
+                        <div class="primer-color-info">
+                            <h4>Gray 900</h4>
+                            <code>#1a1a1a</code>
+                            <p>Secondary backgrounds</p>
+                        </div>
+                    </div>
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #666666;"></div>
+                        <div class="primer-color-info">
+                            <h4>Gray 500</h4>
+                            <code>#666666</code>
+                            <p>Secondary text</p>
+                        </div>
+                    </div>
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #f5f5f5; border: 1px solid #ddd;"></div>
+                        <div class="primer-color-info">
+                            <h4>Gray 100</h4>
+                            <code>#f5f5f5</code>
+                            <p>Light backgrounds</p>
+                        </div>
+                    </div>
+                    <div class="primer-color-card">
+                        <div class="primer-color-swatch" style="background: #ffffff; border: 1px solid #ddd;"></div>
+                        <div class="primer-color-info">
+                            <h4>White</h4>
+                            <code>#ffffff</code>
+                            <p>Light backgrounds</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Typography -->
+            <section id="typography" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Typography</h1>
+                    <p class="primer-section-subtitle">Типографическая система для создания визуальной иерархии</p>
+                </div>
+
+                <h2 class="primer-heading-2">Font Families</h2>
+                <div class="primer-grid-2">
+                    <div class="primer-card">
+                        <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 2rem;">Montserrat</h3>
+                        <p>Используется для заголовков и акцентов</p>
+                        <code>font-family: 'Montserrat', sans-serif;</code>
+                        <div style="margin-top: 16px;">
+                            <p style="font-family: 'Montserrat', sans-serif; font-weight: 700;">Bold (700) - H1, H2</p>
+                            <p style="font-family: 'Montserrat', sans-serif; font-weight: 500;">Medium (500) - H3-H6</p>
+                        </div>
+                    </div>
+                    <div class="primer-card">
+                        <h3 style="font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 2rem;">Roboto</h3>
+                        <p>Используется для основного текста</p>
+                        <code>font-family: 'Roboto', sans-serif;</code>
+                        <div style="margin-top: 16px;">
+                            <p style="font-family: 'Roboto', sans-serif; font-weight: 700;">Bold (700) - Emphasis</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-weight: 400;">Regular (400) - Body text</p>
+                            <p style="font-family: 'Roboto', sans-serif; font-weight: 300;">Light (300) - Subtle text</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="primer-heading-2">Heading Scale</h2>
+                <div class="primer-typography-scale">
+                    <div class="primer-type-example">
+                        <h1 class="primer-display">Display</h1>
+                        <code>font-size: 3.5rem; font-weight: 700; line-height: 1.2;</code>
+                    </div>
+                    <div class="primer-type-example">
+                        <h1>Heading 1</h1>
+                        <code>font-size: 3rem; font-weight: 700; line-height: 1.2;</code>
+                    </div>
+                    <div class="primer-type-example">
+                        <h2>Heading 2</h2>
+                        <code>font-size: 2.5rem; font-weight: 700; line-height: 1.3;</code>
+                    </div>
+                    <div class="primer-type-example">
+                        <h3>Heading 3</h3>
+                        <code>font-size: 2rem; font-weight: 500; line-height: 1.4;</code>
+                    </div>
+                    <div class="primer-type-example">
+                        <h4>Heading 4</h4>
+                        <code>font-size: 1.5rem; font-weight: 500; line-height: 1.4;</code>
+                    </div>
+                    <div class="primer-type-example">
+                        <h5>Heading 5</h5>
+                        <code>font-size: 1.25rem; font-weight: 500; line-height: 1.5;</code>
+                    </div>
+                    <div class="primer-type-example">
+                        <h6>Heading 6</h6>
+                        <code>font-size: 1rem; font-weight: 500; line-height: 1.5;</code>
+                    </div>
+                </div>
+
+                <h2 class="primer-heading-2">Body Text</h2>
+                <div class="primer-grid-2">
+                    <div class="primer-card">
+                        <p class="primer-text-large">Large text - используется для вводных абзацев</p>
+                        <code>font-size: 1.25rem; line-height: 1.6;</code>
+                    </div>
+                    <div class="primer-card">
+                        <p>Regular text - основной текст для контента страницы</p>
+                        <code>font-size: 1rem; line-height: 1.6;</code>
+                    </div>
+                    <div class="primer-card">
+                        <p class="primer-text-small">Small text - для подписей и метаданных</p>
+                        <code>font-size: 0.875rem; line-height: 1.5;</code>
+                    </div>
+                    <div class="primer-card">
+                        <p class="primer-text-muted">Muted text - для менее важного контента</p>
+                        <code>font-size: 0.875rem; opacity: 0.7;</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Spacing -->
+            <section id="spacing" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Spacing</h1>
+                    <p class="primer-section-subtitle">Система отступов для создания визуального ритма</p>
+                </div>
+
+                <div class="primer-spacing-scale">
+                    <div class="primer-spacing-item">
+                        <div class="primer-spacing-box" style="width: 4px; height: 4px;"></div>
+                        <div class="primer-spacing-info">
+                            <strong>4px</strong>
+                            <code>--spacing-1</code>
+                            <span>Extra small</span>
+                        </div>
+                    </div>
+                    <div class="primer-spacing-item">
+                        <div class="primer-spacing-box" style="width: 8px; height: 8px;"></div>
+                        <div class="primer-spacing-info">
+                            <strong>8px</strong>
+                            <code>--spacing-2</code>
+                            <span>Small</span>
+                        </div>
+                    </div>
+                    <div class="primer-spacing-item">
+                        <div class="primer-spacing-box" style="width: 16px; height: 16px;"></div>
+                        <div class="primer-spacing-info">
+                            <strong>16px</strong>
+                            <code>--spacing-3</code>
+                            <span>Medium</span>
+                        </div>
+                    </div>
+                    <div class="primer-spacing-item">
+                        <div class="primer-spacing-box" style="width: 24px; height: 24px;"></div>
+                        <div class="primer-spacing-info">
+                            <strong>24px</strong>
+                            <code>--spacing-4</code>
+                            <span>Large</span>
+                        </div>
+                    </div>
+                    <div class="primer-spacing-item">
+                        <div class="primer-spacing-box" style="width: 32px; height: 32px;"></div>
+                        <div class="primer-spacing-info">
+                            <strong>32px</strong>
+                            <code>--spacing-5</code>
+                            <span>Extra large</span>
+                        </div>
+                    </div>
+                    <div class="primer-spacing-item">
+                        <div class="primer-spacing-box" style="width: 48px; height: 48px;"></div>
+                        <div class="primer-spacing-info">
+                            <strong>48px</strong>
+                            <code>--spacing-6</code>
+                            <span>2X large</span>
+                        </div>
+                    </div>
+                    <div class="primer-spacing-item">
+                        <div class="primer-spacing-box" style="width: 64px; height: 64px;"></div>
+                        <div class="primer-spacing-info">
+                            <strong>64px</strong>
+                            <code>--spacing-7</code>
+                            <span>3X large</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Elevation -->
+            <section id="elevation" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Elevation</h1>
+                    <p class="primer-section-subtitle">Тени для создания глубины и иерархии</p>
+                </div>
+
+                <div class="primer-grid-3">
+                    <div class="primer-card primer-elevation-0">
+                        <h4>Level 0</h4>
+                        <p>Flat - без тени</p>
+                        <code>box-shadow: none;</code>
+                    </div>
+                    <div class="primer-card primer-elevation-1">
+                        <h4>Level 1</h4>
+                        <p>Subtle - едва заметная тень</p>
+                        <code>box-shadow: 0 1px 3px rgba(0,0,0,0.12);</code>
+                    </div>
+                    <div class="primer-card primer-elevation-2">
+                        <h4>Level 2</h4>
+                        <p>Raised - приподнятый элемент</p>
+                        <code>box-shadow: 0 4px 12px rgba(0,0,0,0.15);</code>
+                    </div>
+                    <div class="primer-card primer-elevation-3">
+                        <h4>Level 3</h4>
+                        <p>Floating - плавающий элемент</p>
+                        <code>box-shadow: 0 8px 24px rgba(0,0,0,0.2);</code>
+                    </div>
+                    <div class="primer-card primer-elevation-4">
+                        <h4>Level 4</h4>
+                        <p>Modal - модальные окна</p>
+                        <code>box-shadow: 0 16px 48px rgba(0,0,0,0.3);</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Buttons -->
+            <section id="buttons" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Button</h1>
+                    <p class="primer-section-subtitle">Интерактивные элементы для действий пользователя</p>
+                </div>
+
+                <h2 class="primer-heading-2">Variants</h2>
+                <div class="primer-component-demo">
+                    <button class="primer-btn primer-btn-primary">Primary</button>
+                    <button class="primer-btn primer-btn-secondary">Secondary</button>
+                    <button class="primer-btn primer-btn-outline">Outline</button>
+                    <button class="primer-btn primer-btn-ghost">Ghost</button>
+                    <button class="primer-btn primer-btn-danger">Danger</button>
+                </div>
+
+                <h2 class="primer-heading-2">Sizes</h2>
+                <div class="primer-component-demo">
+                    <button class="primer-btn primer-btn-primary primer-btn-sm">Small</button>
+                    <button class="primer-btn primer-btn-primary">Medium</button>
+                    <button class="primer-btn primer-btn-primary primer-btn-lg">Large</button>
+                </div>
+
+                <h2 class="primer-heading-2">States</h2>
+                <div class="primer-component-demo">
+                    <button class="primer-btn primer-btn-primary">Default</button>
+                    <button class="primer-btn primer-btn-primary" disabled>Disabled</button>
+                    <button class="primer-btn primer-btn-primary primer-btn-loading">
+                        <span class="primer-spinner"></span>
+                        Loading
+                    </button>
+                </div>
+
+                <h2 class="primer-heading-2">With Icons</h2>
+                <div class="primer-component-demo">
+                    <button class="primer-btn primer-btn-primary">
+                        <span class="primer-btn-icon">+</span>
+                        Create new
+                    </button>
+                    <button class="primer-btn primer-btn-secondary">
+                        <span class="primer-btn-icon">→</span>
+                        Continue
+                    </button>
+                    <button class="primer-btn primer-btn-outline">
+                        <span class="primer-btn-icon">↓</span>
+                        Download
+                    </button>
+                </div>
+            </section>
+
+            <!-- Cards -->
+            <section id="cards" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Card</h1>
+                    <p class="primer-section-subtitle">Контейнеры для группировки связанного контента</p>
+                </div>
+
+                <h2 class="primer-heading-2">Basic Cards</h2>
+                <div class="primer-grid-3">
+                    <div class="primer-card">
+                        <h3>Simple Card</h3>
+                        <p>Базовая карточка с заголовком и текстом</p>
+                    </div>
+                    <div class="primer-card primer-card-hover">
+                        <h3>Hover Card</h3>
+                        <p>Карточка с эффектом при наведении</p>
+                    </div>
+                    <div class="primer-card primer-card-accent">
+                        <h3>Accent Card</h3>
+                        <p>Карточка с акцентной границей</p>
+                    </div>
+                </div>
+
+                <h2 class="primer-heading-2">Feature Cards</h2>
+                <div class="primer-grid-2">
+                    <div class="primer-card primer-card-feature">
+                        <div class="primer-card-icon">⚡</div>
+                        <h3>Performance</h3>
+                        <p>Оптимизированная производительность для быстрой загрузки</p>
+                    </div>
+                    <div class="primer-card primer-card-feature">
+                        <div class="primer-card-icon">🎨</div>
+                        <h3>Customizable</h3>
+                        <p>Гибкая настройка под ваши требования</p>
+                    </div>
+                    <div class="primer-card primer-card-feature">
+                        <div class="primer-card-icon">📱</div>
+                        <h3>Responsive</h3>
+                        <p>Адаптивный дизайн для всех устройств</p>
+                    </div>
+                    <div class="primer-card primer-card-feature">
+                        <div class="primer-card-icon">🔒</div>
+                        <h3>Secure</h3>
+                        <p>Безопасность на всех уровнях</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forms -->
+            <section id="forms" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Forms</h1>
+                    <p class="primer-section-subtitle">Элементы форм для сбора данных</p>
+                </div>
+
+                <h2 class="primer-heading-2">Text Input</h2>
+                <div class="primer-form-example">
+                    <div class="primer-form-group">
+                        <label class="primer-label">Label</label>
+                        <input type="text" class="primer-input" placeholder="Placeholder text">
+                        <span class="primer-form-caption">Helper text for this field</span>
+                    </div>
+
+                    <div class="primer-form-group">
+                        <label class="primer-label">Email</label>
+                        <input type="email" class="primer-input" value="example@mail.com">
+                    </div>
+
+                    <div class="primer-form-group primer-form-group-error">
+                        <label class="primer-label">Error state</label>
+                        <input type="text" class="primer-input" value="Invalid value">
+                        <span class="primer-form-error">This field has an error</span>
+                    </div>
+
+                    <div class="primer-form-group primer-form-group-success">
+                        <label class="primer-label">Success state</label>
+                        <input type="text" class="primer-input" value="Valid value">
+                        <span class="primer-form-success">Looks good!</span>
+                    </div>
+                </div>
+
+                <h2 class="primer-heading-2">Textarea</h2>
+                <div class="primer-form-example">
+                    <div class="primer-form-group">
+                        <label class="primer-label">Message</label>
+                        <textarea class="primer-input" rows="4" placeholder="Enter your message..."></textarea>
+                    </div>
+                </div>
+
+                <h2 class="primer-heading-2">Select</h2>
+                <div class="primer-form-example">
+                    <div class="primer-form-group">
+                        <label class="primer-label">Choose option</label>
+                        <select class="primer-select">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h2 class="primer-heading-2">Checkbox & Radio</h2>
+                <div class="primer-form-example">
+                    <div class="primer-form-group">
+                        <label class="primer-checkbox">
+                            <input type="checkbox" checked>
+                            <span class="primer-checkbox-label">Checkbox option 1</span>
+                        </label>
+                        <label class="primer-checkbox">
+                            <input type="checkbox">
+                            <span class="primer-checkbox-label">Checkbox option 2</span>
+                        </label>
+                    </div>
+
+                    <div class="primer-form-group">
+                        <label class="primer-radio">
+                            <input type="radio" name="radio-example" checked>
+                            <span class="primer-radio-label">Radio option 1</span>
+                        </label>
+                        <label class="primer-radio">
+                            <input type="radio" name="radio-example">
+                            <span class="primer-radio-label">Radio option 2</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Badges -->
+            <section id="badges" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Label</h1>
+                    <p class="primer-section-subtitle">Метки для статусов и категорий</p>
+                </div>
+
+                <div class="primer-component-demo">
+                    <span class="primer-label-badge">Default</span>
+                    <span class="primer-label-badge primer-label-primary">Primary</span>
+                    <span class="primer-label-badge primer-label-success">Success</span>
+                    <span class="primer-label-badge primer-label-error">Error</span>
+                    <span class="primer-label-badge primer-label-warning">Warning</span>
+                    <span class="primer-label-badge primer-label-info">Info</span>
+                </div>
+            </section>
+
+            <!-- Alerts -->
+            <section id="alerts" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Banner</h1>
+                    <p class="primer-section-subtitle">Баннеры для важных сообщений</p>
+                </div>
+
+                <div class="primer-stack">
+                    <div class="primer-banner primer-banner-success">
+                        <strong>Success!</strong> Your changes have been saved.
+                    </div>
+                    <div class="primer-banner primer-banner-error">
+                        <strong>Error:</strong> Something went wrong. Please try again.
+                    </div>
+                    <div class="primer-banner primer-banner-warning">
+                        <strong>Warning:</strong> This action cannot be undone.
+                    </div>
+                    <div class="primer-banner primer-banner-info">
+                        <strong>Info:</strong> We've updated our terms of service.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hero -->
+            <section id="hero" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Hero</h1>
+                    <p class="primer-section-subtitle">Главный баннер для привлечения внимания</p>
+                </div>
+
+                <div class="primer-hero">
+                    <h1 class="primer-hero-title">Создавайте удивительные продукты</h1>
+                    <p class="primer-hero-subtitle">Мощная дизайн-система для современных веб-приложений</p>
+                    <div class="primer-hero-actions">
+                        <button class="primer-btn primer-btn-primary primer-btn-lg">Начать</button>
+                        <button class="primer-btn primer-btn-outline primer-btn-lg">Узнать больше</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features -->
+            <section id="features" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Features</h1>
+                    <p class="primer-section-subtitle">Паттерн для представления возможностей</p>
+                </div>
+
+                <div class="primer-features">
+                    <div class="primer-feature">
+                        <div class="primer-feature-icon">🚀</div>
+                        <h3>Быстрый старт</h3>
+                        <p>Начните работу за несколько минут с готовыми компонентами</p>
+                    </div>
+                    <div class="primer-feature">
+                        <div class="primer-feature-icon">🎯</div>
+                        <h3>Точность</h3>
+                        <p>Пиксель-перфектные компоненты для вашего проекта</p>
+                    </div>
+                    <div class="primer-feature">
+                        <div class="primer-feature-icon">⚙️</div>
+                        <h3>Настройка</h3>
+                        <p>Гибкие настройки под ваши требования</p>
+                    </div>
+                    <div class="primer-feature">
+                        <div class="primer-feature-icon">🌐</div>
+                        <h3>Универсальность</h3>
+                        <p>Работает на всех платформах и браузерах</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats -->
+            <section id="stats" class="primer-section">
+                <div class="primer-section-header">
+                    <h1 class="primer-section-title">Stats</h1>
+                    <p class="primer-section-subtitle">Паттерн для отображения статистики</p>
+                </div>
+
+                <div class="primer-stats">
+                    <div class="primer-stat">
+                        <div class="primer-stat-value">1000+</div>
+                        <div class="primer-stat-label">Довольных клиентов</div>
+                    </div>
+                    <div class="primer-stat">
+                        <div class="primer-stat-value">50+</div>
+                        <div class="primer-stat-label">Компонентов</div>
+                    </div>
+                    <div class="primer-stat">
+                        <div class="primer-stat-value">99.9%</div>
+                        <div class="primer-stat-label">Uptime</div>
+                    </div>
+                    <div class="primer-stat">
+                        <div class="primer-stat-value">24/7</div>
+                        <div class="primer-stat-label">Поддержка</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="vanilla-tilt.min.js"></script>
+    <script src="styleguide.js"></script>
+</body>
+</html>

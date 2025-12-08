@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Scroll Test - СК ПРАЙД</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #bd9d5d;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .test-section {
+            background: #2d2d2d;
+            border: 2px solid #bd9d5d;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .test-button {
+            background: linear-gradient(135deg, #bd9d5d 0%, #8b7548 100%);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(189, 157, 93, 0.4);
+        }
+
+        .info {
+            background: rgba(189, 157, 93, 0.1);
+            border-left: 4px solid #bd9d5d;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .status.pass {
+            background: #28a745;
+            color: #fff;
+        }
+
+        .status.fail {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .status.warning {
+            background: #ffc107;
+            color: #000;
+        }
+
+        /* Модальное окно для теста */
+        .test-modal {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 9999;
+            display: none;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+            overscroll-behavior-y: contain;
+        }
+
+        .test-modal.active {
+            display: block;
+        }
+
+        .test-modal-content {
+            padding: 60px 20px 20px;
+            min-height: 200vh;
+        }
+
+        .test-modal-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: rgba(189, 157, 93, 0.9);
+            border: 2px solid #bd9d5d;
+            color: #000;
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: rgba(189, 157, 93, 0.9);
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #000;
+            z-index: 10001;
+        }
+
+        .content-block {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            border: 1px solid #bd9d5d;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        code {
+            background: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #bd9d5d;
+            font-family: 'Courier New', monospace;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Тест скроллинга на мобильных устройствах</h1>
+
+        <div class="info">
+            <strong>Инструкция:</strong> Откройте DevTools (F12) → переключитесь в режим эмуляции мобильного устройства → протестируйте каждую модалку
+        </div>
+
+        <div class="test-section">
+            <h2>📱 Эмулируемые устройства для теста</h2>
+            <ul>
+                <li>iPhone 12/13/14 Pro (iOS Safari)</li>
+                <li>iPhone SE</li>
+                <li>Samsung Galaxy S20/S21</li>
+                <li>iPad Pro</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>✅ Примененные CSS свойства</h2>
+            <div class="content-block">
+                <p><strong>Для всех модальных окон и панелей:</strong></p>
+                <ul>
+                    <li><code>-webkit-overflow-scrolling: touch</code> - плавная нативная прокрутка iOS</li>
+                    <li><code>touch-action: pan-y</code> - разрешает только вертикальную прокрутку</li>
+                    <li><code>overscroll-behavior-y: contain</code> - предотвращает bounce за пределами</li>
+                    <li><code>overflow-y: auto/scroll</code> - включает прокрутку</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Запуск тестов</h2>
+            <button class="test-button" onclick="testScroll()">Тест скроллинга модального окна</button>
+            <button class="test-button" onclick="window.open('http://localhost:8080', '_blank')">Открыть основной сайт</button>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 Исправленные компоненты</h2>
+            <div class="content-block">
+                <p><span class="status pass">FIXED</span> <strong>schedule-modal</strong> - модальное окно расписания</p>
+                <p>Файл: style.css:2314-2316</p>
+            </div>
+            <div class="content-block">
+                <p><span class="status pass">FIXED</span> <strong>fulldesc-modal</strong> - модальное окно полного описания</p>
+                <p>Файл: style.css:2444-2446</p>
+            </div>
+            <div class="content-block">
+                <p><span class="status pass">FIXED</span> <strong>slide-selector-panel</strong> - панель выбора слайдов</p>
+                <p>Файл: style.css:3528-3530</p>
+            </div>
+            <div class="content-block">
+                <p><span class="status pass">FIXED</span> <strong>about-scroller</strong> - скроллер модального окна "О нас"</p>
+                <p>Файл: aboutModal.css:78-80</p>
+            </div>
+            <div class="content-block">
+                <p><span class="status pass">FIXED</span> <strong>sport-panel, rest-panel, kids-panel, etc.</strong> - все основные панели</p>
+                <p>Файл: style.css (множество локаций)</p>
+            </div>
+            <div class="content-block">
+                <p><span class="status pass">FIXED</span> <strong>Мобильные media queries</strong> - адаптивные стили для всех скроллеров</p>
+                <p>Файл: style.css:2209-2220</p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎯 Что нужно проверить на реальном устройстве</h2>
+            <ul>
+                <li>Плавность прокрутки (должна быть нативная, как в Safari)</li>
+                <li>Отсутствие "прилипания" или "застревания" при скролле</li>
+                <li>Отсутствие горизонтальной прокрутки</li>
+                <li>Работа инерционного скроллинга</li>
+                <li>Прокрутка не выходит за границы контента</li>
+                <li>Модальные окна не закрываются при скролле</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🔗 Полезные ссылки</h2>
+            <ul>
+                <li><a href="http://localhost:8080" target="_blank" style="color: #bd9d5d;">Локальная версия сайта</a></li>
+                <li><a href="http://pride34.ru" target="_blank" style="color: #bd9d5d;">Продакшн версия</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Тестовое модальное окно -->
+    <div id="testModal" class="test-modal">
+        <button class="test-modal-close" onclick="closeTestModal()">&times;</button>
+        <div class="scroll-indicator" id="scrollIndicator">Scroll: 0px</div>
+        <div class="test-modal-content">
+            <h2 style="color: #bd9d5d;">🧪 Тестовое модальное окно</h2>
+            <p style="margin: 20px 0;">Попробуйте прокрутить это окно вверх и вниз. На iOS должна работать плавная нативная прокрутка.</p>
+
+            <div class="content-block">
+                <h3 style="color: #bd9d5d;">Блок 1</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            </div>
+
+            <div class="content-block">
+                <h3 style="color: #bd9d5d;">Блок 2</h3>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+            </div>
+
+            <div class="content-block">
+                <h3 style="color: #bd9d5d;">Блок 3</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+            </div>
+
+            <div class="content-block">
+                <h3 style="color: #bd9d5d;">Блок 4</h3>
+                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+            </div>
+
+            <div class="content-block">
+                <h3 style="color: #bd9d5d;">Блок 5</h3>
+                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+            </div>
+
+            <div class="content-block">
+                <h3 style="color: #bd9d5d;">Блок 6</h3>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</p>
+            </div>
+
+            <div class="content-block">
+                <h3 style="color: #bd9d5d;">Блок 7</h3>
+                <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.</p>
+            </div>
+
+            <div class="content-block">
+                <h3 style="color: #bd9d5d;">Блок 8</h3>
+                <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint.</p>
+            </div>
+
+            <div class="content-block" style="background: linear-gradient(135deg, #bd9d5d 0%, #8b7548 100%); color: #000;">
+                <h3>✅ Конец теста</h3>
+                <p><strong>Если вы видите этот блок - прокрутка работает!</strong></p>
+                <button class="test-button" onclick="closeTestModal()" style="background: #000; color: #bd9d5d;">Закрыть тест</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function testScroll() {
+            document.getElementById('testModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTestModal() {
+            document.getElementById('testModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Отслеживание скролла
+        const modal = document.getElementById('testModal');
+        const indicator = document.getElementById('scrollIndicator');
+
+        modal.addEventListener('scroll', function() {
+            indicator.textContent = `Scroll: ${Math.round(this.scrollTop)}px`;
+        });
+
+        // Тест на касание
+        modal.addEventListener('touchstart', function() {
+            console.log('Touch started');
+        });
+
+        modal.addEventListener('touchmove', function(e) {
+            console.log('Touch move:', e.touches[0].clientY);
+        });
+
+        // Вывод информации об устройстве
+        console.log('User Agent:', navigator.userAgent);
+        console.log('Touch support:', 'ontouchstart' in window);
+        console.log('Viewport width:', window.innerWidth);
+        console.log('Viewport height:', window.innerHeight);
+    </script>
+</body>
+</html>
