@@ -1,226 +1,285 @@
-<!-- МОДАЛЬНОЕ ОКНО: ЛЕДОВАЯ АРЕНА (ScrollTrigger версия) -->
+<!-- МОДАЛЬНОЕ ОКНО: ЛЕДОВАЯ АРЕНА (Horizontal Scroll версия) -->
 
 <!-- Кнопка закрытия -->
 <button class="sport-close ice-modal-close" id="closeIce" aria-label="Закрыть"></button>
 
 <!-- Скроллируемый контейнер -->
-<div class="ice-scroller">
+<div class="ice-modal-scroller">
 
-	<!-- Вводная секция -->
-	<section class="ice-intro-section">
-		<!-- Видео/фото фон -->
-		<video class="ice-intro-video" autoplay muted loop playsinline poster="https://pride34.ru/wp-content/uploads/2023/03/ice-cover.jpg">
-			<source src="video/led.mp4" type="video/mp4">
-			Ваш браузер не поддерживает видео.
-		</video>
-		<div class="ice-intro-overlay"></div>
-		<div class="ice-intro-content">
-			<h1 class="ice-main-title">ЛЕДОВАЯ АРЕНА ПРАЙД</h1>
-			<p class="ice-main-subtitle">Хоккей, фигурное катание и свободное катание для всей семьи</p>
-			<div class="ice-scroll-hint">Прокрутите вниз ↓</div>
+<!-- Вводная секция (первый экран) -->
+<section class="ice-intro-section">
+	<video class="ice-intro-video" autoplay muted loop playsinline poster="https://pride34.ru/wp-content/uploads/2023/03/ice-cover.jpg">
+		<source src="video/led.mp4" type="video/mp4">
+	</video>
+	<div class="ice-intro-overlay"></div>
+	<div class="ice-intro-content">
+		<h1 class="ice-main-title">ЛЕДОВАЯ АРЕНА ПРАЙД</h1>
+		<p class="ice-main-subtitle">Хоккей, фигурное катание и свободное катание для всей семьи</p>
+		<div class="ice-scroll-hint">Прокрутите вниз ↓</div>
+	</div>
+</section>
+
+<!-- ========================================
+     HORIZONTAL SCROLL HERO SECTIONS
+     Вертикальный скролл → Горизонтальная прокрутка
+     ======================================== -->
+
+<section class="horizontal-scroll-section" data-auto-init data-mode="swipe">
+	<div class="horizontal-scroll-wrapper">
+		<div class="horizontal-scroll-container">
+
+			<!-- ПАНЕЛЬ 1: Свободное катание -->
+			<div class="horizontal-hero-panel centered dark">
+				<div class="horizontal-hero-bg image" style="background-image: url('img/ice/ice1.png');"></div>
+				<div class="horizontal-hero-overlay"></div>
+
+				<div class="horizontal-hero-content">
+					<span class="horizontal-hero-label">Свободное катание</span>
+					<h2 class="horizontal-hero-title">Катайтесь всей семьёй</h2>
+					<p class="horizontal-hero-subtitle">
+						Взрослые 400₽ • Подростки 350₽ • Дети 300₽<br>
+						Сеансы по 90 минут с прокатом коньков
+					</p>
+					<div class="horizontal-hero-cta">
+						<button class="horizontal-hero-btn primary pricing-trigger" data-modal="pricingModal">Купить билет</button>
+						<a href="tel:+78442509550" class="horizontal-hero-btn secondary">Позвонить</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- ПАНЕЛЬ 2: Хоккейная школа -->
+			<div class="horizontal-hero-panel left-aligned dark">
+				<div class="horizontal-hero-bg image" style="background-image: url('img/ice/ice2.png');"></div>
+				<div class="horizontal-hero-overlay"></div>
+
+				<div class="horizontal-hero-content">
+					<span class="horizontal-hero-label">Хоккей</span>
+					<h2 class="horizontal-hero-title">Хоккейная школа</h2>
+					<p class="horizontal-hero-subtitle">
+						Занятия для детей, подростков и взрослых любого уровня подготовки.
+						Профессиональные тренеры и полный комплект экипировки
+					</p>
+					<div class="horizontal-hero-cta">
+						<a href="https://pride34.ru/hk" target="_blank" class="horizontal-hero-btn primary">Записаться</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- ПАНЕЛЬ 3: Фигурное катание -->
+			<div class="horizontal-hero-panel right-aligned dark">
+				<div class="horizontal-hero-bg image" style="background-image: url('img/ice/ice3.png');"></div>
+				<div class="horizontal-hero-overlay"></div>
+
+				<div class="horizontal-hero-content">
+					<span class="horizontal-hero-label">Фигурное катание</span>
+					<h2 class="horizontal-hero-title">Школа фигурного катания</h2>
+					<p class="horizontal-hero-subtitle">
+						Профессиональное обучение от 2000₽/месяц.
+						Индивидуальные и групповые занятия для всех возрастов
+					</p>
+					<div class="horizontal-hero-cta">
+						<a href="https://pride34.ru/fk" target="_blank" class="horizontal-hero-btn primary">Подробнее</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- ПАНЕЛЬ 4: Аренда арены -->
+			<div class="horizontal-hero-panel centered dark">
+				<div class="horizontal-hero-bg image" style="background-image: url('img/ice/ice4.png');"></div>
+				<div class="horizontal-hero-overlay"></div>
+
+				<div class="horizontal-hero-content">
+					<span class="horizontal-hero-label">Аренда</span>
+					<h2 class="horizontal-hero-title">Аренда ледовой арены</h2>
+					<p class="horizontal-hero-subtitle">
+						Для тренировок, турниров и корпоративных мероприятий.
+						Полное оборудование и профессиональное обслуживание
+					</p>
+					<div class="horizontal-hero-cta">
+						<a href="tel:+79275474000" class="horizontal-hero-btn primary">+7 (927) 547-40-00</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- ПАНЕЛЬ 5: Турниры -->
+			<div class="horizontal-hero-panel left-aligned dark">
+				<div class="horizontal-hero-bg image" style="background-image: url('img/ice/gallery/Katok2022-1.jpg');"></div>
+				<div class="horizontal-hero-overlay"></div>
+
+				<div class="horizontal-hero-content">
+					<span class="horizontal-hero-label">Соревнования</span>
+					<h2 class="horizontal-hero-title">Турниры и мероприятия</h2>
+					<p class="horizontal-hero-subtitle">
+						Организация и проведение соревнований по хоккею и фигурному катанию.
+						Корпоративные мероприятия и праздники на льду
+					</p>
+					<div class="horizontal-hero-cta">
+						<a href="tel:+79275474000" class="horizontal-hero-btn primary">Связаться</a>
+						<button class="horizontal-hero-btn secondary pricing-trigger" data-modal="pricingModal">Цены</button>
+					</div>
+				</div>
+
+				<!-- Hint для скролла -->
+				<div class="horizontal-scroll-hint">Прокрутите вниз</div>
+			</div>
+
 		</div>
-	</section>
+	</div>
+</section>
 
-	<!-- Секция с наслаивающимися панелями -->
-	<section class="ice-panels-section">
+<!-- Фотогалерея -->
+<section class="ice-gallery-section">
+	<div class="ice-gallery-container">
+		<h2 class="ice-gallery-title">Наша Ледовая Арена</h2>
+		<p class="ice-gallery-subtitle">Крытый каток с искусственной заморозкой льда</p>
 
-		<!-- Обертка для текстовых панелей -->
-		<div class="ice-text-wrap">
-			<div class="ice-panel-text">
-				<h2>Свободное катание</h2>
-				<p>Взрослые 400₽ • Подростки 350₽ • Дети 300₽ • Сеанс 90 минут</p>
-				<a href="#pricing" class="sport-btn pricing-trigger" data-modal="pricingModal">Купить билет</a>
-			</div>
-			<div class="ice-panel-text">
-				<h2>Хоккейная школа</h2>
-				<p>Занятия для детей, подростков и взрослых любого уровня</p>
-				<a href="https://pride34.ru/hk" target="_blank" class="sport-btn">Подробнее</a>
-			</div>
-			<div class="ice-panel-text">
-				<h2>Фигурное катание</h2>
-				<p>Школа фигурного катания от 2000₽/месяц с профессиональными тренерами</p>
-				<a href="https://pride34.ru/fk" target="_blank" class="sport-btn">Подробнее</a>
-			</div>
-			<div class="ice-panel-text">
-				<h2>Аренда арены</h2>
-				<p>Для тренировок, турниров и соревнований с полным оборудованием</p>
-				<a href="tel:+79275474000" class="sport-btn">+7 (927) 547-40-00</a>
-			</div>
-			<div class="ice-panel-text">
-				<h2>Прокат и услуги</h2>
-				<p>Коньки 200₽ • Заточка 300₽ • Хоккейная экипировка 1500₽</p>
-			</div>
-			<div class="ice-panel-text">
-				<h2>Соревнования</h2>
-				<p>Организация турниров по хоккею и фигурному катанию</p>
-			</div>
-		</div>
-
-		<!-- Обертка для панелей с изображениями -->
-		<div class="ice-image-wrap">
-			<div class="ice-panel" style="background-image: url('img/ice/ice1.png');"></div>
-			<div class="ice-panel" style="background-image: url('img/ice/ice2.png');"></div>
-			<div class="ice-panel" style="background-image: url('img/ice/ice3.png');"></div>
-			<div class="ice-panel" style="background-image: url('img/ice/ice4.png');"></div>
-			<div class="ice-panel" style="background-image: url('img/ice/ice5.png');"></div>
-			<div class="ice-panel ice-panel-last" style="background: linear-gradient(135deg, #bd9d5d 0%, #957a45 100%);"></div>
-		</div>
-
-	</section>
-
-	<!-- Фотогалерея -->
-	<section class="ice-gallery-section">
-		<div class="ice-gallery-container">
-			<h2 class="ice-gallery-title">Наша Ледовая Арена</h2>
-			<p class="ice-gallery-subtitle">Крытый каток с искусственной заморозкой льда</p>
-
-			<div class="ice-gallery-grid">
-				<div class="ice-gallery-item" data-index="0">
-					<img src="img/ice/gallery/Katok2022-1.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
-					<div class="ice-gallery-overlay">
-						<span class="ice-gallery-icon">🔍</span>
-					</div>
-				</div>
-				<div class="ice-gallery-item" data-index="1">
-					<img src="img/ice/gallery/Katok2022-2.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
-					<div class="ice-gallery-overlay">
-						<span class="ice-gallery-icon">🔍</span>
-					</div>
-				</div>
-				<div class="ice-gallery-item" data-index="2">
-					<img src="img/ice/gallery/Katok2022-3.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
-					<div class="ice-gallery-overlay">
-						<span class="ice-gallery-icon">🔍</span>
-					</div>
-				</div>
-				<div class="ice-gallery-item" data-index="3">
-					<img src="img/ice/gallery/Katok2022-4.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
-					<div class="ice-gallery-overlay">
-						<span class="ice-gallery-icon">🔍</span>
-					</div>
-				</div>
-				<div class="ice-gallery-item" data-index="4">
-					<img src="img/ice/gallery/Katok2022-5.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
-					<div class="ice-gallery-overlay">
-						<span class="ice-gallery-icon">🔍</span>
-					</div>
-				</div>
-				<div class="ice-gallery-item" data-index="5">
-					<img src="img/ice/gallery/Katok2022-8.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
-					<div class="ice-gallery-overlay">
-						<span class="ice-gallery-icon">🔍</span>
-					</div>
-				</div>
-				<div class="ice-gallery-item" data-index="6">
-					<img src="img/ice/gallery/Katok2022-11.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
-					<div class="ice-gallery-overlay">
-						<span class="ice-gallery-icon">🔍</span>
-					</div>
-				</div>
-				<div class="ice-gallery-item" data-index="7">
-					<img src="img/ice/gallery/Katok2022-12.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
-					<div class="ice-gallery-overlay">
-						<span class="ice-gallery-icon">🔍</span>
-					</div>
-				</div>
-				<div class="ice-gallery-item" data-index="8">
-					<img src="img/ice/gallery/Katok2022-14.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
-					<div class="ice-gallery-overlay">
-						<span class="ice-gallery-icon">🔍</span>
-					</div>
+		<div class="ice-gallery-grid">
+			<div class="ice-gallery-item" data-index="0">
+				<img src="img/ice/gallery/Katok2022-1.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
+				<div class="ice-gallery-overlay">
+					<span class="ice-gallery-icon">🔍</span>
 				</div>
 			</div>
-		</div>
-	</section>
-
-	<!-- Лайтбокс -->
-	<div class="ice-lightbox" id="iceLightbox">
-		<button class="ice-lightbox-close" aria-label="Закрыть">&times;</button>
-		<button class="ice-lightbox-prev" aria-label="Предыдущее фото">&larr;</button>
-		<button class="ice-lightbox-next" aria-label="Следующее фото">&rarr;</button>
-		<div class="ice-lightbox-content">
-			<img src="" alt="Фото ледовой арены" id="iceLightboxImage">
-			<div class="ice-lightbox-counter">
-				<span id="iceLightboxCurrent">1</span> / <span id="iceLightboxTotal">9</span>
+			<div class="ice-gallery-item" data-index="1">
+				<img src="img/ice/gallery/Katok2022-2.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
+				<div class="ice-gallery-overlay">
+					<span class="ice-gallery-icon">🔍</span>
+				</div>
+			</div>
+			<div class="ice-gallery-item" data-index="2">
+				<img src="img/ice/gallery/Katok2022-3.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
+				<div class="ice-gallery-overlay">
+					<span class="ice-gallery-icon">🔍</span>
+				</div>
+			</div>
+			<div class="ice-gallery-item" data-index="3">
+				<img src="img/ice/gallery/Katok2022-4.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
+				<div class="ice-gallery-overlay">
+					<span class="ice-gallery-icon">🔍</span>
+				</div>
+			</div>
+			<div class="ice-gallery-item" data-index="4">
+				<img src="img/ice/gallery/Katok2022-5.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
+				<div class="ice-gallery-overlay">
+					<span class="ice-gallery-icon">🔍</span>
+				</div>
+			</div>
+			<div class="ice-gallery-item" data-index="5">
+				<img src="img/ice/gallery/Katok2022-8.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
+				<div class="ice-gallery-overlay">
+					<span class="ice-gallery-icon">🔍</span>
+				</div>
+			</div>
+			<div class="ice-gallery-item" data-index="6">
+				<img src="img/ice/gallery/Katok2022-11.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
+				<div class="ice-gallery-overlay">
+					<span class="ice-gallery-icon">🔍</span>
+				</div>
+			</div>
+			<div class="ice-gallery-item" data-index="7">
+				<img src="img/ice/gallery/Katok2022-12.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
+				<div class="ice-gallery-overlay">
+					<span class="ice-gallery-icon">🔍</span>
+				</div>
+			</div>
+			<div class="ice-gallery-item" data-index="8">
+				<img src="img/ice/gallery/Katok2022-14.jpg" alt="Ледовая арена ПРАЙД" loading="lazy">
+				<div class="ice-gallery-overlay">
+					<span class="ice-gallery-icon">🔍</span>
+				</div>
 			</div>
 		</div>
 	</div>
+</section>
 
-	<!-- Финальная секция с информацией -->
-	<section class="ice-final-section">
-		<div class="ice-final-content">
-			<h2>Что мы предлагаем</h2>
-			<div class="ice-features-grid">
-				<div class="ice-feature">
-					<div class="ice-feature-icon">⛸️</div>
-					<h3>Свободное катание</h3>
-					<p>Сеансы по 90 минут для детей и взрослых с прокатом коньков</p>
-				</div>
-				<div class="ice-feature">
-					<div class="ice-feature-icon">🏒</div>
-					<h3>Хоккейная школа</h3>
-					<p>Занятия для всех возрастов и уровней подготовки</p>
-				</div>
-				<div class="ice-feature">
-					<div class="ice-feature-icon">💃</div>
-					<h3>Фигурное катание</h3>
-					<p>Школа фигурного катания от 2000₽/месяц</p>
-				</div>
-				<div class="ice-feature">
-					<div class="ice-feature-icon">🏟️</div>
-					<h3>Аренда арены</h3>
-					<p>Для тренировок, турниров и корпоративных мероприятий</p>
-				</div>
-				<div class="ice-feature">
-					<div class="ice-feature-icon">👨‍🏫</div>
-					<h3>Профессиональные тренеры</h3>
-					<p>Опытные специалисты с сертификатами</p>
-				</div>
-				<div class="ice-feature">
-					<div class="ice-feature-icon">🛝</div>
-					<h3>Прокат коньков</h3>
-					<p>Коньки всех размеров, заточка, хоккейная экипировка</p>
-				</div>
-				<div class="ice-feature">
-					<div class="ice-feature-icon">🏆</div>
-					<h3>Турниры</h3>
-					<p>Организация и проведение соревнований</p>
-				</div>
-				<div class="ice-feature">
-					<div class="ice-feature-icon">🚿</div>
-					<h3>Раздевалки</h3>
-					<p>Комфортные раздевалки с душевыми и сушилками</p>
-				</div>
-				<div class="ice-feature">
-					<div class="ice-feature-icon">🅿️</div>
-					<h3>Парковка</h3>
-					<p>Охраняемая бесплатная парковка для посетителей</p>
-				</div>
+<!-- Лайтбокс -->
+<div class="ice-lightbox" id="iceLightbox">
+	<button class="ice-lightbox-close" aria-label="Закрыть">&times;</button>
+	<button class="ice-lightbox-prev" aria-label="Предыдущее фото">&larr;</button>
+	<button class="ice-lightbox-next" aria-label="Следующее фото">&rarr;</button>
+	<div class="ice-lightbox-content">
+		<img src="" alt="Фото ледовой арены" id="iceLightboxImage">
+		<div class="ice-lightbox-counter">
+			<span id="iceLightboxCurrent">1</span> / <span id="iceLightboxTotal">9</span>
+		</div>
+	</div>
+</div>
+
+<!-- Финальная секция с информацией -->
+<section class="ice-final-section">
+	<div class="ice-final-content">
+		<h2>Что мы предлагаем</h2>
+		<div class="ice-features-grid">
+			<div class="ice-feature">
+				<div class="ice-feature-icon">⛸️</div>
+				<h3>Свободное катание</h3>
+				<p>Сеансы по 90 минут для детей и взрослых с прокатом коньков</p>
 			</div>
-
-			<div class="ice-schedule-info">
-				<h2>Режим работы</h2>
-				<p><strong>Ледовая арена:</strong> 08:00 - 22:00 (ежедневно, без выходных)</p>
-				<p><strong>Свободное катание:</strong> Уточняйте расписание сеансов</p>
-				<p><strong>Аренда арены:</strong> +7 (927) 547-40-00</p>
+			<div class="ice-feature">
+				<div class="ice-feature-icon">🏒</div>
+				<h3>Хоккейная школа</h3>
+				<p>Занятия для всех возрастов и уровней подготовки</p>
 			</div>
-
-			<div class="ice-contact-info">
-				<h2>Контакты</h2>
-				<p><strong>Адрес:</strong> Хабаровская ул., 10, Волгоград, 400111</p>
-				<p><strong>Телефоны:</strong> <a href="tel:+78442509550">+7 (8442) 50-95-50</a>, <a href="tel:+78442610000">+7 (8442) 61-00-00</a></p>
-				<p><strong>Аренда:</strong> <a href="tel:+79275474000">+7 (927) 547-40-00</a></p>
-				<p><strong>Email:</strong> <a href="mailto:info@pride34.ru">info@pride34.ru</a></p>
+			<div class="ice-feature">
+				<div class="ice-feature-icon">💃</div>
+				<h3>Фигурное катание</h3>
+				<p>Школа фигурного катания от 2000₽/месяц</p>
 			</div>
-
-			<div class="ice-cta-buttons">
-				<a href="#" class="sport-btn booking-trigger">Купить билет</a>
-				<a href="https://pride34.ru/hk" target="_blank" class="sport-btn">Хоккейная школа</a>
-				<a href="https://pride34.ru/fk" target="_blank" class="sport-btn">Фигурное катание</a>
-				<a href="tel:+79275474000" class="sport-btn">Арендовать арену</a>
-				<a href="#review" class="sport-btn review-trigger" data-modal="reviewModal">Отзывы</a>
+			<div class="ice-feature">
+				<div class="ice-feature-icon">🏟️</div>
+				<h3>Аренда арены</h3>
+				<p>Для тренировок, турниров и корпоративных мероприятий</p>
+			</div>
+			<div class="ice-feature">
+				<div class="ice-feature-icon">👨‍🏫</div>
+				<h3>Профессиональные тренеры</h3>
+				<p>Опытные специалисты с сертификатами</p>
+			</div>
+			<div class="ice-feature">
+				<div class="ice-feature-icon">🛝</div>
+				<h3>Прокат коньков</h3>
+				<p>Коньки всех размеров, заточка, хоккейная экипировка</p>
+			</div>
+			<div class="ice-feature">
+				<div class="ice-feature-icon">🏆</div>
+				<h3>Турниры</h3>
+				<p>Организация и проведение соревнований</p>
+			</div>
+			<div class="ice-feature">
+				<div class="ice-feature-icon">🚿</div>
+				<h3>Раздевалки</h3>
+				<p>Комфортные раздевалки с душевыми и сушилками</p>
+			</div>
+			<div class="ice-feature">
+				<div class="ice-feature-icon">🅿️</div>
+				<h3>Парковка</h3>
+				<p>Охраняемая бесплатная парковка для посетителей</p>
 			</div>
 		</div>
-	</section>
 
-</div>
+		<div class="ice-schedule-info">
+			<h2>Режим работы</h2>
+			<p><strong>Ледовая арена:</strong> 08:00 - 22:00 (ежедневно, без выходных)</p>
+			<p><strong>Свободное катание:</strong> Уточняйте расписание сеансов</p>
+			<p><strong>Аренда арены:</strong> +7 (927) 547-40-00</p>
+		</div>
+
+		<div class="ice-contact-info">
+			<h2>Контакты</h2>
+			<p><strong>Адрес:</strong> Хабаровская ул., 10, Волгоград, 400111</p>
+			<p><strong>Телефоны:</strong> <a href="tel:+78442509550">+7 (8442) 50-95-50</a>, <a href="tel:+78442610000">+7 (8442) 61-00-00</a></p>
+			<p><strong>Аренда:</strong> <a href="tel:+79275474000">+7 (927) 547-40-00</a></p>
+			<p><strong>Email:</strong> <a href="mailto:info@pride34.ru">info@pride34.ru</a></p>
+		</div>
+
+		<div class="ice-cta-buttons">
+			<a href="#" class="sport-btn booking-trigger">Купить билет</a>
+			<a href="https://pride34.ru/hk" target="_blank" class="sport-btn">Хоккейная школа</a>
+			<a href="https://pride34.ru/fk" target="_blank" class="sport-btn">Фигурное катание</a>
+			<a href="tel:+79275474000" class="sport-btn">Арендовать арену</a>
+			<a href="#review" class="sport-btn review-trigger" data-modal="reviewModal">Отзывы</a>
+		</div>
+	</div>
+</section>
+
+</div><!-- /.ice-modal-scroller -->

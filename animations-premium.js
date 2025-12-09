@@ -311,7 +311,8 @@ function setupTouchNavigation() {
       }
     },
     tolerance: 10,
-    preventDefault: true
+    preventDefault: false,
+    ignore: ".sport-modal, .kids-modal, .rest-modal, .events-modal, .about-modal, .pricing-modal, .relax-modal, .ice-modal, .review-modal, #mobile-nav"
   });
 
   console.log('✅ Observer для touch навигации');
@@ -323,14 +324,11 @@ function navigateToSlide(index) {
 
   if (!targetSlide) return;
 
-  // Анимация перехода
-  gsap.to(window, {
-    scrollTo: {
-      y: targetSlide,
-      offsetY: 0
-    },
-    duration: 1,
-    ease: 'power2.inOut'
+  // Используем нативный scrollTo вместо GSAP ScrollToPlugin
+  const targetPosition = targetSlide.getBoundingClientRect().top + window.pageYOffset;
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth'
   });
 
   // ОТКЛЮЧЕНО: Не анимируем заголовки слайдов (они анимируются отдельной системой)

@@ -23,10 +23,10 @@
       modalOpen: 0.8,           // Открытие модального окна
       modalClose: 0.9,          // Закрытие модального окна (ПЛАВНЕЕ: было 0.5)
       backdrop: 0.6,            // Backdrop fade
-      text: 1.2,                // Анимация текста (МЕДЛЕННЕЕ: было 0.7)
+      text: 1.0,                // Анимация текста
       card: 0.6,                // Анимация карточки
-      introDisplay: 2.0,        // Время показа статистики и intro (2 секунды)
-      introFadeOut: 1.2,        // Время исчезновения intro (ОЧЕНЬ ПЛАВНО: было 0.8)
+      introDisplay: 4.0,        // Время показа статистики и intro (4 секунды)
+      introFadeOut: 0.8,        // Время исчезновения intro
     },
 
     // Задержки
@@ -58,6 +58,51 @@
   // ============================================
   // УТИЛИТЫ
   // ============================================
+
+  /**
+   * Анимация счётчика от 0 до целевого значения
+   * Поддерживает числа с суффиксами (560м², 40+, 7 лет)
+   */
+  function animateCounter(element, duration = 1.5) {
+    const text = element.textContent.trim();
+
+    // Извлекаем число и суффикс
+    const match = text.match(/^([\d,.\s]+)(.*)$/);
+    if (!match) return;
+
+    const targetNum = parseFloat(match[1].replace(/\s/g, '').replace(',', '.'));
+    const suffix = match[2] || '';
+
+    if (isNaN(targetNum)) return;
+
+    // Сохраняем оригинальный текст для восстановления
+    element.dataset.originalText = text;
+
+    // Объект для GSAP анимации
+    const counter = { value: 0 };
+
+    gsap.to(counter, {
+      value: targetNum,
+      duration: duration,
+      ease: 'power2.out',
+      onUpdate: () => {
+        // Форматируем число
+        let displayValue;
+        if (targetNum >= 100) {
+          displayValue = Math.round(counter.value);
+        } else if (targetNum >= 10) {
+          displayValue = Math.round(counter.value);
+        } else {
+          displayValue = Math.round(counter.value * 10) / 10;
+        }
+        element.textContent = displayValue + suffix;
+      },
+      onComplete: () => {
+        // Восстанавливаем оригинальный текст
+        element.textContent = text;
+      }
+    });
+  }
 
   /**
    * Создает или находит backdrop элемент
@@ -95,7 +140,7 @@
     const elements = {
       backdrop: ensureBackdrop(modal),
       content: modal.querySelector(selectors.content),
-      videoBg: modal.querySelector(selectors.videoBg),
+      videoBg: Array.from(modal.querySelectorAll(selectors.videoBg)), // Массив видео (desktop + mobile)
       statsSection: modal.querySelector(selectors.stats),
       introText: modal.querySelector(selectors.intro),
       cards: Array.from(modal.querySelectorAll(selectors.cards)),
@@ -184,17 +229,19 @@
       );
     }
 
-    // Видео-фон плавно проявляется
-    if (elements.videoBg) {
-      masterTL.fromTo(elements.videoBg,
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: cfg.duration.backdrop,
-          ease: cfg.ease.backdrop,
-        },
-        0
-      );
+    // Видео-фон плавно проявляется (поддержка нескольких видео элементов)
+    if (elements.videoBg && elements.videoBg.length > 0) {
+      elements.videoBg.forEach(video => {
+        masterTL.fromTo(video,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            duration: cfg.duration.backdrop,
+            ease: cfg.ease.backdrop,
+          },
+          0
+        );
+      });
     }
 
     // ========================================
@@ -221,38 +268,59 @@
       // Делаем секцию статистики видимой
       gsap.set(elements.statsSection, { visibility: 'visible' });
 
-      const statItems = elements.statsSection.querySelectorAll('div');
+      const statItems = elements.statsSection.querySelectorAll(':scope > div');
+      const statNumbers = elements.statsSection.querySelectorAll(':scope > div > span');
 
-      // Появление статистики
-      masterTL.fromTo(statItems,
-        {
-          opacity: 0,
-          scale: 0.8,
-          y: 20,
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: cfg.duration.text,
-          ease: cfg.ease.text,
-          stagger: 0.1,
-        },
-        textStartTime
-      );
+      // Stagger появление каждого блока stat-box
+      statItems.forEach((item, index) => {
+        const delay = textStartTime + (index * 0.25); // 0.25s между блоками
 
-      // ПАУЗА 5 секунд (держим на экране)
-      const hideIntroTime = textStartTime + cfg.duration.text + cfg.duration.introDisplay;
+        // Появление блока
+        masterTL.fromTo(item,
+          {
+            opacity: 0,
+            scale: 0.8,
+            y: 40,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'back.out(1.4)',
+          },
+          delay
+        );
 
-      // ОТЛАДКА: Отключено исчезновение статистики
-      // masterTL.to(statItems, {
-      //   opacity: 0,
-      //   y: -60,
-      //   duration: cfg.duration.introFadeOut,
-      //   ease: 'power1.inOut',
-      //   stagger: 0.05,
-      // }, hideIntroTime);
+        // Анимация счётчика для числа в этом блоке
+        const numberEl = item.querySelector('span');
+        if (numberEl) {
+          masterTL.call(() => {
+            animateCounter(numberEl, 1.2);
+          }, null, delay + 0.2);
+        }
+      });
+
+      // Время появления всех блоков
+      const allBlocksAppeared = textStartTime + (statItems.length * 0.25) + 0.8;
+
+      // ПАУЗА 4 секунды (держим на экране)
+      const statsHideTime = allBlocksAppeared + cfg.duration.introDisplay;
+
+      // Плавное исчезновение статистики (stagger в обратном порядке)
+      masterTL.to(statItems, {
+        opacity: 0,
+        y: -30,
+        scale: 0.95,
+        duration: cfg.duration.introFadeOut,
+        ease: 'power2.inOut',
+        stagger: 0.1,
+      }, statsHideTime);
     }
+
+    // Считаем время для intro текста (после появления всех stat блоков)
+    const statBlocksCount = elements.statsSection ? elements.statsSection.querySelectorAll(':scope > div').length : 0;
+    const introTextStartTime = textStartTime + (statBlocksCount * 0.25) + 0.5;
 
     // Анимация intro текста (только если intro еще не был показан)
     if (elements.introText && !introAlreadyShown) {
@@ -261,7 +329,7 @@
 
       const words = splitTextIntoWords(elements.introText);
 
-      // Появление intro текста
+      // Появление intro текста (после появления stat блоков)
       masterTL.fromTo(words,
         {
           opacity: 0,
@@ -274,42 +342,39 @@
           ease: cfg.ease.text,
           stagger: cfg.delay.wordStagger,
         },
-        textStartTime + 0.2
+        introTextStartTime
       );
 
-      // ПАУЗА 5 секунд
-      const hideIntroTime = textStartTime + cfg.duration.text + cfg.duration.introDisplay;
+      // Время полного появления всех элементов
+      const allElementsAppeared = introTextStartTime + cfg.duration.text;
 
-      // ОТЛАДКА: Отключено исчезновение intro текста
-      // masterTL.to(words, {
-      //   opacity: 0,
-      //   y: -60,
-      //   duration: cfg.duration.introFadeOut,
-      //   ease: 'power1.inOut',
-      //   stagger: 0.01,
-      // }, hideIntroTime);
+      // ПАУЗА 4 секунды (держим на экране)
+      const hideIntroTime = allElementsAppeared + cfg.duration.introDisplay;
 
-      // ОТЛАДКА: Отключено скрытие контейнера intro
-      // masterTL.to(elements.introText, {
-      //   visibility: 'hidden',
-      //   duration: 0,
-      // }, hideIntroTime + cfg.duration.introFadeOut);
+      // Плавное исчезновение intro текста
+      masterTL.to(words, {
+        opacity: 0,
+        y: -30,
+        duration: cfg.duration.introFadeOut,
+        ease: 'power2.inOut',
+        stagger: 0.01,
+      }, hideIntroTime);
     }
 
-    // ОТЛАДКА: Отключено скрытие статистики и intro-hidden
-    // if (elements.statsSection && !introAlreadyShown) {
-    //   const hideIntroTime = textStartTime + cfg.duration.text + cfg.duration.introDisplay;
-    //   masterTL.to(elements.statsSection, {
-    //     visibility: 'hidden',
-    //     duration: 0,
-    //   }, hideIntroTime + cfg.duration.introFadeOut);
-    //
-    //   masterTL.call(() => {
-    //     modal.classList.add('intro-hidden');
-    //     console.log('📦 Intro скрыт, слайдер центрируется');
-    //     console.log('✨ Intro завершен');
-    //   }, null, hideIntroTime + cfg.duration.introFadeOut);
-    // }
+    // Общее время для всех intro элементов
+    const allElementsAppeared = introTextStartTime + cfg.duration.text;
+    const hideIntroTime = allElementsAppeared + cfg.duration.introDisplay;
+
+    // Добавляем класс slider-visible для показа слайдера
+    if ((elements.statsSection || elements.introText) && !introAlreadyShown) {
+      masterTL.call(() => {
+        // Добавляем класс для показа слайдера через CSS
+        if (elements.content) {
+          elements.content.classList.add('slider-visible');
+        }
+        console.log('📦 Intro скрыт, показываем слайдер');
+      }, null, hideIntroTime + cfg.duration.introFadeOut);
+    }
 
     // ========================================
     // ФАЗА 3: Карточки (после исчезновения intro или сразу если intro пропущен)
@@ -320,7 +385,7 @@
     // - СРАЗУ после backdrop (если intro пропущен)
     const cardsStartTime = introAlreadyShown
       ? cfg.duration.modalOpen + 0.3
-      : textStartTime + cfg.duration.text + cfg.duration.introDisplay + cfg.duration.introFadeOut + 0.2;
+      : hideIntroTime + cfg.duration.introFadeOut + 0.2;
 
     if (elements.cards.length > 0) {
       elements.cards.forEach((card, index) => {
@@ -498,7 +563,7 @@
       0.2
     );
 
-    if (elements.videoBg) {
+    if (elements.videoBg && elements.videoBg.length > 0) {
       closeTL.to(elements.videoBg,
         {
           opacity: 0,
@@ -519,7 +584,7 @@
     gsap.set([
       elements.backdrop,
       elements.content,
-      elements.videoBg,
+      ...(elements.videoBg || []),
       elements.statsSection,
       elements.introText,
       ...elements.cards,
@@ -788,5 +853,252 @@
   };
 
   console.log('📦 modal-animations-premium.js загружен');
+
+  // ============================================
+  // УПРАВЛЕНИЕ ВИДИМОСТЬЮ СТРЕЛОК СЛАЙДЕРА
+  // ============================================
+
+  /**
+   * Скрывает стрелку
+   */
+  function hideArrow(btn) {
+    if (!btn) return;
+    // Очищаем inline стили
+    btn.style.removeProperty('opacity');
+    btn.style.removeProperty('visibility');
+    btn.style.removeProperty('pointer-events');
+    // Применяем класс
+    btn.classList.add('arrow-hidden');
+    btn.classList.remove('arrow-visible');
+  }
+
+  /**
+   * Показывает стрелку
+   */
+  function showArrow(btn) {
+    if (!btn) return;
+    // Очищаем inline стили
+    btn.style.removeProperty('opacity');
+    btn.style.removeProperty('visibility');
+    btn.style.removeProperty('pointer-events');
+    // Применяем класс
+    btn.classList.add('arrow-visible');
+    btn.classList.remove('arrow-hidden');
+  }
+
+  /**
+   * Обновляет видимость стрелок навигации на основе позиции скролла
+   */
+  function updateSliderArrows(slider, prevBtn, nextBtn) {
+    if (!slider || !prevBtn || !nextBtn) return;
+
+    const scrollLeft = Math.round(slider.scrollLeft);
+    const scrollWidth = slider.scrollWidth;
+    const clientWidth = slider.clientWidth;
+    const maxScroll = scrollWidth - clientWidth;
+    const threshold = 5;
+
+    // Если слайдер не имеет скролла (все карточки помещаются) - скрыть обе стрелки
+    if (maxScroll <= threshold) {
+      hideArrow(prevBtn);
+      hideArrow(nextBtn);
+      return;
+    }
+
+    // Левая стрелка: скрыть если в начале
+    if (scrollLeft <= threshold) {
+      hideArrow(prevBtn);
+    } else {
+      showArrow(prevBtn);
+    }
+
+    // Правая стрелка: скрыть если в конце
+    if (scrollLeft >= maxScroll - threshold) {
+      hideArrow(nextBtn);
+    } else {
+      showArrow(nextBtn);
+    }
+  }
+
+  /**
+   * Инициализирует управление стрелками для слайдера
+   */
+  function initSliderArrowsControl(sliderWrap) {
+    if (!sliderWrap) return;
+
+    // Предотвращаем повторную инициализацию
+    if (sliderWrap.dataset.arrowsInitialized === 'true') {
+      return;
+    }
+    sliderWrap.dataset.arrowsInitialized = 'true';
+
+    // Находим слайдер и кнопки
+    const slider = sliderWrap.querySelector('#sportSlider, #kidsSlider, #restSlider, #eventsSlider, [class$="-slider"]');
+    const prevBtn = sliderWrap.querySelector('.slides-nav__button--prev, [data-sport-prev], [data-kids-prev], [data-rest-prev], [data-events-prev]');
+    const nextBtn = sliderWrap.querySelector('.slides-nav__button--next, [data-sport-next], [data-kids-next], [data-rest-next], [data-events-next]');
+
+    if (!slider || !prevBtn || !nextBtn) {
+      console.warn('⚠️ Не найдены элементы слайдера:', sliderWrap);
+      sliderWrap.dataset.arrowsInitialized = 'false';
+      return;
+    }
+
+    // Сразу скрываем левую стрелку (мы всегда в начале при открытии)
+    hideArrow(prevBtn);
+    showArrow(nextBtn);
+
+    // Обработчик скролла
+    slider.addEventListener('scroll', () => {
+      updateSliderArrows(slider, prevBtn, nextBtn);
+    });
+
+    // Обработчик клика на стрелки (прокрутка)
+    prevBtn.addEventListener('click', () => {
+      const card = slider.querySelector('.sport-card, .kids-card, .rest-card, .events-card');
+      const scrollAmount = card ? card.offsetWidth + 32 : 300;
+      slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const card = slider.querySelector('.sport-card, .kids-card, .rest-card, .events-card');
+      const scrollAmount = card ? card.offsetWidth + 32 : 300;
+      slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    // Обновление при изменении размера окна
+    window.addEventListener('resize', () => {
+      updateSliderArrows(slider, prevBtn, nextBtn);
+    });
+
+    console.log('✅ Управление стрелками слайдера инициализировано');
+  }
+
+  /**
+   * Инициализирует управление стрелками для всех слайдеров
+   */
+  function initAllSliderArrows() {
+    const sliderWraps = document.querySelectorAll('.sport-slider-wrap, .kids-slider-wrap, .rest-slider-wrap, .events-slider-wrap');
+
+    sliderWraps.forEach(wrap => {
+      initSliderArrowsControl(wrap);
+    });
+
+    console.log(`✅ Управление стрелками инициализировано для ${sliderWraps.length} слайдеров`);
+  }
+
+  // Сразу скрываем левые стрелки в модальных слайдерах (НЕ на главном слайдере!)
+  function hideAllLeftArrows() {
+    // Только стрелки внутри slider-wrap (модальные окна), НЕ главный слайдер
+    const modalPrevBtns = '.sport-slider-wrap .slides-nav__button--prev, .kids-slider-wrap .slides-nav__button--prev, .rest-slider-wrap .slides-nav__button--prev, .events-slider-wrap .slides-nav__button--prev, [data-sport-prev], [data-kids-prev], [data-rest-prev], [data-events-prev]';
+    const modalNextBtns = '.sport-slider-wrap .slides-nav__button--next, .kids-slider-wrap .slides-nav__button--next, .rest-slider-wrap .slides-nav__button--next, .events-slider-wrap .slides-nav__button--next, [data-sport-next], [data-kids-next], [data-rest-next], [data-events-next]';
+
+    document.querySelectorAll(modalPrevBtns).forEach(btn => {
+      btn.classList.add('arrow-hidden');
+      btn.classList.remove('arrow-visible');
+    });
+    document.querySelectorAll(modalNextBtns).forEach(btn => {
+      btn.classList.add('arrow-visible');
+      btn.classList.remove('arrow-hidden');
+    });
+  }
+
+  // Инициализируем после загрузки контента модальных окон
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      hideAllLeftArrows();
+      setTimeout(initAllSliderArrows, 1500);
+    });
+  } else {
+    hideAllLeftArrows();
+    setTimeout(initAllSliderArrows, 1500);
+  }
+
+  /**
+   * Обновляет стрелки для модалки - принудительно скрывает левую, показывает правую
+   */
+  function updateArrowsForModal(modal) {
+    const sliderWrap = modal.querySelector('.sport-slider-wrap, .kids-slider-wrap, .rest-slider-wrap, .events-slider-wrap');
+    if (!sliderWrap) return;
+
+    const slider = sliderWrap.querySelector('#sportSlider, #kidsSlider, #restSlider, #eventsSlider');
+    const prevBtn = sliderWrap.querySelector('.slides-nav__button--prev, [data-sport-prev]');
+    const nextBtn = sliderWrap.querySelector('.slides-nav__button--next, [data-sport-next]');
+
+    if (slider && prevBtn && nextBtn) {
+      // Сбрасываем scroll в начало
+      slider.scrollLeft = 0;
+      // Принудительно скрываем левую стрелку
+      hideArrow(prevBtn);
+      // Показываем правую если есть что скроллить
+      const maxScroll = slider.scrollWidth - slider.clientWidth;
+      if (maxScroll > 5) {
+        showArrow(nextBtn);
+      } else {
+        hideArrow(nextBtn);
+      }
+    }
+  }
+
+  // Отслеживаем открытие модальных окон и появление слайдера
+  const modalObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'class') {
+        const target = mutation.target;
+
+        // Модалка открылась
+        if (target.classList.contains('active')) {
+          // Сразу скрываем левые стрелки
+          target.querySelectorAll('.slides-nav__button--prev, [data-sport-prev]').forEach(btn => {
+            btn.classList.add('arrow-hidden');
+            btn.classList.remove('arrow-visible');
+          });
+          target.querySelectorAll('.slides-nav__button--next, [data-sport-next]').forEach(btn => {
+            btn.classList.add('arrow-visible');
+            btn.classList.remove('arrow-hidden');
+          });
+
+          const initWithRetry = (attempt = 0) => {
+            const sliderWrap = target.querySelector('.sport-slider-wrap, .kids-slider-wrap, .rest-slider-wrap, .events-slider-wrap');
+            if (sliderWrap) {
+              const slider = sliderWrap.querySelector('#sportSlider, #kidsSlider, #restSlider, #eventsSlider');
+              if (slider && slider.scrollWidth > 0) {
+                initSliderArrowsControl(sliderWrap);
+                updateArrowsForModal(target);
+              } else if (attempt < 10) {
+                setTimeout(() => initWithRetry(attempt + 1), 200);
+              }
+            }
+          };
+          setTimeout(() => initWithRetry(), 300);
+        }
+
+        // Модалка закрылась - сбрасываем флаг инициализации
+        if (!target.classList.contains('active')) {
+          const sliderWrap = target.querySelector('.sport-slider-wrap, .kids-slider-wrap, .rest-slider-wrap, .events-slider-wrap');
+          if (sliderWrap) {
+            sliderWrap.dataset.arrowsInitialized = 'false';
+          }
+        }
+
+        // Слайдер стал видимым (intro скрылся)
+        if (target.classList.contains('intro-hidden')) {
+          updateArrowsForModal(target);
+          setTimeout(() => updateArrowsForModal(target), 200);
+        }
+      }
+    });
+  });
+
+  // Наблюдаем за всеми модальными окнами
+  document.querySelectorAll('.sport-modal, .kids-modal, .rest-modal, .events-modal').forEach(modal => {
+    modalObserver.observe(modal, { attributes: true, attributeFilter: ['class'] });
+  });
+
+  // Экспортируем функции
+  window.PrideSliderArrows = {
+    update: updateSliderArrows,
+    init: initSliderArrowsControl,
+    initAll: initAllSliderArrows
+  };
 
 })();

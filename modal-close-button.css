@@ -64,7 +64,15 @@
 .sport-close::before,
 .sport-close::after,
 .rest-close::before,
-.rest-close::after {
+.rest-close::after,
+.about-modal-close::before,
+.about-modal-close::after,
+.relax-modal-close::before,
+.relax-modal-close::after,
+.ice-modal-close::before,
+.ice-modal-close::after,
+.pricing-modal-close::before,
+.pricing-modal-close::after {
   content: '';
   position: absolute;
   width: 24px;
@@ -77,14 +85,22 @@
 [id^="close"]::before,
 .modal-close-btn::before,
 .sport-close::before,
-.rest-close::before {
+.rest-close::before,
+.about-modal-close::before,
+.relax-modal-close::before,
+.ice-modal-close::before,
+.pricing-modal-close::before {
   transform: rotate(45deg);
 }
 
 [id^="close"]::after,
 .modal-close-btn::after,
 .sport-close::after,
-.rest-close::after {
+.rest-close::after,
+.about-modal-close::after,
+.relax-modal-close::after,
+.ice-modal-close::after,
+.pricing-modal-close::after {
   transform: rotate(-45deg);
 }
 
@@ -218,4 +234,63 @@
 .modal.active .sport-close,
 .modal.active .rest-close {
   animation: closeButtonAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+/* ============================================
+   Светлая тема - черный крестик
+   ============================================ */
+
+body.light-theme [id^="close"],
+body.light-theme .modal-close-btn,
+body.light-theme .sport-close,
+body.light-theme .rest-close,
+body.light-theme .relax-modal-close,
+body.light-theme .ice-modal-close,
+body.light-theme .about-modal-close,
+body.light-theme .pricing-modal-close,
+body.light-theme .review-modal-close {
+  background: rgba(0, 0, 0, 0.15) !important;
+  border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+body.light-theme [id^="close"]::before,
+body.light-theme [id^="close"]::after,
+body.light-theme .modal-close-btn::before,
+body.light-theme .modal-close-btn::after,
+body.light-theme .sport-close::before,
+body.light-theme .sport-close::after,
+body.light-theme .rest-close::before,
+body.light-theme .rest-close::after,
+body.light-theme .relax-modal-close::before,
+body.light-theme .relax-modal-close::after,
+body.light-theme .ice-modal-close::before,
+body.light-theme .ice-modal-close::after,
+body.light-theme .about-modal-close::before,
+body.light-theme .about-modal-close::after,
+body.light-theme .pricing-modal-close::before,
+body.light-theme .pricing-modal-close::after {
+  background: #333 !important;
+}
+
+body.light-theme [id^="close"]:hover,
+body.light-theme .modal-close-btn:hover,
+body.light-theme .sport-close:hover,
+body.light-theme .rest-close:hover,
+body.light-theme .relax-modal-close:hover,
+body.light-theme .ice-modal-close:hover,
+body.light-theme .about-modal-close:hover,
+body.light-theme .pricing-modal-close:hover {
+  background: rgba(255, 107, 53, 0.9) !important;
+  border-color: rgba(255, 107, 53, 1) !important;
+}
+
+body.light-theme [id^="close"]:hover::before,
+body.light-theme [id^="close"]:hover::after,
+body.light-theme .modal-close-btn:hover::before,
+body.light-theme .modal-close-btn:hover::after,
+body.light-theme .sport-close:hover::before,
+body.light-theme .sport-close:hover::after,
+body.light-theme .rest-close:hover::before,
+body.light-theme .rest-close:hover::after {
+  background: #fff !important;
 }

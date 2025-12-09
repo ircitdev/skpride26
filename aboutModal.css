@@ -61,6 +61,8 @@
 .about-modal.active .about-scroller {
   pointer-events: auto !important;
   overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
 }
 
 /* ============================================
@@ -69,17 +71,18 @@
 
 .about-scroller {
   height: 100vh;
+  height: 100dvh; /* Dynamic viewport для мобильных */
   width: 100%;
   overflow-y: scroll !important;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+  overscroll-behavior-y: contain !important;
   pointer-events: auto !important;
   position: relative;
   z-index: 1;
   /* Принудительно включаем прокрутку */
-  overscroll-behavior: contain;
-  touch-action: pan-y;
 }
 
 /* Кастомный скроллбар - СВЕТЛЫЙ СКИН */
@@ -282,9 +285,9 @@
 /* Обертка для текстовых панелей */
 .about-text-wrap {
   position: relative;
-  overflow: hidden;
-  width: 450px;
-  max-width: 90vw;
+  overflow: visible;
+  width: 500px;
+  max-width: 45vw;
   height: 80vh;
   z-index: 10;
   flex-shrink: 0;
@@ -313,12 +316,15 @@
 }
 
 .about-panel-text h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   text-transform: uppercase;
   font-weight: 900;
   color: #bd9d5d;  /* Золотой акцент */
   margin: 0 0 1rem;
-  line-height: 1.2;
+  line-height: 1.1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .about-panel-text p {

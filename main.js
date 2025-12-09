@@ -7471,7 +7471,7 @@ function renderOptions(options, stepContainerId, onSelect, backCallback = null) 
         if (reviewFormModal) {
           reviewFormModal.classList.add('active');
           reviewFormModal.setAttribute('aria-hidden', 'false');
-          document.body.style.overflow = 'hidden';
+          // НЕ блокируем body.overflow - это ломает scroll на iOS
           console.log('📝 Форма отзыва открыта из раздела мероприятий');
         }
       });
@@ -7792,7 +7792,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function closeOffcanvas() {
     bookingPanel.classList.remove("active");
     backdrop.classList.remove("show");
-    document.body.style.overflow = '';
+    // НЕ блокируем body.overflow - это ломает scroll на iOS
   }
 
   // Открытие offcanvas
@@ -7800,7 +7800,7 @@ document.addEventListener("DOMContentLoaded", () => {
     openBtn.addEventListener("click", () => {
       bookingPanel.classList.add("active");
       backdrop.classList.add("show");
-      document.body.style.overflow = 'hidden';
+      // НЕ блокируем body.overflow - это ломает scroll на iOS
       loadFormConfig(); // Загружаем форму из form.json
     });
   }
@@ -7860,6 +7860,18 @@ document.addEventListener('DOMContentLoaded', () => {
       const response = await fetch('sportModal.html');
       const html = await response.text();
       modal.innerHTML = html;
+
+      // Сразу скрываем левую стрелку (мы в начале слайдера)
+      const prevBtn = modal.querySelector('.slides-nav__button--prev, [data-sport-prev]');
+      const nextBtn = modal.querySelector('.slides-nav__button--next, [data-sport-next]');
+      if (prevBtn) {
+        prevBtn.classList.add('arrow-hidden');
+        prevBtn.classList.remove('arrow-visible');
+      }
+      if (nextBtn) {
+        nextBtn.classList.add('arrow-visible');
+        nextBtn.classList.remove('arrow-hidden');
+      }
     } catch (error) {
       console.error('Ошибка загрузки sportModal.html:', error);
     }
@@ -7997,7 +8009,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingPanel && backdrop) {
         bookingPanel.classList.add('active');
         backdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
 
         // Загружаем форму если функция доступна
         if (typeof loadFormConfig === 'function') {
@@ -8021,7 +8032,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingPanel && backdrop) {
         bookingPanel.classList.add('active');
         backdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
 
         // Загружаем форму если функция доступна
         if (typeof loadFormConfig === 'function') {
@@ -8053,7 +8063,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingPanel && backdrop) {
         bookingPanel.classList.add('active');
         backdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
 
         // Загружаем форму если функция доступна
         if (typeof loadFormConfig === 'function') {
@@ -8093,7 +8102,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingPanel && backdrop) {
         bookingPanel.classList.add('active');
         backdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
 
         // Загружаем форму если функция доступна
         if (typeof loadFormConfig === 'function') {
@@ -8133,7 +8141,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingPanel && backdrop) {
         bookingPanel.classList.add('active');
         backdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
 
         if (typeof loadFormConfig === 'function') {
           loadFormConfig().then(() => {
@@ -8169,7 +8176,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingPanel && backdrop) {
         bookingPanel.classList.add('active');
         backdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
 
         if (typeof loadFormConfig === 'function') {
           loadFormConfig().then(() => {
@@ -8205,7 +8211,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingPanel && backdrop) {
         bookingPanel.classList.add('active');
         backdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
 
         if (typeof loadFormConfig === 'function') {
           loadFormConfig().then(() => {
@@ -8246,7 +8251,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingPanel && backdrop) {
         bookingPanel.classList.add('active');
         backdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
 
         // Загружаем форму если функция доступна
         if (typeof loadFormConfig === 'function') {
@@ -8279,7 +8283,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (bookingPanel && backdrop) {
         bookingPanel.classList.add('active');
         backdrop.classList.add('show');
-        document.body.style.overflow = 'hidden';
 
         // Загружаем форму если функция доступна
         if (typeof loadFormConfig === 'function') {
@@ -8371,7 +8374,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (bookingPanel && backdrop) {
       bookingPanel.classList.add('active');
       backdrop.classList.add('show');
-      document.body.style.overflow = 'hidden';
 
       if (typeof loadFormConfig === 'function') {
         loadFormConfig().then(() => {
@@ -8589,6 +8591,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('restModal.html');
     const html = await response.text();
     modal.innerHTML = html;
+
+    // Сразу скрываем левую стрелку (мы в начале слайдера)
+    const prevBtn = modal.querySelector('.slides-nav__button--prev');
+    const nextBtn = modal.querySelector('.slides-nav__button--next');
+    if (prevBtn) {
+      prevBtn.classList.add('arrow-hidden');
+      prevBtn.classList.remove('arrow-visible');
+    }
+    if (nextBtn) {
+      nextBtn.classList.add('arrow-visible');
+      nextBtn.classList.remove('arrow-hidden');
+    }
   } catch (err) {
     console.error('Ошибка загрузки restModal.html:', err);
     return;
@@ -8913,6 +8927,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('kidsModal.html');
     const html = await response.text();
     modal.innerHTML = html;
+
+    // Сразу скрываем левую стрелку (мы в начале слайдера)
+    const prevBtn = modal.querySelector('.slides-nav__button--prev');
+    const nextBtn = modal.querySelector('.slides-nav__button--next');
+    if (prevBtn) {
+      prevBtn.classList.add('arrow-hidden');
+      prevBtn.classList.remove('arrow-visible');
+    }
+    if (nextBtn) {
+      nextBtn.classList.add('arrow-visible');
+      nextBtn.classList.remove('arrow-hidden');
+    }
   } catch (err) {
     console.error('Ошибка загрузки kidsModal.html:', err);
     return;

@@ -186,7 +186,7 @@
     // чтобы премиум анимации успели инициализироваться (они инициализируются через 1000ms)
     setTimeout(() => {
       modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      // НЕ блокируем body.overflow - это ломает scroll на iOS
 
       // Триггерим событие для премиум анимаций и aboutModal
       modal.dispatchEvent(new Event('modalopen'));
@@ -264,22 +264,61 @@
       }
     });
 
-    // Добавляем обработчики для кнопок закрытия модальных окон
-    const closeButtons = document.querySelectorAll('[id^="close"], .modal-close, .close-btn');
-    closeButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        clearHashOnModalClose();
-      });
+    // Используем делегирование событий для кнопок закрытия
+    // (работает для динамически загруженных элементов)
+    document.addEventListener('click', function(e) {
+      const closeButton = e.target.closest('[id^="close"], .modal-close, .close-btn, .sport-close, .rest-close, .about-modal-close, .relax-modal-close, .ice-modal-close, .pricing-modal-close');
+      if (closeButton) {
+        // Небольшая задержка чтобы модалка успела закрыться
+        setTimeout(() => {
+          clearHashOnModalClose();
+        }, 100);
+      }
     });
 
-    // Добавляем обработчик для закрытия по overlay
-    const modals = document.querySelectorAll('.sport-modal, .kids-modal, .rest-modal, .events-modal, .contacts-modal, .about-modal, .relax-modal, .pricing-modal');
-    modals.forEach(modal => {
-      modal.addEventListener('click', function(e) {
-        if (e.target === this) {
+    // Добавляем обработчик для закрытия по overlay (делегирование)
+    document.addEventListener('click', function(e) {
+      const modal = e.target.closest('.sport-modal, .kids-modal, .rest-modal, .events-modal, .contacts-modal, .about-modal, .relax-modal, .pricing-modal, .ice-modal, .review-modal');
+      if (modal && e.target === modal) {
+        setTimeout(() => {
           clearHashOnModalClose();
+        }, 100);
+      }
+    });
+
+    // Обработка ESC для закрытия модалок
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const activeModal = document.querySelector('.sport-modal.active, .kids-modal.active, .rest-modal.active, .events-modal.active, .contacts-modal.active, .about-modal.active, .relax-modal.active, .pricing-modal.active, .ice-modal.active, .review-modal.active');
+        if (activeModal) {
+          setTimeout(() => {
+            clearHashOnModalClose();
+          }, 100);
         }
+      }
+    });
+
+    // Слушаем кастомное событие modalclose
+    document.addEventListener('modalclose', function() {
+      clearHashOnModalClose();
+    });
+
+    // Добавляем обработчик для закрытия по overlay (для уже существующих модалок)
+    const modals = document.querySelectorAll('.sport-modal, .kids-modal, .rest-modal, .events-modal, .contacts-modal, .about-modal, .relax-modal, .pricing-modal, .ice-modal, .review-modal');
+    modals.forEach(modal => {
+      // MutationObserver для отслеживания удаления класса active
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.attributeName === 'class') {
+            const wasActive = mutation.oldValue && mutation.oldValue.includes('active');
+            const isActive = modal.classList.contains('active');
+            if (wasActive && !isActive) {
+              clearHashOnModalClose();
+            }
+          }
+        });
       });
+      observer.observe(modal, { attributes: true, attributeOldValue: true });
     });
 
     // Инициализируем обработку форм после загрузки DOM
